@@ -160,7 +160,171 @@
   }
   .section-head p{ color:#4A5A78; font-size:1.05rem; }
 
-  /* ---------- SABORES / MENÚ ---------- */
+  /* ---------- CHATBOT ---------- */
+  .chat-launcher{
+    position:fixed;
+    bottom:24px; right:24px;
+    width:60px; height:60px;
+    border-radius:50%;
+    background:var(--blue-deep);
+    border:3px solid var(--white);
+    box-shadow:0 12px 28px rgba(0,0,0,0.25);
+    cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    font-size:1.6rem;
+    z-index:200;
+    transition:transform .15s ease;
+  }
+  .chat-launcher:hover{ transform:scale(1.06); }
+
+  .chat-window{
+    position:fixed;
+    bottom:96px; right:24px;
+    width:340px;
+    max-width:88vw;
+    height:460px;
+    max-height:70vh;
+    background:var(--white);
+    border-radius:var(--radius-md);
+    box-shadow:0 20px 50px rgba(0,0,0,0.3);
+    display:none;
+    flex-direction:column;
+    overflow:hidden;
+    z-index:200;
+  }
+  .chat-window.open{ display:flex; }
+
+  .chat-head{
+    background:var(--blue-deep);
+    color:var(--white);
+    padding:16px 18px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .chat-head img{ height:26px; width:auto; filter:brightness(0) invert(1); opacity:0.9; }
+  .chat-head .chat-title{
+    font-family:'Fredoka', sans-serif;
+    font-weight:600;
+    font-size:0.95rem;
+  }
+  .chat-head .chat-sub{
+    font-size:0.72rem;
+    opacity:0.75;
+  }
+  .chat-close{
+    margin-left:auto;
+    background:none; border:none; color:var(--white);
+    font-size:1.3rem; cursor:pointer; line-height:1;
+    padding:4px;
+  }
+
+  .chat-body{
+    flex:1;
+    overflow-y:auto;
+    padding:16px;
+    display:flex; flex-direction:column; gap:10px;
+    background:var(--cream);
+  }
+  .chat-msg{
+    max-width:85%;
+    padding:10px 14px;
+    border-radius:14px;
+    font-size:0.88rem;
+    line-height:1.4;
+  }
+  .chat-msg.bot{
+    background:var(--white);
+    color:var(--navy-text);
+    border-bottom-left-radius:4px;
+    align-self:flex-start;
+    box-shadow:0 2px 6px rgba(0,0,0,0.06);
+  }
+  .chat-msg.user{
+    background:var(--blue-deep);
+    color:var(--white);
+    border-bottom-right-radius:4px;
+    align-self:flex-end;
+  }
+
+  .chat-options{
+    padding:12px 16px 16px;
+    display:flex; flex-direction:column; gap:8px;
+    background:var(--cream);
+    border-top:1px solid rgba(30,74,150,0.08);
+  }
+  .chat-option-btn{
+    text-align:left;
+    background:var(--white);
+    border:1.5px solid rgba(30,74,150,0.15);
+    color:var(--blue-deep);
+    font-family:'Nunito Sans', sans-serif;
+    font-weight:700;
+    font-size:0.85rem;
+    padding:10px 14px;
+    border-radius:10px;
+    cursor:pointer;
+    transition:background .15s ease;
+  }
+  .chat-option-btn:hover{ background:#E8EEFB; }
+
+  @media (max-width:480px){
+    .chat-window{ right:12px; left:12px; width:auto; bottom:88px; }
+    .chat-launcher{ right:16px; bottom:16px; }
+  }
+
+  /* ---------- NOVEDADES ---------- */
+  .whatsnew{ background:var(--cream); }
+  .whatsnew-grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap:24px;
+  }
+  .whatsnew-card{
+    background:var(--white);
+    border-radius:var(--radius-lg);
+    padding:30px;
+    position:relative;
+    border:2px solid rgba(30,74,150,0.08);
+    box-shadow:0 16px 32px rgba(30,74,150,0.06);
+  }
+  .whatsnew-card .badge-new{
+    display:inline-block;
+    background:var(--tan);
+    color:var(--navy-text);
+    font-family:'Fredoka', sans-serif;
+    font-weight:800;
+    font-size:0.72rem;
+    letter-spacing:0.8px;
+    text-transform:uppercase;
+    padding:5px 12px;
+    border-radius:999px;
+    margin-bottom:16px;
+  }
+  .whatsnew-card .badge-promo{ background:var(--cyan); }
+  .whatsnew-card .icon-circle{
+    width:56px; height:56px;
+    border-radius:50%;
+    background:var(--cream);
+    display:flex; align-items:center; justify-content:center;
+    font-size:1.6rem;
+    margin-bottom:16px;
+  }
+  .whatsnew-card h3{
+    font-size:1.2rem;
+    color:var(--blue-deep);
+    margin-bottom:8px;
+  }
+  .whatsnew-card p{
+    font-size:0.95rem;
+    color:#5A6A88;
+  }
+  .whatsnew-card .month-tag{
+    display:block;
+    margin-top:14px;
+    font-size:0.8rem;
+    color:var(--tan);
+    font-weight:700;
+    font-family:'Fredoka', sans-serif;
+  }
   .flavors{ background:var(--white); }
 
   .flavor-tabs{
@@ -425,7 +589,8 @@
   }
   .contact-form .field{ margin-bottom:18px; }
   .contact-form input,
-  .contact-form textarea{
+  .contact-form textarea,
+  .contact-form select{
     width:100%;
     padding:12px 14px;
     border-radius:12px;
@@ -435,6 +600,13 @@
     background:var(--white);
     color:var(--navy-text);
     resize:vertical;
+  }
+  .contact-form select{ cursor:pointer; }
+  .contact-form .hint{
+    font-size:0.8rem;
+    color:rgba(255,255,255,0.6);
+    margin-top:6px;
+    display:block;
   }
   .contact-form textarea{ min-height:110px; }
   .contact-form button{
@@ -509,6 +681,7 @@
     <span></span><span></span><span></span>
   </button>
   <ul class="nav-menu" id="navMenu">
+    <li><a href="#novedades">Novedades</a></li>
     <li><a href="#sabores">Sabores</a></li>
     <li><a href="#sucursales">Sucursales</a></li>
     <li><a href="#contacto">Contacto</a></li>
@@ -531,6 +704,23 @@
     </div>
   </div>
 </header>
+
+<section class="whatsnew" id="novedades">
+  <div class="section-head">
+    <span class="eyebrow">Recién salido</span>
+    <h2>Novedades y promociones</h2>
+    <p>Lo nuevo del mes, sabores de temporada y promos especiales.</p>
+  </div>
+  <div class="whatsnew-grid">
+    <div class="whatsnew-card">
+      <span class="badge-new">Nueva paleta</span>
+      <div class="icon-circle">🍓</div>
+      <h3>Fresa de agua, sin azúcar</h3>
+      <p>Se suma a nuestra línea sin azúcar añadida: fresa natural, ligera y refrescante, sin perder sabor.</p>
+      <span class="month-tag">Julio 2026</span>
+    </div>
+  </div>
+</section>
 
 <section class="flavors" id="sabores">
   <div class="section-head">
@@ -722,6 +912,7 @@
       <div class="menu-group-head"><h3>Paletas sin azúcar (SA)</h3></div>
       <div class="menu-group-rule"></div>
       <div class="item-list">
+        <div class="item"><h4>Fresa SA <span class="badge-vegano">NUEVO</span></h4><p>Fresa natural, sin azúcar añadida, ligera y refrescante.</p></div>
         <div class="item"><h4>Cajeta SA</h4><p>Caramelo suave, sin azúcar añadida; cajeta hecha con leche de cabra.</p></div>
         <div class="item"><h4>Fresa con chamoy SA</h4><span class="badge-vegano">VEGANO</span><p>Frutal y ligera, sin azúcar añadida, con toque ácido.</p></div>
         <div class="item"><h4>Grosella SA</h4><span class="badge-vegano">VEGANO</span><p>Ácida y vibrante, sin azúcar añadida.</p></div>
@@ -862,7 +1053,7 @@
   <div class="section-head">
     <span class="eyebrow">Dos sucursales</span>
     <h2>Encuéntranos aquí</h2>
-    <p>El teléfono de cada sucursal sigue pendiente — en cuanto me lo pases lo agrego.</p>
+    <p>Toda la información para encontrarnos, actualizada.</p>
   </div>
 
   <div class="location-grid">
@@ -876,10 +1067,6 @@
       <div class="location-detail">
         <span class="label">Horario</span>
         <span class="value">Todos los días, 12:00 pm – 8:30 pm</span>
-      </div>
-      <div class="location-detail">
-        <span class="label">Teléfono</span>
-        <span class="value placeholder">[55 0000 0000]</span>
       </div>
       <div class="card-actions">
         <a href="https://www.google.com/maps/search/?api=1&query=Av+Emilio+Carranza+443%2C+El+Reto%C3%B1o%2C+Iztapalapa%2C+09440+Ciudad+de+M%C3%A9xico%2C+CDMX" target="_blank" rel="noopener" class="map-btn">Cómo llegar →</a>
@@ -897,10 +1084,6 @@
       <div class="location-detail">
         <span class="label">Horario</span>
         <span class="value">Miér 12–5 pm · Sáb 12–4:30 pm<br>Resto de la semana: cerrado</span>
-      </div>
-      <div class="location-detail">
-        <span class="label">Teléfono</span>
-        <span class="value placeholder">[55 0000 0000]</span>
       </div>
       <div class="card-actions">
         <a href="https://www.google.com/maps/search/?api=1&query=Unidad+Habitacional%2C+Emilio+Portes+Gil%2C+Tlalpan%2C+14110+Ciudad+de+M%C3%A9xico%2C+CDMX" target="_blank" rel="noopener" class="map-btn">Cómo llegar →</a>
@@ -931,15 +1114,28 @@
 
     <div class="field">
       <label for="nombre">Nombre</label>
-      <input type="text" id="nombre" name="Nombre" required>
+      <input type="text" id="nombre" name="Nombre" required maxlength="60">
     </div>
     <div class="field">
       <label for="correo">Tu correo</label>
       <input type="email" id="correo" name="Correo" required>
     </div>
     <div class="field">
-      <label for="mensaje">Mensaje</label>
-      <textarea id="mensaje" name="Mensaje" required></textarea>
+      <label for="motivo">¿Sobre qué nos escribes?</label>
+      <select id="motivo" name="Motivo" required>
+        <option value="" disabled selected>Selecciona una opción</option>
+        <option value="Pedido o cotización para evento">Pedido o cotización para evento</option>
+        <option value="Pregunta sobre sabores o menú">Pregunta sobre sabores o menú</option>
+        <option value="Pregunta sobre sucursales u horarios">Pregunta sobre sucursales u horarios</option>
+        <option value="Comentario o sugerencia">Comentario o sugerencia</option>
+        <option value="Trabaja con nosotros">Trabaja con nosotros</option>
+        <option value="Otro">Otro</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="mensaje">Detalles (opcional)</label>
+      <textarea id="mensaje" name="Detalles" maxlength="280" placeholder="Cuéntanos brevemente qué necesitas"></textarea>
+      <span class="hint">Máximo 280 caracteres.</span>
     </div>
     <button type="submit">Enviar mensaje</button>
   </form>
@@ -966,5 +1162,116 @@
     });
   });
 </script>
+<!-- ===== CHATBOT ===== -->
+<button class="chat-launcher" id="chatLauncher" aria-label="Abrir chat">💬</button>
+
+<div class="chat-window" id="chatWindow">
+  <div class="chat-head">
+    <img src="assets/nicecream-logo-wide.png" alt="">
+    <div>
+      <div class="chat-title">NiceCream</div>
+      <div class="chat-sub">Respuestas rápidas</div>
+    </div>
+    <button class="chat-close" id="chatClose" aria-label="Cerrar chat">✕</button>
+  </div>
+  <div class="chat-body" id="chatBody"></div>
+  <div class="chat-options" id="chatOptions"></div>
+</div>
+
+<script>
+  const chatLauncher = document.getElementById('chatLauncher');
+  const chatWindow = document.getElementById('chatWindow');
+  const chatClose = document.getElementById('chatClose');
+  const chatBody = document.getElementById('chatBody');
+  const chatOptions = document.getElementById('chatOptions');
+
+  const chatData = {
+    root: {
+      bot: "¡Hola! Soy el asistente de NiceCream 🍦 ¿En qué te ayudo?",
+      options: [
+        { label: "📍 Horarios y ubicaciones", next: "ubicaciones" },
+        { label: "🍧 Ver el menú", next: "menu" },
+        { label: "🥗 ¿Tienen opciones sin azúcar o veganas?", next: "dietas" },
+        { label: "🎉 Pedidos para eventos", next: "eventos" },
+        { label: "✉️ Hablar con alguien", next: "contacto" }
+      ]
+    },
+    ubicaciones: {
+      bot: "Tenemos dos sucursales:\n\n• El Retoño (Iztapalapa): todos los días, 12:00 pm – 8:30 pm\n• Pedregal (Tlalpan): miércoles 12–5 pm y sábado 12–4:30 pm",
+      options: [
+        { label: "Ver mapa de las sucursales", action: "scroll", target: "#sucursales" },
+        { label: "⬅️ Regresar al inicio", next: "root" }
+      ]
+    },
+    menu: {
+      bot: "Tenemos paletas de agua, de crema, premium, con infusión, sin azúcar/keto, helados, malteadas, dorilocos, bebidas y más. Te llevo al menú completo.",
+      options: [
+        { label: "Ir al menú", action: "scroll", target: "#sabores" },
+        { label: "⬅️ Regresar al inicio", next: "root" }
+      ]
+    },
+    dietas: {
+      bot: "¡Sí! Tenemos línea sin azúcar añadida (incluye keto) y varias opciones veganas marcadas en el menú. También hay una opción especial para mascotas 🐾",
+      options: [
+        { label: "Ver sección Keto / Sin azúcar", action: "scroll", target: "#sabores" },
+        { label: "⬅️ Regresar al inicio", next: "root" }
+      ]
+    },
+    eventos: {
+      bot: "Manejamos paquetes para fiestas y eventos especiales. Cuéntanos los detalles (fecha, número de personas, sucursal) por nuestro formulario de contacto y te respondemos por correo.",
+      options: [
+        { label: "Ir al formulario de contacto", action: "scroll", target: "#contacto" },
+        { label: "⬅️ Regresar al inicio", next: "root" }
+      ]
+    },
+    contacto: {
+      bot: "Con gusto. Puedes escribirnos por el formulario de contacto aquí abajo — elige el motivo de tu mensaje y te respondemos por correo.",
+      options: [
+        { label: "Ir al formulario de contacto", action: "scroll", target: "#contacto" },
+        { label: "⬅️ Regresar al inicio", next: "root" }
+      ]
+    }
+  };
+
+  function renderChatStep(stepKey){
+    const step = chatData[stepKey];
+    const botMsg = document.createElement('div');
+    botMsg.className = 'chat-msg bot';
+    botMsg.textContent = step.bot;
+    chatBody.appendChild(botMsg);
+    chatBody.scrollTop = chatBody.scrollHeight;
+
+    chatOptions.innerHTML = '';
+    step.options.forEach(opt => {
+      const btn = document.createElement('button');
+      btn.className = 'chat-option-btn';
+      btn.textContent = opt.label;
+      btn.addEventListener('click', () => {
+        const userMsg = document.createElement('div');
+        userMsg.className = 'chat-msg user';
+        userMsg.textContent = opt.label;
+        chatBody.appendChild(userMsg);
+        chatBody.scrollTop = chatBody.scrollHeight;
+
+        if(opt.action === 'scroll'){
+          chatWindow.classList.remove('open');
+          document.querySelector(opt.target).scrollIntoView({ behavior:'smooth' });
+        } else {
+          renderChatStep(opt.next);
+        }
+      });
+      chatOptions.appendChild(btn);
+    });
+  }
+
+  chatLauncher.addEventListener('click', () => {
+    chatWindow.classList.toggle('open');
+    if(chatWindow.classList.contains('open') && chatBody.children.length === 0){
+      renderChatStep('root');
+    }
+  });
+  chatClose.addEventListener('click', () => chatWindow.classList.remove('open'));
+</script>
+
 </body>
 </html>
