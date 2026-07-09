@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NiceCream — Paletas, Helados, Malteadas y Aguas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --blue-deep:#1E4A96;
+    --blue-mid:#2B5CB0;
+    --cyan:#8FE0EF;
+    --cream:#FFF9F0;
+    --tan:#EDA85E;
+    --navy-text:#122A54;
+    --white:#ffffff;
+    --radius-lg: 32px;
+    --radius-md: 20px;
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+
+  html{ scroll-behavior:smooth; }
+
+  body{
+    font-family:'Nunito Sans', sans-serif;
+    color:var(--navy-text);
+    background:var(--cream);
+    overflow-x:hidden;
+  }
+
+  h1,h2,h3, .display{
+    font-family:'Fredoka', sans-serif;
+  }
+
+  a{ text-decoration:none; color:inherit; }
+  ul{ list-style:none; }
+  img{ max-width:100%; display:block; }
+
+  .placeholder{
+    color: var(--blue-mid);
+    border-bottom: 2px dashed var(--blue-mid);
+    padding: 0 2px;
+  }
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:sticky; top:0; z-index:50;
+    background:var(--blue-deep);
+    padding: 14px 6vw;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  nav img{ height:40px; }
+  nav ul{ display:flex; gap:28px; }
+  nav a{
+    color:var(--white); font-weight:700; font-size:0.95rem;
+    letter-spacing:0.3px;
+  }
+  nav a:hover{ color:var(--cyan); }
+  .nav-toggle{ display:none; }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    background:var(--blue-deep);
+    color:var(--white);
+    padding: 70px 6vw 120px;
+    display:grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    align-items:center;
+    gap:40px;
+    overflow:hidden;
+  }
+  .hero::after{
+    content:"";
+    position:absolute;
+    bottom:-2px; left:0; right:0;
+    height:70px;
+    background:var(--cream);
+    clip-path: path("M0,40 C 180,90 360,0 540,40 C 720,80 900,0 1080,40 C 1260,80 1350,20 1440,40 L1440,100 L0,100 Z");
+  }
+  .hero-copy .eyebrow{
+    display:inline-block;
+    background:var(--cyan);
+    color:var(--blue-deep);
+    font-weight:800;
+    font-size:0.78rem;
+    letter-spacing:1.2px;
+    text-transform:uppercase;
+    padding:6px 14px;
+    border-radius:999px;
+    margin-bottom:18px;
+  }
+  .hero-copy h1{
+    font-size:clamp(2.3rem, 4.5vw, 3.6rem);
+    line-height:1.05;
+    margin-bottom:18px;
+  }
+  .hero-copy p{
+    font-size:1.1rem;
+    max-width:480px;
+    opacity:0.92;
+    margin-bottom:30px;
+  }
+  .cta-row{ display:flex; gap:16px; flex-wrap:wrap; }
+  .btn{
+    display:inline-block;
+    padding:14px 26px;
+    border-radius:999px;
+    font-weight:800;
+    font-family:'Fredoka', sans-serif;
+    font-size:1rem;
+    transition:transform .15s ease;
+  }
+  .btn:hover{ transform:translateY(-2px); }
+  .btn-primary{ background:var(--tan); color:var(--navy-text); }
+  .btn-ghost{ border:2px solid var(--white); color:var(--white); }
+
+  .hero-art{
+    position:relative;
+    display:flex; justify-content:center;
+  }
+  .hero-art .plate{
+    width:min(360px, 90%);
+    aspect-ratio:1/1;
+    background:var(--white);
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.25);
+  }
+  .hero-art img{ width:78%; }
+
+  /* ---------- SECTION WRAP ---------- */
+  section{ padding: 90px 6vw; }
+  .section-head{ text-align:center; max-width:640px; margin:0 auto 56px; }
+  .section-head .eyebrow{
+    font-family:'Fredoka', sans-serif;
+    color:var(--tan);
+    font-weight:600;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    font-size:0.85rem;
+    margin-bottom:10px;
+    display:block;
+  }
+  .section-head h2{
+    font-size:clamp(1.8rem, 3vw, 2.4rem);
+    color:var(--blue-deep);
+    margin-bottom:14px;
+  }
+  .section-head p{ color:#4A5A78; font-size:1.05rem; }
+
+  /* ---------- SABORES ---------- */
+  .flavors{ background:var(--white); }
+  .flavor-tabs{
+    display:flex; justify-content:center; gap:12px; flex-wrap:wrap; margin-bottom:40px;
+  }
+  .flavor-tab{
+    background:var(--cream);
+    border:2px solid transparent;
+    color:var(--blue-deep);
+    font-family:'Fredoka', sans-serif;
+    font-weight:600;
+    padding:10px 20px;
+    border-radius:999px;
+    font-size:0.95rem;
+  }
+  .flavor-tab.active{
+    background:var(--blue-deep);
+    color:var(--white);
+  }
+  .flavor-grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap:22px;
+  }
+  .flavor-card{
+    background:var(--cream);
+    border-radius:var(--radius-md);
+    padding:26px 22px;
+    position:relative;
+    border:2px solid rgba(30,74,150,0.08);
+  }
+  .flavor-card .scoop{
+    width:46px; height:46px;
+    border-radius:50%;
+    background:var(--tan);
+    margin-bottom:16px;
+  }
+  .flavor-card h3{
+    font-size:1.15rem;
+    color:var(--blue-deep);
+    margin-bottom:6px;
+  }
+  .flavor-card p{ font-size:0.92rem; color:#5A6A88; }
+  .flavor-note{
+    text-align:center; margin-top:36px; font-size:0.95rem; color:#5A6A88;
+  }
+
+  /* ---------- SUCURSALES ---------- */
+  .locations{ background:var(--cream); }
+  .location-grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap:28px;
+  }
+  .location-card{
+    background:var(--white);
+    border-radius:var(--radius-lg);
+    padding:36px 32px;
+    box-shadow:0 20px 40px rgba(30,74,150,0.08);
+    position:relative;
+    overflow:hidden;
+  }
+  .location-card::before{
+    content:"";
+    position:absolute; top:0; left:0; right:0; height:8px;
+    background:linear-gradient(90deg, var(--blue-deep), var(--cyan));
+  }
+  .location-card .tag{
+    display:inline-block;
+    background:var(--blue-deep);
+    color:var(--white);
+    font-family:'Fredoka', sans-serif;
+    font-weight:600;
+    font-size:0.78rem;
+    letter-spacing:0.8px;
+    text-transform:uppercase;
+    padding:5px 14px;
+    border-radius:999px;
+    margin-bottom:18px;
+  }
+  .location-card h3{
+    font-size:1.5rem; color:var(--blue-deep); margin-bottom:18px;
+  }
+  .location-detail{
+    display:flex; gap:12px; margin-bottom:14px; align-items:flex-start;
+  }
+  .location-detail .label{
+    font-family:'Fredoka', sans-serif;
+    font-weight:600; font-size:0.85rem;
+    color:var(--tan);
+    text-transform:uppercase;
+    letter-spacing:0.5px;
+    width:90px; flex-shrink:0;
+    padding-top:2px;
+  }
+  .location-detail .value{ font-size:0.98rem; color:#3A4A68; }
+  .map-btn{
+    margin-top:20px;
+    display:inline-block;
+    font-family:'Fredoka', sans-serif;
+    font-weight:600;
+    color:var(--blue-deep);
+    border-bottom:2px solid var(--blue-deep);
+    padding-bottom:2px;
+    font-size:0.95rem;
+  }
+
+  /* ---------- CONTACTO ---------- */
+  .contact{
+    background:var(--blue-deep);
+    color:var(--white);
+    text-align:center;
+  }
+  .contact .section-head p{ color:rgba(255,255,255,0.8); }
+  .contact .section-head .eyebrow{ color:var(--cyan); }
+  .contact .section-head h2{ color:var(--white); }
+  .social-row{
+    display:flex; justify-content:center; gap:18px; flex-wrap:wrap; margin-top:10px;
+  }
+  .social-pill{
+    background:rgba(255,255,255,0.1);
+    border:2px solid rgba(255,255,255,0.25);
+    padding:14px 28px;
+    border-radius:999px;
+    font-family:'Fredoka', sans-serif;
+    font-weight:600;
+  }
+  .social-pill:hover{ background:rgba(255,255,255,0.2); }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    background:#0F2C5C;
+    color:rgba(255,255,255,0.65);
+    text-align:center;
+    padding:28px 6vw;
+    font-size:0.88rem;
+  }
+  footer strong{ color:var(--white); }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 820px){
+    .hero{ grid-template-columns:1fr; padding-bottom:150px; }
+    .hero-art{ order:-1; }
+    nav ul{ display:none; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    .btn:hover{ transform:none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <img src="assets/nicecream-logo-wide.png" alt="NiceCream">
+  <ul>
+    <li><a href="#sabores">Sabores</a></li>
+    <li><a href="#sucursales">Sucursales</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+</nav>
+
+<header class="hero">
+  <div class="hero-copy">
+    <span class="eyebrow">El Retoño · Pedregal</span>
+    <h1>Paletas, helados, malteadas y aguas hechos para presumir en la banqueta.</h1>
+    <p>Sabores que rotan seguido y una regla simple: si no nos encantaría comerlo nosotros, no sale de la heladería.</p>
+    <div class="cta-row">
+      <a href="#sabores" class="btn btn-primary">Ver sabores</a>
+      <a href="#sucursales" class="btn btn-ghost">Encuéntranos</a>
+    </div>
+  </div>
+  <div class="hero-art">
+    <div class="plate">
+      <img src="assets/nicecream-logo-full.png" alt="Mascota NiceCream">
+    </div>
+  </div>
+</header>
+
+<section class="flavors" id="sabores">
+  <div class="section-head">
+    <span class="eyebrow">El fuerte de la casa</span>
+    <h2>Muchos sabores, ninguno relleno</h2>
+    <p>Esta es una selección de ejemplo — la cambiamos por el catálogo real en cuanto nos lo pases.</p>
+  </div>
+
+  <div class="flavor-tabs">
+    <span class="flavor-tab active">Paletas</span>
+    <span class="flavor-tab">Helados</span>
+    <span class="flavor-tab">Malteadas</span>
+    <span class="flavor-tab">Aguas</span>
+  </div>
+
+  <div class="flavor-grid">
+    <div class="flavor-card">
+      <div class="scoop"></div>
+      <h3><span class="placeholder">[Nombre del sabor 1]</span></h3>
+      <p><span class="placeholder">[Descripción corta: ingredientes, si es agua o leche, picante, etc.]</span></p>
+    </div>
+    <div class="flavor-card">
+      <div class="scoop"></div>
+      <h3><span class="placeholder">[Nombre del sabor 2]</span></h3>
+      <p><span class="placeholder">[Descripción corta]</span></p>
+    </div>
+    <div class="flavor-card">
+      <div class="scoop"></div>
+      <h3><span class="placeholder">[Nombre del sabor 3]</span></h3>
+      <p><span class="placeholder">[Descripción corta]</span></p>
+    </div>
+    <div class="flavor-card">
+      <div class="scoop"></div>
+      <h3><span class="placeholder">[Nombre del sabor 4]</span></h3>
+      <p><span class="placeholder">[Descripción corta]</span></p>
+    </div>
+    <div class="flavor-card">
+      <div class="scoop"></div>
+      <h3><span class="placeholder">[Nombre del sabor 5]</span></h3>
+      <p><span class="placeholder">[Descripción corta]</span></p>
+    </div>
+    <div class="flavor-card">
+      <div class="scoop"></div>
+      <h3><span class="placeholder">[Nombre del sabor 6]</span></h3>
+      <p><span class="placeholder">[Descripción corta]</span></p>
+    </div>
+  </div>
+  <p class="flavor-note">¿Manejan temporadas o ediciones especiales? Podemos agregar una sección aparte para esas.</p>
+</section>
+
+<section class="locations" id="sucursales">
+  <div class="section-head">
+    <span class="eyebrow">Dos sucursales</span>
+    <h2>Encuéntranos aquí</h2>
+    <p>Datos de ejemplo — reemplázalos por la dirección, horario y teléfono reales de cada sucursal.</p>
+  </div>
+
+  <div class="location-grid">
+    <div class="location-card">
+      <span class="tag">El Retoño</span>
+      <h3>NiceCream El Retoño</h3>
+      <div class="location-detail">
+        <span class="label">Dirección</span>
+        <span class="value placeholder">[Calle, número, colonia, alcaldía, CP]</span>
+      </div>
+      <div class="location-detail">
+        <span class="label">Horario</span>
+        <span class="value placeholder">[Lun–Dom, 00:00 – 00:00]</span>
+      </div>
+      <div class="location-detail">
+        <span class="label">Teléfono</span>
+        <span class="value placeholder">[55 0000 0000]</span>
+      </div>
+      <a href="#" class="map-btn">Cómo llegar →</a>
+    </div>
+
+    <div class="location-card">
+      <span class="tag">Pedregal</span>
+      <h3>NiceCream Pedregal</h3>
+      <div class="location-detail">
+        <span class="label">Dirección</span>
+        <span class="value placeholder">[Calle, número, colonia, alcaldía, CP]</span>
+      </div>
+      <div class="location-detail">
+        <span class="label">Horario</span>
+        <span class="value placeholder">[Lun–Dom, 00:00 – 00:00]</span>
+      </div>
+      <div class="location-detail">
+        <span class="label">Teléfono</span>
+        <span class="value placeholder">[55 0000 0000]</span>
+      </div>
+      <a href="#" class="map-btn">Cómo llegar →</a>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contacto">
+  <div class="section-head">
+    <span class="eyebrow">Hablemos</span>
+    <h2>Pide, pregunta o solo salúdanos</h2>
+    <p>Enlaces de ejemplo — los cambiamos por tus redes y WhatsApp reales.</p>
+  </div>
+  <div class="social-row">
+    <a href="#" class="social-pill">WhatsApp <span class="placeholder">[número]</span></a>
+    <a href="#" class="social-pill">Instagram <span class="placeholder">[@usuario]</span></a>
+    <a href="#" class="social-pill">Facebook <span class="placeholder">[página]</span></a>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 <strong>NiceCream</strong> · Paletas, helados, malteadas y aguas · El Retoño & Pedregal</p>
+</footer>
+
+</body>
+</html>
