@@ -151,10 +151,11 @@
   }
   .section-head p{ color:#4A5A78; font-size:1.05rem; }
 
-  /* ---------- SABORES ---------- */
+  /* ---------- SABORES / MENÚ ---------- */
   .flavors{ background:var(--white); }
+
   .flavor-tabs{
-    display:flex; justify-content:center; gap:12px; flex-wrap:wrap; margin-bottom:40px;
+    display:flex; justify-content:center; gap:10px; flex-wrap:wrap; margin-bottom:48px;
   }
   .flavor-tab{
     background:var(--cream);
@@ -164,36 +165,136 @@
     font-weight:600;
     padding:10px 20px;
     border-radius:999px;
-    font-size:0.95rem;
+    font-size:0.92rem;
+    cursor:pointer;
+    transition:background .15s ease, color .15s ease;
   }
+  .flavor-tab:hover{ background:#E8EEFB; }
   .flavor-tab.active{
     background:var(--blue-deep);
     color:var(--white);
   }
-  .flavor-grid{
-    display:grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap:22px;
+
+  .menu-panel{ display:none; }
+  .menu-panel.active{ display:block; }
+
+  .menu-panel-intro{
+    text-align:center;
+    max-width:620px;
+    margin:0 auto 40px;
+    color:#4A5A78;
+    font-size:0.98rem;
   }
-  .flavor-card{
-    background:var(--cream);
-    border-radius:var(--radius-md);
-    padding:26px 22px;
+
+  .menu-group{ margin-bottom:44px; }
+  .menu-group:last-child{ margin-bottom:0; }
+
+  .menu-group-head{
+    display:flex; align-items:baseline; gap:14px;
+    margin-bottom:6px;
+    flex-wrap:wrap;
+  }
+  .menu-group-head h3{
+    font-size:1.3rem;
+    color:var(--blue-deep);
+  }
+  .menu-group-head .tagline{
+    font-size:0.88rem;
+    color:var(--tan);
+    font-weight:700;
+  }
+  .menu-group-desc{
+    color:#5A6A88;
+    font-size:0.92rem;
+    margin-bottom:18px;
+  }
+  .menu-group-rule{
+    height:2px;
+    background:var(--cyan);
+    opacity:0.5;
+    width:56px;
+    margin-bottom:20px;
+    border-radius:2px;
+  }
+
+  .item-list{
+    columns: 2 280px;
+    column-gap: 32px;
+  }
+  .item{
+    break-inside: avoid;
+    margin-bottom:16px;
+    padding-left:16px;
     position:relative;
-    border:2px solid rgba(30,74,150,0.08);
   }
-  .flavor-card .scoop{
-    width:46px; height:46px;
+  .item::before{
+    content:"";
+    position:absolute;
+    left:0; top:7px;
+    width:7px; height:7px;
     border-radius:50%;
     background:var(--tan);
-    margin-bottom:16px;
   }
-  .flavor-card h3{
-    font-size:1.15rem;
+  .item h4{
+    font-family:'Fredoka', sans-serif;
+    font-size:1rem;
+    font-weight:600;
+    color:var(--navy-text);
+    display:inline;
+  }
+  .item .badge-vegano{
+    font-size:0.7rem;
+    font-weight:800;
     color:var(--blue-deep);
-    margin-bottom:6px;
+    background:var(--cyan);
+    padding:2px 7px;
+    border-radius:6px;
+    margin-left:6px;
+    vertical-align:middle;
   }
-  .flavor-card p{ font-size:0.92rem; color:#5A6A88; }
+  .item p{
+    font-size:0.88rem;
+    color:#5A6A88;
+    margin-top:2px;
+  }
+
+  .step-list{ margin-bottom:8px; }
+  .step{
+    display:flex; gap:16px;
+    padding:16px 0;
+    border-bottom:1px solid rgba(30,74,150,0.1);
+  }
+  .step:last-child{ border-bottom:none; }
+  .step .num{
+    font-family:'Fredoka', sans-serif;
+    font-weight:700;
+    color:var(--white);
+    background:var(--blue-deep);
+    width:30px; height:30px;
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    flex-shrink:0;
+    font-size:0.9rem;
+  }
+  .step .step-body h4{
+    font-family:'Fredoka', sans-serif;
+    font-size:1rem;
+    color:var(--blue-deep);
+    margin-bottom:3px;
+  }
+  .step .step-body p{ font-size:0.92rem; color:#5A6A88; }
+
+  .note-box{
+    background:var(--cream);
+    border-left:4px solid var(--tan);
+    padding:14px 18px;
+    border-radius:0 12px 12px 0;
+    font-size:0.85rem;
+    color:#5A6A88;
+    margin-top:8px;
+  }
+  .note-box strong{ color:var(--navy-text); }
+
   .flavor-note{
     text-align:center; margin-top:36px; font-size:0.95rem; color:#5A6A88;
   }
@@ -334,50 +435,318 @@
 <section class="flavors" id="sabores">
   <div class="section-head">
     <span class="eyebrow">El fuerte de la casa</span>
-    <h2>Muchos sabores, ninguno relleno</h2>
-    <p>Esta es una selección de ejemplo — la cambiamos por el catálogo real en cuanto nos lo pases.</p>
+    <h2>Nuestro menú</h2>
+    <p>Ingredientes naturales, elaboración artesanal. Sabores sujetos a temporada y disponibilidad.</p>
   </div>
 
-  <div class="flavor-tabs">
-    <span class="flavor-tab active">Paletas</span>
-    <span class="flavor-tab">Helados</span>
-    <span class="flavor-tab">Malteadas</span>
-    <span class="flavor-tab">Aguas</span>
+  <div class="flavor-tabs" id="menuTabs">
+    <span class="flavor-tab active" data-tab="paletas">Paletas</span>
+    <span class="flavor-tab" data-tab="helados">Helados</span>
+    <span class="flavor-tab" data-tab="bebidas">Bebidas</span>
+    <span class="flavor-tab" data-tab="malteadas">Malteadas</span>
+    <span class="flavor-tab" data-tab="dorilocos">Dorilocos</span>
+    <span class="flavor-tab" data-tab="postres">Postres &amp; Toppings</span>
+    <span class="flavor-tab" data-tab="mascotas">Mascotas</span>
   </div>
 
-  <div class="flavor-grid">
-    <div class="flavor-card">
-      <div class="scoop"></div>
-      <h3><span class="placeholder">[Nombre del sabor 1]</span></h3>
-      <p><span class="placeholder">[Descripción corta: ingredientes, si es agua o leche, picante, etc.]</span></p>
+  <!-- ================= PALETAS ================= -->
+  <div class="menu-panel active" id="panel-paletas">
+    <p class="menu-panel-intro">Paletas personalizables: puedes añadir nuestra cobertura especial de chocolate y toppings con costo adicional. Algunos productos pueden contener lácteos o nueces.</p>
+
+    <div class="menu-group">
+      <div class="menu-group-head"><h3>Paletas de agua</h3><span class="tagline">Refrescantes y frutales</span></div>
+      <div class="menu-group-rule"></div>
+      <div class="item-list">
+        <div class="item"><h4>Fresa</h4><p>Elaborada con fruta, fresca y directa.</p></div>
+        <div class="item"><h4>Grosella</h4><p>Fresca y vibrante, con un toque acidito.</p></div>
+        <div class="item"><h4>Guanábana</h4><p>Tropical y fragante, de textura suave.</p></div>
+        <div class="item"><h4>Guayaba</h4><p>Aromática y dulce, con notas naturales de fruta.</p></div>
+        <div class="item"><h4>Limón</h4><p>Cítrica y luminosa, ideal para días cálidos.</p></div>
+        <div class="item"><h4>Mandarina</h4><p>Dulce y perfumada, con carácter cítrico.</p></div>
+        <div class="item"><h4>Mango</h4><p>Tropical y jugosa, de sabor protagonista.</p></div>
+        <div class="item"><h4>Maracuyá</h4><p>Exótica y aromática, con acidez sutil.</p></div>
+        <div class="item"><h4>Melón</h4><p>Suave, dulce y delicada.</p></div>
+        <div class="item"><h4>Piña</h4><p>Tropical y equilibrada.</p></div>
+        <div class="item"><h4>Sandía</h4><p>Muy refrescante, de perfil ligero.</p></div>
+        <div class="item"><h4>Uva</h4><p>Dulce y aromática.</p></div>
+        <div class="item"><h4>Tamarindo</h4><p>Tradicional dulce-ácido, con carácter mexicano.</p></div>
+        <div class="item"><h4>Zapote</h4><p>Con la receta de la abuela y un toque de jugo de naranja.</p></div>
+      </div>
     </div>
-    <div class="flavor-card">
-      <div class="scoop"></div>
-      <h3><span class="placeholder">[Nombre del sabor 2]</span></h3>
-      <p><span class="placeholder">[Descripción corta]</span></p>
+
+    <div class="menu-group">
+      <div class="menu-group-head"><h3>Agua premium</h3><span class="tagline">Mezcla de frutas seleccionada</span></div>
+      <div class="menu-group-rule"></div>
+      <div class="item-list">
+        <div class="item"><h4>Frutos rojos</h4><p>Mezcla de acidez elegante y sabor intenso: zarzamora, fresa y frambuesa.</p></div>
+      </div>
     </div>
-    <div class="flavor-card">
-      <div class="scoop"></div>
-      <h3><span class="placeholder">[Nombre del sabor 3]</span></h3>
-      <p><span class="placeholder">[Descripción corta]</span></p>
+
+    <div class="menu-group">
+      <div class="menu-group-head"><h3>Chamoy y picositas</h3><span class="tagline">Dulce, ácido y con picor</span></div>
+      <div class="menu-group-rule"></div>
+      <div class="item-list">
+        <div class="item"><h4>Limón Chamoy</h4><p>Cítrica con chamoy, toque picosito y salino.</p></div>
+        <div class="item"><h4>Mango Chamoy</h4><p>Dulce tropical con chamoy, final vibrante.</p></div>
+        <div class="item"><h4>Piña Chamoy</h4><p>Tropical y fresca, con picor sutil.</p></div>
+        <div class="item"><h4>Sandía Chamoy</h4><p>Refrescante, con un toque picosito.</p></div>
+        <div class="item"><h4>Pulparindo</h4><p>Tamarindo con picor marcado y carácter.</p></div>
+        <div class="item"><h4>Picafresa</h4><p>Dulce con chispa acidita.</p></div>
+        <div class="item"><h4>Picapandas</h4><p>Frutal y divertida, limón rellena con panditas bañadas en chamoy.</p></div>
+      </div>
     </div>
-    <div class="flavor-card">
-      <div class="scoop"></div>
-      <h3><span class="placeholder">[Nombre del sabor 4]</span></h3>
-      <p><span class="placeholder">[Descripción corta]</span></p>
+
+    <div class="menu-group">
+      <div class="menu-group-head"><h3>Paletas de crema</h3><span class="tagline">Cremosas y sedosas</span></div>
+      <div class="menu-group-rule"></div>
+      <div class="item-list">
+        <div class="item"><h4>Algodón de azúcar</h4><p>Dulce y ligero, de perfil clásico y nostálgico.</p></div>
+        <div class="item"><h4>Arroz con leche</h4><p>Suave y reconfortante, inspiración tradicional.</p></div>
+        <div class="item"><h4>Beso de Ángel</h4><p>Nuez, malvavisco y cereza: dulce delicado y muy armonioso.</p></div>
+        <div class="item"><h4>Capuchino</h4><p>Café suave con un toque de chocolate, cremoso y equilibrado.</p></div>
+        <div class="item"><h4>Chicle</h4><p>Dulce, nostálgico y divertido, con aroma clásico.</p></div>
+        <div class="item"><h4>Chocolate</h4><p>Cacao equilibrado, de textura sedosa.</p></div>
+        <div class="item"><h4>Coco</h4><p>Cremosa, con trozos de coco fresco.</p></div>
+        <div class="item"><h4>Durazno &amp; Crema</h4><p>Frutal y cremosa, de balance elegante.</p></div>
+        <div class="item"><h4>Fresa</h4><p>Cremosa, con fresa molida y dulzor suave.</p></div>
+        <div class="item"><h4>Fresas &amp; Crema</h4><p>Combinación clásica, cremosa y dulce.</p></div>
+        <div class="item"><h4>Mamey</h4><p>Cremosa y frutal, de textura sedosa.</p></div>
+        <div class="item"><h4>Mazapán</h4><p>Cacahuate estilo artesanal, de perfil cálido.</p></div>
+        <div class="item"><h4>Menta con Chocolate</h4><p>Fresca, con chispas de chocolate.</p></div>
+        <div class="item"><h4>Oreo</h4><p>Cremosa, con galleta molida.</p></div>
+        <div class="item"><h4>Pay de Limón</h4><p>Cítrica y cremosa, con sabor a postre.</p></div>
+        <div class="item"><h4>Salted Caramel</h4><p>Caramelo fino, con sal tenue.</p></div>
+        <div class="item"><h4>Taro</h4><p>Cremoso y suave, con un perfil delicado y ligeramente dulce.</p></div>
+        <div class="item"><h4>Trix</h4><p>Notas de cereal, dulce y divertida.</p></div>
+        <div class="item"><h4>Vainilla</h4><p>Clásica y limpia, con cremosidad fina.</p></div>
+      </div>
     </div>
-    <div class="flavor-card">
-      <div class="scoop"></div>
-      <h3><span class="placeholder">[Nombre del sabor 5]</span></h3>
-      <p><span class="placeholder">[Descripción corta]</span></p>
+
+    <div class="menu-group">
+      <div class="menu-group-head"><h3>Especialidades premium</h3><span class="tagline">Inspiradas en postres</span></div>
+      <div class="menu-group-rule"></div>
+      <div class="item-list">
+        <div class="item"><h4>Cajeta</h4><p>Elaborada y rellena con cajeta Coronado, de perfil caramelizado y cremoso.</p></div>
+        <div class="item"><h4>Chongos</h4><p>Relleno de cajeta, con un toque de dulce de leche.</p></div>
+        <div class="item"><h4>Ferrero</h4><p>Chocolate con notas de nuez y avellana, estilo premium.</p></div>
+        <div class="item"><h4>Nuez</h4><p>Con trozos de nuez, con cremosidad fina.</p></div>
+        <div class="item"><h4>Plátano con Nutella</h4><p>Paleta de plátano rellena de Nutella, cremosa e indulgente.</p></div>
+        <div class="item"><h4>Piñón</h4><p>Sabor fino y elegante, con notas tostadas.</p></div>
+        <div class="item"><h4>Pistache</h4><p>Notas verdes y perfil mantequilloso, acabado premium.</p></div>
+        <div class="item"><h4>Queso</h4><p>Queso Philadelphia, cremoso y ligeramente salado, de perfil suave.</p></div>
+        <div class="item"><h4>Raffaello</h4><p>Coco, almendra y chocolate blanco, de perfil elegante.</p></div>
+        <div class="item"><h4>Selva Blanca</h4><p>Chocolate blanco relleno de mermelada natural de frambuesa; cremosa y sofisticada.</p></div>
+        <div class="item"><h4>Selva Negra</h4><p>Chocolate amargo endulzado con almíbar de cereza, con trozos de chocolate 70% cacao y cerezas.</p></div>
+        <div class="item"><h4>Queso con zarzamora</h4><p>Queso Philadelphia con mermelada casera de zarzamora: contraste dulce con toque salado.</p></div>
+        <div class="item"><h4>Snickers</h4><p>Chocolate, cacahuate y caramelo.</p></div>
+      </div>
     </div>
-    <div class="flavor-card">
-      <div class="scoop"></div>
-      <h3><span class="placeholder">[Nombre del sabor 6]</span></h3>
-      <p><span class="placeholder">[Descripción corta]</span></p>
+
+    <div class="menu-group">
+      <div class="menu-group-head"><h3>Sabores con infusión</h3><span class="tagline">El alcohol se evapora en el proceso</span></div>
+      <div class="menu-group-rule"></div>
+      <div class="item-list">
+        <div class="item"><h4>Baileys</h4><p>Cremosa, con notas de cacao y café.</p></div>
+        <div class="item"><h4>Kahlúa</h4><p>Café con notas aromáticas, de final elegante.</p></div>
+        <div class="item"><h4>Vino tinto</h4><p>Frutal y sofisticada, con relleno de caramelo de vino tinto.</p></div>
+        <div class="item"><h4>Rompope</h4><p>Tradicional rompope Coronado, aromática y cremosa, con un toque de canela.</p></div>
+        <div class="item"><h4>Ron con Pasas</h4><p>Notas cálidas y especiadas, de final redondo.</p></div>
+      </div>
+    </div>
+
+    <div class="menu-group">
+      <div class="menu-group-head"><h3>Sin azúcar (incluye keto)</h3></div>
+      <div class="menu-group-rule"></div>
+      <p class="menu-group-desc">"Sin azúcar" se refiere a opciones sin azúcar añadida — el azúcar que contienen proviene únicamente de la fruta utilizada.</p>
+      <h4 style="font-family:'Fredoka',sans-serif; color:var(--blue-deep); margin-bottom:12px;">Sin azúcar (SA)</h4>
+      <div class="item-list">
+        <div class="item"><h4>Cajeta SA</h4><p>Caramelo suave, sin azúcar añadida; cajeta hecha con leche de cabra.</p></div>
+        <div class="item"><h4>Fresa con chamoy SA</h4><span class="badge-vegano">VEGANO</span><p>Frutal y ligera, sin azúcar añadida, con toque ácido.</p></div>
+        <div class="item"><h4>Grosella SA</h4><span class="badge-vegano">VEGANO</span><p>Ácida y vibrante, sin azúcar añadida.</p></div>
+        <div class="item"><h4>Guanábana SA</h4><span class="badge-vegano">VEGANO</span><p>Tropical y suave, sin azúcar añadida.</p></div>
+        <div class="item"><h4>Limón SA</h4><span class="badge-vegano">VEGANO</span><p>Cítrica, sin azúcar añadida.</p></div>
+        <div class="item"><h4>Limón Chamoy SA</h4><span class="badge-vegano">VEGANO</span><p>Cítrica-picosita, sin azúcar añadida.</p></div>
+        <div class="item"><h4>Limón Menta</h4><span class="badge-vegano">VEGANO</span><p>Cítrica, con frescura herbal.</p></div>
+        <div class="item"><h4>Mamey SA</h4><span class="badge-vegano">VEGANO</span><p>Frutal y sedosa, sin azúcar añadida.</p></div>
+        <div class="item"><h4>Mango SA</h4><span class="badge-vegano">VEGANO</span><p>Tropical y jugosa, sin azúcar añadida.</p></div>
+      </div>
+      <h4 style="font-family:'Fredoka',sans-serif; color:var(--blue-deep); margin:20px 0 12px;">Keto sin azúcar</h4>
+      <div class="item-list">
+        <div class="item"><h4>Capuchino Keto</h4><span class="badge-vegano">VEGANO</span><p>Café suave, de perfil cremoso.</p></div>
+        <div class="item"><h4>ChocoFresa Keto</h4><span class="badge-vegano">VEGANO</span><p>Chocolate con mermelada de fresa de la casa endulzada con stevia.</p></div>
+        <div class="item"><h4>Chocolate Keto</h4><span class="badge-vegano">VEGANO</span><p>Cacao protagonista, de perfil intenso.</p></div>
+        <div class="item"><h4>Coco Keto</h4><span class="badge-vegano">VEGANO</span><p>Coco cremoso, con trozos de fruta.</p></div>
+        <div class="item"><h4>Ferrero Keto</h4><span class="badge-vegano">VEGANO</span><p>Chocolate-avellana, estilo premium; crema de avellana casera con ingredientes seleccionados.</p></div>
+        <div class="item"><h4>Frutos Rojos Keto</h4><span class="badge-vegano">VEGANO</span><p>Frutal y fresco, con un toque especial.</p></div>
+        <div class="item"><h4>Mazapán Keto</h4><span class="badge-vegano">VEGANO</span><p>Cacahuate estilo mazapán, de textura suave.</p></div>
+        <div class="item"><h4>Menta con chocolate Keto</h4><p>Fresca y cremosa, con final frío.</p></div>
+        <div class="item"><h4>Nuez Keto</h4><span class="badge-vegano">VEGANO</span><p>Notas tostadas, con cremosidad elegante.</p></div>
+        <div class="item"><h4>Piñón Keto</h4><span class="badge-vegano">VEGANO</span><p>Cremosa, de sabor fino a piñón.</p></div>
+        <div class="item"><h4>Pistache Keto</h4><span class="badge-vegano">VEGANO</span><p>Pistache, con toque mantequilloso.</p></div>
+        <div class="item"><h4>Vainilla Keto</h4><span class="badge-vegano">VEGANO</span><p>Hecha con vainas de vainilla natural, sin saborizantes.</p></div>
+      </div>
+      <div class="note-box"><strong>Contiene edulcorantes</strong> — no recomendable en niños.</div>
     </div>
   </div>
-  <p class="flavor-note">¿Manejan temporadas o ediciones especiales? Podemos agregar una sección aparte para esas.</p>
+
+  <!-- ================= HELADOS ================= -->
+  <div class="menu-panel" id="panel-helados">
+    <div class="step-list">
+      <div class="step"><div class="num">1</div><div class="step-body"><h4>Elige tu tamaño</h4><p>Sencillo, doble, medio litro o un litro.</p></div></div>
+      <div class="step"><div class="num">2</div><div class="step-body"><h4>Elige tu contenedor</h4><p>Cono (sencillo o doble) o vaso (sencillo o doble).</p></div></div>
+      <div class="step"><div class="num">3</div><div class="step-body"><h4>Elige tus sabores</h4><p>Si tu pedido es sencillo, incluye un solo sabor.</p></div></div>
+    </div>
+
+    <div class="menu-group">
+      <div class="menu-group-head"><h3>Nieve</h3><span class="tagline">Ligera y frutal</span></div>
+      <div class="menu-group-rule"></div>
+      <div class="item-list">
+        <div class="item"><h4>Guanábana</h4><p>Tropical y fragante, de suavidad elegante.</p></div>
+        <div class="item"><h4>Icee</h4><p>Refrescante y chispeante, ideal para un antojo ligero.</p></div>
+        <div class="item"><h4>Limón</h4><p>Cítrica y luminosa, con final limpio.</p></div>
+        <div class="item"><h4>Mandarina</h4><p>Aromática y dulce-cítrica, muy fresca.</p></div>
+        <div class="item"><h4>Mango</h4><p>Tropical y jugosa, sabor protagonista.</p></div>
+      </div>
+    </div>
+
+    <div class="menu-group">
+      <div class="menu-group-head"><h3>Helado clásico</h3><span class="tagline">Cremoso y tradicional</span></div>
+      <div class="menu-group-rule"></div>
+      <div class="item-list">
+        <div class="item"><h4>Capuchino</h4><p>Café suave con un toque de chocolate, cremoso y equilibrado.</p></div>
+        <div class="item"><h4>Cereza</h4><p>Frutal y delicado, con notas dulces y perfumadas.</p></div>
+        <div class="item"><h4>Chocolate</h4><p>Cacao redondo, con textura sedosa.</p></div>
+        <div class="item"><h4>Fresa</h4><p>Cremoso, con fresa presente y dulzor suave.</p></div>
+        <div class="item"><h4>Mamey</h4><p>Cremoso y frutal, de textura sedosa.</p></div>
+        <div class="item"><h4>Mazapán</h4><p>Cacahuate estilo artesanal, de perfil cálido.</p></div>
+        <div class="item"><h4>Menta con chocolate</h4><p>Fresca y cremosa, con contraste de chocolate.</p></div>
+        <div class="item"><h4>Oreo</h4><p>Cremoso, con notas de galleta.</p></div>
+        <div class="item"><h4>Pay de limón</h4><p>Cítrico y cremoso, con sabor a postre.</p></div>
+        <div class="item"><h4>Taro</h4><p>Cremoso y suave, con un perfil delicado y ligeramente dulce.</p></div>
+        <div class="item"><h4>Vainilla</h4><p>Clásica y limpia, muy combinable.</p></div>
+        <div class="item"><h4>Arroz con leche</h4><p>Suave y reconfortante; sabor de temporada.</p></div>
+      </div>
+    </div>
+
+    <div class="menu-group">
+      <div class="menu-group-head"><h3>Helado gourmet</h3><span class="tagline">Inspirado en postres</span></div>
+      <div class="menu-group-rule"></div>
+      <div class="item-list">
+        <div class="item"><h4>Cajeta</h4><p>Caramelo profundo, con acabado cremoso.</p></div>
+        <div class="item"><h4>Ferrero</h4><p>Chocolate con notas de avellana y nuez, estilo premium.</p></div>
+        <div class="item"><h4>Gansito</h4><p>Inspiración pastelera, dulce y nostálgica, con toque chocolatoso.</p></div>
+        <div class="item"><h4>Nuez</h4><p>Notas tostadas, con cremosidad fina.</p></div>
+        <div class="item"><h4>Piñón</h4><p>Sabor fino y elegante, con notas tostadas.</p></div>
+        <div class="item"><h4>Queso</h4><p>Cremoso y ligeramente salado, de perfil suave.</p></div>
+        <div class="item"><h4>Queso con zarzamora</h4><p>Queso cremoso con zarzamora: contraste dulce con toque salado.</p></div>
+        <div class="item"><h4>Rompope</h4><p>Aromático y cremoso, con perfil clásico.</p></div>
+        <div class="item"><h4>Selva negra</h4><p>Chocolate amargo con cereza, de carácter intenso.</p></div>
+        <div class="item"><h4>Stracciatela</h4><p>Base cremosa de vaina de vainilla natural con láminas finas de chocolate que se quiebran en cada cucharada.</p></div>
+      </div>
+    </div>
+
+    <div class="menu-group">
+      <div class="menu-group-head"><h3>Sin azúcar / Keto</h3><span class="tagline">Leche de coco, endulzado con stevia</span></div>
+      <div class="menu-group-rule"></div>
+      <div class="item-list">
+        <div class="item"><h4>Chocolate</h4><p>Cocoa de Turín, chocolate amargo endulzado con stevia.</p></div>
+        <div class="item"><h4>Coco</h4><p>Cremoso, con trozos de coco.</p></div>
+        <div class="item"><h4>Mamey</h4><p>Frutal y sedoso, con base de leche de coco.</p></div>
+        <div class="item"><h4>Pistache</h4><p>Notas mantequillosas, con final elegante.</p></div>
+      </div>
+      <div class="note-box"><strong>Contiene edulcorantes</strong> — no recomendable en niños.</div>
+    </div>
+  </div>
+
+  <!-- ================= BEBIDAS ================= -->
+  <div class="menu-panel" id="panel-bebidas">
+    <div class="menu-group">
+      <div class="menu-group-head"><h3>Aguas frescas</h3></div>
+      <div class="menu-group-rule"></div>
+      <div class="item-list">
+        <div class="item"><h4>Horchata</h4><p>Clásica, cremosa y especiada. Tamaños: chica y grande.</p></div>
+        <div class="item"><h4>Limón con chía</h4><p>Cítrica y refrescante, con chía. Tamaños: chica y grande.</p></div>
+        <div class="item"><h4>Limonada Rosa</h4><p>Refrescante y ligera; sólo en temporada de verano.</p></div>
+      </div>
+    </div>
+
+    <div class="menu-group">
+      <div class="menu-group-head"><h3>Bebidas especiales</h3><span class="tagline">Pregunta por disponibilidad</span></div>
+      <div class="menu-group-rule"></div>
+      <div class="item-list">
+        <div class="item"><h4>Chamoyada</h4><p>Bebida frutal con chamoy, refrescante y picosita.</p></div>
+        <div class="item"><h4>Fresada</h4><p>Sabor a fresa, ligera y muy refrescante.</p></div>
+        <div class="item"><h4>Frapuchino</h4><p>Café frappé cremoso; pregunta por disponibilidad.</p></div>
+      </div>
+    </div>
+
+    <div class="menu-group">
+      <div class="menu-group-head"><h3>Chocolate caliente</h3></div>
+      <div class="menu-group-rule"></div>
+      <div class="item-list">
+        <div class="item"><h4>Sin azúcar</h4><p>Perfil intenso de cacao, sin azúcar añadida.</p></div>
+        <div class="item"><h4>Vegano</h4><p>Elaborado con leche vegetal, cremoso y aromático.</p></div>
+        <div class="item"><h4>Dulce</h4><p>Clásico, cremoso y reconfortante.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= MALTEADAS ================= -->
+  <div class="menu-panel" id="panel-malteadas">
+    <p class="menu-panel-intro">Preparadas al momento. Personalízala paso a paso.</p>
+    <div class="step-list">
+      <div class="step"><div class="num">1</div><div class="step-body"><h4>Elige tu helado</h4><p>Normal, gourmet o sin azúcar.</p></div></div>
+      <div class="step"><div class="num">2</div><div class="step-body"><h4>Elige tu leche</h4><p>Leche de vaca o leche de almendra (Silk sin azúcar).</p></div></div>
+      <div class="step"><div class="num">3</div><div class="step-body"><h4>Elige tus extras</h4><p>Con o sin crema batida · con o sin chocolate líquido Hershey's.</p></div></div>
+    </div>
+  </div>
+
+  <!-- ================= DORILOCOS ================= -->
+  <div class="menu-panel" id="panel-dorilocos">
+    <p class="menu-panel-intro">Botana preparada al gusto, con niveles de picor ajustables. Contamos con sabores de temporada y mucha variedad.</p>
+    <div class="step-list">
+      <div class="step"><div class="num">1</div><div class="step-body"><h4>Selecciona tus botanas favoritas</h4><p>Tenemos variedad y sabores de temporada.</p></div></div>
+      <div class="step"><div class="num">2</div><div class="step-body"><h4>Selecciona tus toppings frescos</h4><p>Pepino, zanahoria, jícama, cueritos.</p></div></div>
+      <div class="step"><div class="num">3</div><div class="step-body"><h4>Selecciona tus extras</h4><p>Cacahuates japoneses, cacahuates enchilados, panditas, arándanos enchilados (Ocean Spray).</p></div></div>
+      <div class="step"><div class="num">4</div><div class="step-body"><h4>Selecciona tus salsas</h4><p>Valentina, Valentina Extra (muy picante), Botanera, chamoy, Miguelito, Tajín, limón natural, limón en botella.</p></div></div>
+    </div>
+  </div>
+
+  <!-- ================= POSTRES & TOPPINGS ================= -->
+  <div class="menu-panel" id="panel-postres">
+    <div class="menu-group">
+      <div class="menu-group-head"><h3>Otros postres</h3></div>
+      <div class="menu-group-rule"></div>
+      <div class="item-list">
+        <div class="item"><h4>Platanitos cubiertos de chocolate</h4><p>Plátano dominico cubierto con dos capas de chocolate.</p></div>
+        <div class="item"><h4>Danonino cubierto de chocolate</h4><p>Danonino de fresa (84 g): con o sin cobertura. Incluye selección de toppings.</p></div>
+        <div class="item"><h4>Paletas mini</h4><p>Nuestros sabores favoritos en tamaño pequeño; pregunta por los sabores disponibles. Extra: cúbrelas con nuestra cubierta especial de chocolate.</p></div>
+      </div>
+    </div>
+
+    <div class="menu-group">
+      <div class="menu-group-head"><h3>Toppings</h3><span class="tagline">Para dar el toque final</span></div>
+      <div class="menu-group-rule"></div>
+      <div class="item-list">
+        <div class="item"><h4>Choco Krispis</h4><p>Arroz inflado cubierto de cacao: crujiente chocolateado, con hierro, zinc y calcio.</p></div>
+        <div class="item"><h4>Trix</h4><p>Solo para chavos: colorido, divertido y con vibra de cereal de la infancia.</p></div>
+        <div class="item"><h4>Nuez pecana</h4><p>Sabor suave y mantequilloso con textura crujiente; rica en grasas saludables, fibra y antioxidantes.</p></div>
+        <div class="item"><h4>Chispas de chocolate Turín</h4><p>Toque chocolatoso fino, con textura crujiente y cacao elegante.</p></div>
+      </div>
+    </div>
+    <p class="flavor-note">Pregunta por nuestros sabores nuevos, sabores de temporada y paquetes para fiestas o eventos especiales.</p>
+  </div>
+
+  <!-- ================= MASCOTAS ================= -->
+  <div class="menu-panel" id="panel-mascotas">
+    <div class="menu-group">
+      <div class="menu-group-head"><h3>Para mascotas</h3><span class="tagline">Pensada para consentir</span></div>
+      <div class="menu-group-rule"></div>
+      <div class="item-list">
+        <div class="item"><h4>Pollo</h4><p>Elaborada con consomé de pollo casero, arroz cocido al vapor y trozos de zanahoria, sin sal añadida. Presentaciones: grande montada en carnaza, o mini con palito de madera.</p></div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <section class="locations" id="sucursales">
@@ -443,5 +812,17 @@
   <p>© 2026 <strong>NiceCream</strong> · Paletas, helados, malteadas y aguas · El Retoño & Pedregal</p>
 </footer>
 
+<script>
+  const tabs = document.querySelectorAll('#menuTabs .flavor-tab');
+  const panels = document.querySelectorAll('.menu-panel');
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      panels.forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
+    });
+  });
+</script>
 </body>
 </html>
