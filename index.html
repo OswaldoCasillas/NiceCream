@@ -177,6 +177,22 @@
   }
   .chat-launcher:hover{ transform:scale(1.06); }
 
+  .whatsapp-launcher{
+    position:fixed;
+    bottom:24px; left:24px;
+    width:60px; height:60px;
+    border-radius:50%;
+    background:#25D366;
+    border:3px solid var(--white);
+    box-shadow:0 12px 28px rgba(0,0,0,0.25);
+    cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    z-index:200;
+    transition:transform .15s ease;
+  }
+  .whatsapp-launcher:hover{ transform:scale(1.06); }
+  .whatsapp-launcher svg{ width:30px; height:30px; }
+
   .chat-window{
     position:fixed;
     bottom:96px; right:24px;
@@ -269,6 +285,67 @@
   @media (max-width:480px){
     .chat-window{ right:12px; left:12px; width:auto; bottom:88px; }
     .chat-launcher{ right:16px; bottom:16px; }
+    .whatsapp-launcher{ left:16px; bottom:16px; }
+  }
+
+  /* ---------- PAQUETES ---------- */
+  .packages{ background:var(--white); }
+  .packages-grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap:24px;
+  }
+  .package-card{
+    background:var(--cream);
+    border-radius:var(--radius-lg);
+    padding:30px;
+    border:2px solid rgba(30,74,150,0.08);
+    display:flex; flex-direction:column;
+  }
+  .package-card .icon-circle{
+    width:52px; height:52px;
+    border-radius:50%;
+    background:var(--white);
+    display:flex; align-items:center; justify-content:center;
+    font-size:1.5rem;
+    margin-bottom:16px;
+  }
+  .package-card h3{
+    font-size:1.15rem;
+    color:var(--blue-deep);
+    margin-bottom:10px;
+  }
+  .package-card ul{
+    margin:0 0 20px;
+    display:flex; flex-direction:column; gap:6px;
+  }
+  .package-card li{
+    font-size:0.9rem;
+    color:#5A6A88;
+    padding-left:18px;
+    position:relative;
+  }
+  .package-card li::before{
+    content:"✓";
+    position:absolute; left:0; top:0;
+    color:var(--tan);
+    font-weight:800;
+  }
+  .package-card .pkg-cta{
+    margin-top:auto;
+    text-align:center;
+    background:var(--blue-deep);
+    color:var(--white);
+    font-family:'Fredoka', sans-serif;
+    font-weight:600;
+    padding:11px;
+    border-radius:999px;
+    font-size:0.9rem;
+    transition:background .15s ease;
+  }
+  .package-card .pkg-cta:hover{ background:#163c7a; }
+  .packages-note{
+    text-align:center; margin-top:32px; font-size:0.92rem; color:#5A6A88;
   }
 
   /* ---------- NOVEDADES ---------- */
@@ -350,6 +427,33 @@
 
   .menu-panel{ display:none; }
   .menu-panel.active{ display:block; }
+
+  .sub-tabs{
+    display:flex; gap:8px; flex-wrap:wrap;
+    margin-bottom:32px;
+    padding-bottom:20px;
+    border-bottom:1px solid rgba(30,74,150,0.1);
+  }
+  .sub-tab{
+    background:none;
+    border:1.5px solid rgba(30,74,150,0.2);
+    color:var(--blue-deep);
+    font-family:'Nunito Sans', sans-serif;
+    font-weight:700;
+    padding:7px 16px;
+    border-radius:999px;
+    font-size:0.85rem;
+    cursor:pointer;
+    transition:background .15s ease, color .15s ease;
+  }
+  .sub-tab:hover{ background:#E8EEFB; }
+  .sub-tab.active{
+    background:var(--tan);
+    border-color:var(--tan);
+    color:var(--navy-text);
+  }
+  .sub-panel{ display:none; }
+  .sub-panel.active{ display:block; }
 
   .menu-panel-intro{
     text-align:center;
@@ -547,6 +651,14 @@
     transition:background .15s ease;
   }
   .btn-menu-link:hover{ background:#163c7a; }
+  .map-embed{
+    width:100%;
+    height:190px;
+    border:0;
+    border-radius:var(--radius-md);
+    margin-top:20px;
+    filter:saturate(0.9);
+  }
 
   /* ---------- CONTACTO ---------- */
   .contact{
@@ -569,69 +681,22 @@
     font-weight:600;
   }
   .social-pill:hover{ background:rgba(255,255,255,0.2); }
-
-  .contact-form{
-    max-width:520px;
-    margin:40px auto 0;
-    background:rgba(255,255,255,0.08);
-    border:2px solid rgba(255,255,255,0.2);
-    border-radius:var(--radius-lg);
-    padding:32px;
-    text-align:left;
+  .social-pill.disabled{
+    opacity:0.55;
+    cursor:not-allowed;
+    position:relative;
   }
-  .contact-form label{
+  .social-pill.disabled:hover{ background:rgba(255,255,255,0.1); }
+  .social-pill .soon-tag{
     display:block;
-    font-family:'Fredoka', sans-serif;
-    font-weight:600;
-    font-size:0.9rem;
-    color:var(--cyan);
-    margin-bottom:6px;
-  }
-  .contact-form .field{ margin-bottom:18px; }
-  .contact-form input,
-  .contact-form textarea,
-  .contact-form select{
-    width:100%;
-    padding:12px 14px;
-    border-radius:12px;
-    border:none;
-    font-family:'Nunito Sans', sans-serif;
-    font-size:0.95rem;
-    background:var(--white);
-    color:var(--navy-text);
-    resize:vertical;
-  }
-  .contact-form select{ cursor:pointer; }
-  .contact-form .hint{
-    font-size:0.8rem;
-    color:rgba(255,255,255,0.6);
-    margin-top:6px;
-    display:block;
-  }
-  .contact-form textarea{ min-height:110px; }
-  .contact-form button{
-    width:100%;
-    border:none;
-    cursor:pointer;
-    background:var(--tan);
-    color:var(--navy-text);
-    font-family:'Fredoka', sans-serif;
+    font-size:0.68rem;
     font-weight:700;
-    font-size:1rem;
-    padding:14px;
-    border-radius:999px;
-    transition:transform .15s ease;
+    color:var(--cyan);
+    letter-spacing:0.5px;
+    text-transform:uppercase;
+    margin-top:2px;
   }
-  .contact-form button:hover{ transform:translateY(-2px); }
-  .contact-divider{
-    display:flex; align-items:center; gap:14px;
-    max-width:520px; margin:36px auto; color:rgba(255,255,255,0.5);
-    font-size:0.85rem; font-family:'Fredoka', sans-serif;
-  }
-  .contact-divider::before,
-  .contact-divider::after{
-    content:""; flex:1; height:1px; background:rgba(255,255,255,0.25);
-  }
+
 
   /* ---------- FOOTER ---------- */
   footer{
@@ -676,13 +741,14 @@
 <body>
 
 <nav>
-  <a href="#" class="brand"><img src="assets/nicecream-logo-wide.png" alt="NiceCream"></a>
+  <a href="#" class="brand"><img src="assets/nicecream-logo-nav.png" alt="NiceCream"></a>
   <button class="nav-toggle" id="navToggle" aria-label="Abrir menú">
     <span></span><span></span><span></span>
   </button>
   <ul class="nav-menu" id="navMenu">
     <li><a href="#novedades">Novedades</a></li>
     <li><a href="#sabores">Sabores</a></li>
+    <li><a href="#paquetes">Paquetes</a></li>
     <li><a href="#sucursales">Sucursales</a></li>
     <li><a href="#contacto">Contacto</a></li>
   </ul>
@@ -744,6 +810,16 @@
   <div class="menu-panel active" id="panel-paletas">
     <p class="menu-panel-intro">Paletas personalizables: puedes añadir nuestra cobertura especial de chocolate y toppings con costo adicional. Algunos productos pueden contener lácteos o nueces.</p>
 
+    <div class="sub-tabs" id="paletasSubTabs">
+      <span class="sub-tab active" data-subtab="agua">Agua</span>
+      <span class="sub-tab" data-subtab="premium-agua">Agua premium</span>
+      <span class="sub-tab" data-subtab="chamoy">Chamoy y picositas</span>
+      <span class="sub-tab" data-subtab="crema">Crema</span>
+      <span class="sub-tab" data-subtab="especialidades">Especialidades premium</span>
+      <span class="sub-tab" data-subtab="infusion">Con infusión</span>
+    </div>
+
+    <div class="sub-panel active" id="subpanel-agua">
     <div class="menu-group">
       <div class="menu-group-head"><h3>Paletas de agua</h3><span class="tagline">Refrescantes y frutales</span></div>
       <div class="menu-group-rule"></div>
@@ -764,7 +840,9 @@
         <div class="item"><h4>Zapote</h4><p>Con la receta de la abuela y un toque de jugo de naranja.</p></div>
       </div>
     </div>
+    </div>
 
+    <div class="sub-panel" id="subpanel-premium-agua">
     <div class="menu-group">
       <div class="menu-group-head"><h3>Agua premium</h3><span class="tagline">Mezcla de frutas seleccionada</span></div>
       <div class="menu-group-rule"></div>
@@ -772,7 +850,9 @@
         <div class="item"><h4>Frutos rojos</h4><p>Mezcla de acidez elegante y sabor intenso: zarzamora, fresa y frambuesa.</p></div>
       </div>
     </div>
+    </div>
 
+    <div class="sub-panel" id="subpanel-chamoy">
     <div class="menu-group">
       <div class="menu-group-head"><h3>Chamoy y picositas</h3><span class="tagline">Dulce, ácido y con picor</span></div>
       <div class="menu-group-rule"></div>
@@ -786,7 +866,9 @@
         <div class="item"><h4>Picapandas</h4><p>Frutal y divertida, limón rellena con panditas bañadas en chamoy.</p></div>
       </div>
     </div>
+    </div>
 
+    <div class="sub-panel" id="subpanel-crema">
     <div class="menu-group">
       <div class="menu-group-head"><h3>Paletas de crema</h3><span class="tagline">Cremosas y sedosas</span></div>
       <div class="menu-group-rule"></div>
@@ -812,7 +894,9 @@
         <div class="item"><h4>Vainilla</h4><p>Clásica y limpia, con cremosidad fina.</p></div>
       </div>
     </div>
+    </div>
 
+    <div class="sub-panel" id="subpanel-especialidades">
     <div class="menu-group">
       <div class="menu-group-head"><h3>Especialidades premium</h3><span class="tagline">Inspiradas en postres</span></div>
       <div class="menu-group-rule"></div>
@@ -832,7 +916,9 @@
         <div class="item"><h4>Snickers</h4><p>Chocolate, cacahuate y caramelo.</p></div>
       </div>
     </div>
+    </div>
 
+    <div class="sub-panel" id="subpanel-infusion">
     <div class="menu-group">
       <div class="menu-group-head"><h3>Sabores con infusión</h3><span class="tagline">El alcohol se evapora en el proceso</span></div>
       <div class="menu-group-rule"></div>
@@ -843,6 +929,7 @@
         <div class="item"><h4>Rompope</h4><p>Tradicional rompope Coronado, aromática y cremosa, con un toque de canela.</p></div>
         <div class="item"><h4>Ron con Pasas</h4><p>Notas cálidas y especiadas, de final redondo.</p></div>
       </div>
+    </div>
     </div>
 
   </div>
@@ -855,6 +942,13 @@
       <div class="step"><div class="num">3</div><div class="step-body"><h4>Elige tus sabores</h4><p>Si tu pedido es sencillo, incluye un solo sabor.</p></div></div>
     </div>
 
+    <div class="sub-tabs" id="heladosSubTabs">
+      <span class="sub-tab active" data-subtab-h="nieve">Nieve</span>
+      <span class="sub-tab" data-subtab-h="clasico">Clásico</span>
+      <span class="sub-tab" data-subtab-h="gourmet">Gourmet</span>
+    </div>
+
+    <div class="sub-panel active" id="subpanel-h-nieve">
     <div class="menu-group">
       <div class="menu-group-head"><h3>Nieve</h3><span class="tagline">Ligera y frutal</span></div>
       <div class="menu-group-rule"></div>
@@ -866,7 +960,9 @@
         <div class="item"><h4>Mango</h4><p>Tropical y jugosa, sabor protagonista.</p></div>
       </div>
     </div>
+    </div>
 
+    <div class="sub-panel" id="subpanel-h-clasico">
     <div class="menu-group">
       <div class="menu-group-head"><h3>Helado clásico</h3><span class="tagline">Cremoso y tradicional</span></div>
       <div class="menu-group-rule"></div>
@@ -885,7 +981,9 @@
         <div class="item"><h4>Arroz con leche</h4><p>Suave y reconfortante; sabor de temporada.</p></div>
       </div>
     </div>
+    </div>
 
+    <div class="sub-panel" id="subpanel-h-gourmet">
     <div class="menu-group">
       <div class="menu-group-head"><h3>Helado gourmet</h3><span class="tagline">Inspirado en postres</span></div>
       <div class="menu-group-rule"></div>
@@ -901,6 +999,7 @@
         <div class="item"><h4>Selva negra</h4><p>Chocolate amargo con cereza, de carácter intenso.</p></div>
         <div class="item"><h4>Stracciatela</h4><p>Base cremosa de vaina de vainilla natural con láminas finas de chocolate que se quiebran en cada cucharada.</p></div>
       </div>
+    </div>
     </div>
   </div>
 
@@ -1072,6 +1171,7 @@
         <a href="https://www.google.com/maps/search/?api=1&query=Av+Emilio+Carranza+443%2C+El+Reto%C3%B1o%2C+Iztapalapa%2C+09440+Ciudad+de+M%C3%A9xico%2C+CDMX" target="_blank" rel="noopener" class="map-btn">Cómo llegar →</a>
         <a href="#sabores" class="btn-menu-link">Ver menú</a>
       </div>
+      <iframe class="map-embed" loading="lazy" src="https://www.google.com/maps?q=Av+Emilio+Carranza+443,+El+Reto%C3%B1o,+Iztapalapa,+09440+Ciudad+de+M%C3%A9xico,+CDMX&output=embed"></iframe>
     </div>
 
     <div class="location-card">
@@ -1089,6 +1189,7 @@
         <a href="https://www.google.com/maps/search/?api=1&query=Unidad+Habitacional%2C+Emilio+Portes+Gil%2C+Tlalpan%2C+14110+Ciudad+de+M%C3%A9xico%2C+CDMX" target="_blank" rel="noopener" class="map-btn">Cómo llegar →</a>
         <a href="#sabores" class="btn-menu-link">Ver menú</a>
       </div>
+      <iframe class="map-embed" loading="lazy" src="https://www.google.com/maps?q=Unidad+Habitacional,+Emilio+Portes+Gil,+Tlalpan,+14110+Ciudad+de+M%C3%A9xico,+CDMX&output=embed"></iframe>
     </div>
   </div>
 </section>
@@ -1097,48 +1198,14 @@
   <div class="section-head">
     <span class="eyebrow">Hablemos</span>
     <h2>Pide, pregunta o solo salúdanos</h2>
-    <p>Enlaces de ejemplo — los cambiamos por tus redes y WhatsApp reales.</p>
+    <p>Escríbenos directo por WhatsApp o síguenos en redes.</p>
   </div>
   <div class="social-row">
-    <a href="#" class="social-pill">WhatsApp <span class="placeholder">[número]</span></a>
+    <a href="https://wa.me/52REEMPLAZA-CON-TU-NUMERO?text=Hola%2C%20quiero%20hacer%20un%20pedido" target="_blank" rel="noopener" class="social-pill">WhatsApp</a>
     <a href="#" class="social-pill">Instagram <span class="placeholder">[@usuario]</span></a>
     <a href="#" class="social-pill">Facebook <span class="placeholder">[página]</span></a>
+    <span class="social-pill disabled" title="No disponible por el momento">Rappi<span class="soon-tag">No disponible por ahora</span></span>
   </div>
-
-  <div class="contact-divider">o escríbenos directo</div>
-
-  <form class="contact-form" action="https://formsubmit.co/REEMPLAZA-CON-TU-CORREO@ejemplo.com" method="POST">
-    <input type="hidden" name="_subject" value="Nuevo mensaje desde el sitio de NiceCream">
-    <input type="hidden" name="_captcha" value="false">
-    <input type="hidden" name="_template" value="table">
-
-    <div class="field">
-      <label for="nombre">Nombre</label>
-      <input type="text" id="nombre" name="Nombre" required maxlength="60">
-    </div>
-    <div class="field">
-      <label for="correo">Tu correo</label>
-      <input type="email" id="correo" name="Correo" required>
-    </div>
-    <div class="field">
-      <label for="motivo">¿Sobre qué nos escribes?</label>
-      <select id="motivo" name="Motivo" required>
-        <option value="" disabled selected>Selecciona una opción</option>
-        <option value="Pedido o cotización para evento">Pedido o cotización para evento</option>
-        <option value="Pregunta sobre sabores o menú">Pregunta sobre sabores o menú</option>
-        <option value="Pregunta sobre sucursales u horarios">Pregunta sobre sucursales u horarios</option>
-        <option value="Comentario o sugerencia">Comentario o sugerencia</option>
-        <option value="Trabaja con nosotros">Trabaja con nosotros</option>
-        <option value="Otro">Otro</option>
-      </select>
-    </div>
-    <div class="field">
-      <label for="mensaje">Detalles (opcional)</label>
-      <textarea id="mensaje" name="Detalles" maxlength="280" placeholder="Cuéntanos brevemente qué necesitas"></textarea>
-      <span class="hint">Máximo 280 caracteres.</span>
-    </div>
-    <button type="submit">Enviar mensaje</button>
-  </form>
 </section>
 
 <footer>
@@ -1151,6 +1218,28 @@
   navToggle.addEventListener('click', () => navMenu.classList.toggle('open'));
   navMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navMenu.classList.remove('open')));
 
+  const subTabs = document.querySelectorAll('#paletasSubTabs .sub-tab');
+  const subPanels = document.querySelectorAll('#panel-paletas .sub-panel');
+  subTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      subTabs.forEach(t => t.classList.remove('active'));
+      subPanels.forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById('subpanel-' + tab.dataset.subtab).classList.add('active');
+    });
+  });
+
+  const subTabsH = document.querySelectorAll('#heladosSubTabs .sub-tab');
+  const subPanelsH = document.querySelectorAll('#panel-helados .sub-panel');
+  subTabsH.forEach(tab => {
+    tab.addEventListener('click', () => {
+      subTabsH.forEach(t => t.classList.remove('active'));
+      subPanelsH.forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById('subpanel-h-' + tab.dataset.subtabH).classList.add('active');
+    });
+  });
+
   const tabs = document.querySelectorAll('#menuTabs .flavor-tab');
   const panels = document.querySelectorAll('.menu-panel');
   tabs.forEach(tab => {
@@ -1162,12 +1251,20 @@
     });
   });
 </script>
+<!-- ===== WHATSAPP FLOTANTE ===== -->
+<a class="whatsapp-launcher" href="https://wa.me/52REEMPLAZA-CON-TU-NUMERO?text=Hola%2C%20quiero%20hacer%20un%20pedido" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
+  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.36 5.07L2 22l5.09-1.33A9.94 9.94 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2Z" fill="white"/>
+    <path d="M8.5 8.3c.2-.45.4-.46.6-.47.16 0 .34 0 .5 0 .16 0 .38-.06.6.45.22.53.75 1.8.82 1.93.07.13.11.28.02.46-.09.18-.14.28-.27.43-.13.15-.28.34-.4.46-.13.13-.27.27-.12.53.15.27.68 1.1 1.46 1.78 1 .88 1.84 1.15 2.11 1.28.27.13.43.11.59-.07.16-.18.68-.78.86-1.05.18-.27.36-.22.6-.13.25.09 1.57.73 1.84.87.27.13.45.2.51.32.07.13.07.71-.16 1.4-.24.68-1.38 1.31-1.9 1.4-.51.09-1.03.13-2.35-.5-1.98-.94-3.27-2.9-3.37-3.04-.1-.13-.82-1.08-.82-2.06 0-.98.51-1.46.7-1.66Z" fill="#25D366"/>
+  </svg>
+</a>
+
 <!-- ===== CHATBOT ===== -->
 <button class="chat-launcher" id="chatLauncher" aria-label="Abrir chat">💬</button>
 
 <div class="chat-window" id="chatWindow">
   <div class="chat-head">
-    <img src="assets/nicecream-logo-wide.png" alt="">
+    <img src="assets/nicecream-logo-nav.png" alt="" style="height:22px; width:auto; filter:brightness(0) invert(1); opacity:0.9;">
     <div>
       <div class="chat-title">NiceCream</div>
       <div class="chat-sub">Respuestas rápidas</div>
@@ -1218,16 +1315,16 @@
       ]
     },
     eventos: {
-      bot: "Manejamos paquetes para fiestas y eventos especiales. Cuéntanos los detalles (fecha, número de personas, sucursal) por nuestro formulario de contacto y te respondemos por correo.",
+      bot: "Manejamos paquetes para fiestas y eventos especiales. Escríbenos por WhatsApp con la fecha, número de personas y sucursal, y te cotizamos.",
       options: [
-        { label: "Ir al formulario de contacto", action: "scroll", target: "#contacto" },
+        { label: "Escribir por WhatsApp", action: "link", target: "https://wa.me/52REEMPLAZA-CON-TU-NUMERO?text=Hola%2C%20quiero%20cotizar%20un%20evento" },
         { label: "⬅️ Regresar al inicio", next: "root" }
       ]
     },
     contacto: {
-      bot: "Con gusto. Puedes escribirnos por el formulario de contacto aquí abajo — elige el motivo de tu mensaje y te respondemos por correo.",
+      bot: "Con gusto. La forma más rápida es por WhatsApp — ahí mismo te podemos ayudar con tu pedido o duda.",
       options: [
-        { label: "Ir al formulario de contacto", action: "scroll", target: "#contacto" },
+        { label: "Escribir por WhatsApp", action: "link", target: "https://wa.me/52REEMPLAZA-CON-TU-NUMERO?text=Hola%2C%20tengo%20una%20pregunta" },
         { label: "⬅️ Regresar al inicio", next: "root" }
       ]
     }
@@ -1256,6 +1353,8 @@
         if(opt.action === 'scroll'){
           chatWindow.classList.remove('open');
           document.querySelector(opt.target).scrollIntoView({ behavior:'smooth' });
+        } else if(opt.action === 'link'){
+          window.open(opt.target, '_blank', 'noopener');
         } else {
           renderChatStep(opt.next);
         }
