@@ -74,10 +74,10 @@
   }
   nav .brand{ display:flex; align-items:center; }
   nav .brand img{ height:34px; width:auto; }
-  nav ul{ display:flex; gap:20px; }
+  nav ul{ display:flex; gap:16px; }
   nav a{
-    color:var(--white); font-weight:700; font-size:0.88rem;
-    letter-spacing:0.3px;
+    color:var(--white); font-weight:700; font-size:0.82rem;
+    letter-spacing:0.2px;
   }
   nav a:hover{ color:var(--cyan); }
   .nav-toggle{
@@ -470,6 +470,60 @@
     text-align:center; margin-top:32px; font-size:0.92rem; color:#5A6A88;
   }
 
+  /* ---------- VOTACIÓN ---------- */
+  .vote{ background:var(--white); }
+  .vote-grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap:18px;
+    max-width:820px;
+    margin:0 auto 32px;
+  }
+  .vote-card{
+    background:var(--cream);
+    border:2.5px solid transparent;
+    border-radius:var(--radius-md);
+    padding:24px 20px;
+    text-align:center;
+    cursor:pointer;
+    transition:border-color .15s ease, transform .15s ease;
+  }
+  .vote-card:hover{ transform:translateY(-2px); }
+  .vote-card.selected{
+    border-color:var(--tan);
+    background:#FFF3E4;
+  }
+  .vote-card .vote-emoji{ font-size:1.8rem; margin-bottom:10px; }
+  .vote-card h4{
+    font-family:'Fredoka', sans-serif;
+    font-size:1rem;
+    color:var(--blue-deep);
+    margin-bottom:4px;
+  }
+  .vote-card p{ font-size:0.82rem; color:#5A6A88; }
+  .vote-actions{ text-align:center; }
+  .vote-submit{
+    display:inline-block;
+    background:var(--blue-deep);
+    color:var(--white);
+    font-family:'Fredoka', sans-serif;
+    font-weight:700;
+    padding:13px 32px;
+    border:none;
+    border-radius:999px;
+    font-size:0.95rem;
+    cursor:pointer;
+    transition:background .15s ease, opacity .15s ease;
+  }
+  .vote-submit:hover{ background:#163c7a; }
+  .vote-submit:disabled{ opacity:0.5; cursor:not-allowed; }
+  .vote-hint{
+    text-align:center;
+    font-size:0.85rem;
+    color:#5A6A88;
+    margin-top:12px;
+  }
+
   /* ---------- NOVEDADES ---------- */
   .whatsnew{ background:var(--cream); }
   .whatsnew-grid{
@@ -856,6 +910,54 @@
   }
   .review-pill:hover{ transform:translateY(-2px); }
 
+  .newsletter-block{
+    margin-top:36px;
+    padding-top:32px;
+    border-top:1px solid rgba(255,255,255,0.15);
+    max-width:440px;
+    margin-left:auto;
+    margin-right:auto;
+  }
+  .newsletter-block p{
+    color:rgba(255,255,255,0.75);
+    font-size:0.92rem;
+    margin-bottom:16px;
+  }
+  .newsletter-form{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+  .newsletter-form input[type="email"]{
+    flex:1;
+    min-width:180px;
+    padding:12px 16px;
+    border-radius:999px;
+    border:none;
+    font-family:'Nunito Sans', sans-serif;
+    font-size:0.9rem;
+    background:var(--white);
+    color:var(--navy-text);
+  }
+  .newsletter-form button{
+    background:var(--tan);
+    color:var(--navy-text);
+    border:none;
+    font-family:'Fredoka', sans-serif;
+    font-weight:700;
+    padding:12px 24px;
+    border-radius:999px;
+    font-size:0.9rem;
+    cursor:pointer;
+    transition:transform .15s ease;
+  }
+  .newsletter-form button:hover{ transform:translateY(-2px); }
+  .newsletter-note{
+    font-size:0.75rem;
+    color:rgba(255,255,255,0.55);
+    margin-top:10px;
+  }
+
 
   /* ---------- FOOTER ---------- */
   footer{
@@ -868,9 +970,7 @@
   footer strong{ color:var(--white); }
 
   /* ---------- RESPONSIVE ---------- */
-  @media (max-width: 820px){
-    .hero{ grid-template-columns:1fr; padding-bottom:150px; }
-    .hero-art{ order:-1; }
+  @media (max-width: 1050px){
     .nav-toggle{ display:flex; }
     .nav-menu{
       display:none;
@@ -891,6 +991,11 @@
     }
   }
 
+  @media (max-width: 820px){
+    .hero{ grid-template-columns:1fr; padding-bottom:150px; }
+    .hero-art{ order:-1; }
+  }
+
   @media (prefers-reduced-motion: reduce){
     html{ scroll-behavior:auto; }
     .btn:hover{ transform:none; }
@@ -907,6 +1012,7 @@
   <ul class="nav-menu" id="navMenu">
     <li><a href="#nosotros">Nosotros</a></li>
     <li><a href="#novedades">Novedades</a></li>
+    <li><a href="#votacion">Vota</a></li>
     <li><a href="#sabores">Sabores</a></li>
     <li><a href="#paquetes">Paquetes</a></li>
     <li><a href="#sucursales">Sucursales</a></li>
@@ -968,6 +1074,42 @@
       <p>Se suma a nuestra línea sin azúcar añadida: fresa natural, ligera y refrescante, sin perder sabor.</p>
       <span class="month-tag">Julio 2026</span>
     </div>
+  </div>
+</section>
+
+<section class="vote" id="votacion">
+  <div class="section-head">
+    <span class="eyebrow">Tú decides</span>
+    <h2>Vota por el próximo sabor nuevo</h2>
+    <p>Elige tu favorito y mándanos tu voto — el que más votos junte, lo sacamos el próximo mes.</p>
+  </div>
+
+  <div class="vote-grid" id="voteGrid">
+    <div class="vote-card" data-flavor="Mango con Chile">
+      <div class="vote-emoji">🥭</div>
+      <h4>Mango con Chile</h4>
+      <p>Dulce con un toque picosito</p>
+    </div>
+    <div class="vote-card" data-flavor="Cheesecake de Zarzamora">
+      <div class="vote-emoji">🍰</div>
+      <h4>Cheesecake de Zarzamora</h4>
+      <p>Cremoso con mermelada casera</p>
+    </div>
+    <div class="vote-card" data-flavor="Horchata con Fresa">
+      <div class="vote-emoji">🍓</div>
+      <h4>Horchata con Fresa</h4>
+      <p>Clásica con un giro frutal</p>
+    </div>
+    <div class="vote-card" data-flavor="Cookies and Cream Keto">
+      <div class="vote-emoji">🍪</div>
+      <h4>Cookies &amp; Cream Keto</h4>
+      <p>Para la línea sin azúcar</p>
+    </div>
+  </div>
+
+  <div class="vote-actions">
+    <button class="vote-submit" id="voteSubmit" disabled>Elige un sabor para votar</button>
+    <p class="vote-hint">Tu voto se envía por WhatsApp — así nos aseguramos de que sea real.</p>
   </div>
 </section>
 
@@ -1346,7 +1488,7 @@
         <li><span class="placeholder">[Tipo de producto: paletas / helado / ambos]</span></li>
         <li><span class="placeholder">[Entrega o recolección en sucursal]</span></li>
       </ul>
-      <a href="https://wa.me/52REEMPLAZA-CON-TU-NUMERO?text=Hola%2C%20quiero%20cotizar%20el%20paquete%20de%20fiesta%20chica" target="_blank" rel="noopener" class="pkg-cta">Cotizar por WhatsApp</a>
+      <a href="https://wa.me/525661448010?text=Hola%2C%20quiero%20cotizar%20el%20paquete%20de%20fiesta%20chica" target="_blank" rel="noopener" class="pkg-cta">Cotizar por WhatsApp</a>
     </div>
     <div class="package-card">
       <div class="icon-circle">🎉</div>
@@ -1356,7 +1498,7 @@
         <li><span class="placeholder">[Sabores incluidos o a elegir]</span></li>
         <li><span class="placeholder">[Extras: toppings, dorilocos, etc.]</span></li>
       </ul>
-      <a href="https://wa.me/52REEMPLAZA-CON-TU-NUMERO?text=Hola%2C%20quiero%20cotizar%20el%20paquete%20de%20fiesta%20grande" target="_blank" rel="noopener" class="pkg-cta">Cotizar por WhatsApp</a>
+      <a href="https://wa.me/525661448010?text=Hola%2C%20quiero%20cotizar%20el%20paquete%20de%20fiesta%20grande" target="_blank" rel="noopener" class="pkg-cta">Cotizar por WhatsApp</a>
     </div>
     <div class="package-card">
       <div class="icon-circle">🏢</div>
@@ -1366,7 +1508,7 @@
         <li><span class="placeholder">[Opciones de facturación]</span></li>
         <li><span class="placeholder">[Tiempo de anticipación requerido]</span></li>
       </ul>
-      <a href="https://wa.me/52REEMPLAZA-CON-TU-NUMERO?text=Hola%2C%20quiero%20cotizar%20un%20paquete%20corporativo" target="_blank" rel="noopener" class="pkg-cta">Cotizar por WhatsApp</a>
+      <a href="https://wa.me/525661448010?text=Hola%2C%20quiero%20cotizar%20un%20paquete%20corporativo" target="_blank" rel="noopener" class="pkg-cta">Cotizar por WhatsApp</a>
     </div>
   </div>
   <p class="packages-note">¿Manejan otros paquetes o promociones por temporada? Los agregamos aquí también.</p>
@@ -1458,7 +1600,7 @@
     <p>Escríbenos directo por WhatsApp o síguenos en redes.</p>
   </div>
   <div class="social-row">
-    <a href="https://wa.me/52REEMPLAZA-CON-TU-NUMERO?text=Hola%2C%20quiero%20hacer%20un%20pedido" target="_blank" rel="noopener" class="social-pill">WhatsApp</a>
+    <a href="https://wa.me/525661448010?text=Hola%2C%20quiero%20hacer%20un%20pedido" target="_blank" rel="noopener" class="social-pill">WhatsApp</a>
     <a href="#" class="social-pill">Instagram <span class="placeholder">[@usuario]</span></a>
     <a href="#" class="social-pill">Facebook <span class="placeholder">[página]</span></a>
     <span class="social-pill disabled" title="No disponible por el momento">Rappi<span class="soon-tag">No disponible por ahora</span></span>
@@ -1471,6 +1613,19 @@
       <a href="https://g.page/r/CdyZqwwRU9PkEBM/review" target="_blank" rel="noopener" class="review-pill">⭐ Reseña Pedregal</a>
     </div>
   </div>
+
+  <div class="newsletter-block">
+    <p>📩 Recibe avisos de sabores nuevos y promociones directo en tu correo.</p>
+    <form class="newsletter-form" action="https://formsubmit.co/nicecream@gmail.com" method="POST">
+      <input type="hidden" name="_subject" value="Nuevo registro a novedades de NiceCream">
+      <input type="hidden" name="_captcha" value="true">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_next" value="https://oswaldocasillas.github.io/NiceCream/#novedades">
+      <input type="email" name="Correo" placeholder="tu@correo.com" required>
+      <button type="submit">Quiero recibir novedades</button>
+    </form>
+    <p class="newsletter-note">Al enviar, Google/FormSubmit puede pedirte confirmar que no eres un robot.</p>
+  </div>
 </section>
 
 <footer>
@@ -1482,6 +1637,24 @@
   const navMenu = document.getElementById('navMenu');
   navToggle.addEventListener('click', () => navMenu.classList.toggle('open'));
   navMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navMenu.classList.remove('open')));
+
+  const voteCards = document.querySelectorAll('.vote-card');
+  const voteSubmit = document.getElementById('voteSubmit');
+  let selectedFlavor = null;
+  voteCards.forEach(card => {
+    card.addEventListener('click', () => {
+      voteCards.forEach(c => c.classList.remove('selected'));
+      card.classList.add('selected');
+      selectedFlavor = card.dataset.flavor;
+      voteSubmit.disabled = false;
+      voteSubmit.textContent = 'Enviar mi voto por ' + selectedFlavor;
+    });
+  });
+  voteSubmit.addEventListener('click', () => {
+    if(!selectedFlavor) return;
+    const msg = encodeURIComponent('Quiero votar por el nuevo sabor: ' + selectedFlavor);
+    window.open('https://wa.me/525661448010?text=' + msg, '_blank', 'noopener');
+  });
 
   const subTabs = document.querySelectorAll('#paletasSubTabs .sub-tab');
   const subPanels = document.querySelectorAll('#panel-paletas .sub-panel');
@@ -1517,7 +1690,7 @@
   });
 </script>
 <!-- ===== WHATSAPP FLOTANTE ===== -->
-<a class="whatsapp-launcher" href="https://wa.me/52REEMPLAZA-CON-TU-NUMERO?text=Hola%2C%20quiero%20hacer%20un%20pedido" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
+<a class="whatsapp-launcher" href="https://wa.me/525661448010?text=Hola%2C%20quiero%20hacer%20un%20pedido" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
   <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.36 5.07L2 22l5.09-1.33A9.94 9.94 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2Z" fill="white"/>
     <path d="M8.5 8.3c.2-.45.4-.46.6-.47.16 0 .34 0 .5 0 .16 0 .38-.06.6.45.22.53.75 1.8.82 1.93.07.13.11.28.02.46-.09.18-.14.28-.27.43-.13.15-.28.34-.4.46-.13.13-.27.27-.12.53.15.27.68 1.1 1.46 1.78 1 .88 1.84 1.15 2.11 1.28.27.13.43.11.59-.07.16-.18.68-.78.86-1.05.18-.27.36-.22.6-.13.25.09 1.57.73 1.84.87.27.13.45.2.51.32.07.13.07.71-.16 1.4-.24.68-1.38 1.31-1.9 1.4-.51.09-1.03.13-2.35-.5-1.98-.94-3.27-2.9-3.37-3.04-.1-.13-.82-1.08-.82-2.06 0-.98.51-1.46.7-1.66Z" fill="#25D366"/>
@@ -1583,14 +1756,14 @@
       bot: "Manejamos paquetes para fiestas y eventos especiales. Puedes ver las opciones aquí mismo o escribirnos directo por WhatsApp con la fecha, número de personas y sucursal.",
       options: [
         { label: "Ver paquetes", action: "scroll", target: "#paquetes" },
-        { label: "Escribir por WhatsApp", action: "link", target: "https://wa.me/52REEMPLAZA-CON-TU-NUMERO?text=Hola%2C%20quiero%20cotizar%20un%20evento" },
+        { label: "Escribir por WhatsApp", action: "link", target: "https://wa.me/525661448010?text=Hola%2C%20quiero%20cotizar%20un%20evento" },
         { label: "⬅️ Regresar al inicio", next: "root" }
       ]
     },
     contacto: {
       bot: "Con gusto. La forma más rápida es por WhatsApp — ahí mismo te podemos ayudar con tu pedido o duda.",
       options: [
-        { label: "Escribir por WhatsApp", action: "link", target: "https://wa.me/52REEMPLAZA-CON-TU-NUMERO?text=Hola%2C%20tengo%20una%20pregunta" },
+        { label: "Escribir por WhatsApp", action: "link", target: "https://wa.me/525661448010?text=Hola%2C%20tengo%20una%20pregunta" },
         { label: "⬅️ Regresar al inicio", next: "root" }
       ]
     }
