@@ -1109,7 +1109,7 @@
 
   <div class="vote-actions">
     <button class="vote-submit" id="voteSubmit" disabled>Elige un sabor para votar</button>
-    <p class="vote-hint">Tu voto se envía por WhatsApp — así nos aseguramos de que sea real.</p>
+    <p class="vote-hint">Un voto por sesión — gracias por ayudarnos a decidir 🍦</p>
   </div>
 </section>
 
@@ -1638,23 +1638,58 @@
   navToggle.addEventListener('click', () => navMenu.classList.toggle('open'));
   navMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navMenu.classList.remove('open')));
 
+  // ===== VOTACIÓN DE SABOR =====
+  // Pega aquí la URL de tu Google Apps Script (ver instrucciones que te di aparte)
+  const VOTE_ENDPOINT = 'https://script.google.com/macros/s/AKfycbzkNin0IP-2fEaN_Xr_JNf4GQeiYrwD_N31hhZ6DKRI_7lGLN1m1JBN_4G0aU1pbMz3nA/exec';
+
   const voteCards = document.querySelectorAll('.vote-card');
   const voteSubmit = document.getElementById('voteSubmit');
+  const voteGrid = document.getElementById('voteGrid');
   let selectedFlavor = null;
-  voteCards.forEach(card => {
-    card.addEventListener('click', () => {
-      voteCards.forEach(c => c.classList.remove('selected'));
-      card.classList.add('selected');
-      selectedFlavor = card.dataset.flavor;
-      voteSubmit.disabled = false;
-      voteSubmit.textContent = 'Enviar mi voto por ' + selectedFlavor;
+
+  function lockVoting(message){
+    voteCards.forEach(c => {
+      c.classList.remove('selected');
+      c.style.pointerEvents = 'none';
+      c.style.opacity = '0.5';
     });
-  });
-  voteSubmit.addEventListener('click', () => {
-    if(!selectedFlavor) return;
-    const msg = encodeURIComponent('Quiero votar por el nuevo sabor: ' + selectedFlavor);
-    window.open('https://wa.me/525661448010?text=' + msg, '_blank', 'noopener');
-  });
+    voteSubmit.disabled = true;
+    voteSubmit.textContent = message;
+  }
+
+  // Si ya votó en esta sesión (pestaña/navegador abiertos), bloquea de entrada
+  if(sessionStorage.getItem('nicecream_voted') === 'true'){
+    lockVoting('¡Ya votaste! Gracias 🎉');
+  } else {
+    voteCards.forEach(card => {
+      card.addEventListener('click', () => {
+        voteCards.forEach(c => c.classList.remove('selected'));
+        card.classList.add('selected');
+        selectedFlavor = card.dataset.flavor;
+        voteSubmit.disabled = false;
+        voteSubmit.textContent = 'Enviar mi voto por ' + selectedFlavor;
+      });
+    });
+
+    voteSubmit.addEventListener('click', () => {
+      if(!selectedFlavor) return;
+      voteSubmit.disabled = true;
+      voteSubmit.textContent = 'Enviando tu voto...';
+
+      fetch(VOTE_ENDPOINT, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain' },
+        body: JSON.stringify({ sabor: selectedFlavor, fecha: new Date().toISOString() })
+      }).then(() => {
+        sessionStorage.setItem('nicecream_voted', 'true');
+        lockVoting('¡Gracias por tu voto! 🎉');
+      }).catch(() => {
+        voteSubmit.disabled = false;
+        voteSubmit.textContent = 'Hubo un error, intenta de nuevo';
+      });
+    });
+  }
 
   const subTabs = document.querySelectorAll('#paletasSubTabs .sub-tab');
   const subPanels = document.querySelectorAll('#panel-paletas .sub-panel');
