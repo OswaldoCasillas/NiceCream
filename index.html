@@ -910,18 +910,78 @@
   }
   .review-pill:hover{ transform:translateY(-2px); }
 
-  .newsletter-block{
+  .newsletter-teaser{
     margin-top:36px;
     padding-top:32px;
     border-top:1px solid rgba(255,255,255,0.15);
-    max-width:440px;
-    margin-left:auto;
-    margin-right:auto;
+    text-align:center;
   }
-  .newsletter-block p{
+  .newsletter-teaser p{
     color:rgba(255,255,255,0.75);
     font-size:0.92rem;
     margin-bottom:16px;
+  }
+  .newsletter-open-btn{
+    background:var(--tan);
+    color:var(--navy-text);
+    border:none;
+    font-family:'Fredoka', sans-serif;
+    font-weight:700;
+    padding:13px 28px;
+    border-radius:999px;
+    font-size:0.92rem;
+    cursor:pointer;
+    transition:transform .15s ease;
+  }
+  .newsletter-open-btn:hover{ transform:translateY(-2px); }
+
+  .modal-overlay{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(15,44,92,0.55);
+    z-index:300;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+  }
+  .modal-overlay.open{ display:flex; }
+  .modal-box{
+    background:var(--white);
+    border-radius:var(--radius-lg);
+    padding:36px 32px;
+    max-width:420px;
+    width:100%;
+    position:relative;
+    text-align:center;
+    box-shadow:0 30px 60px rgba(0,0,0,0.3);
+  }
+  .modal-box h3{
+    font-family:'Fredoka', sans-serif;
+    color:var(--blue-deep);
+    font-size:1.25rem;
+    margin-bottom:6px;
+  }
+  .modal-sub{
+    color:#5A6A88;
+    font-size:0.9rem;
+    margin-bottom:20px;
+  }
+  .modal-close{
+    position:absolute;
+    top:14px; right:16px;
+    background:none;
+    border:none;
+    font-size:1.3rem;
+    color:#9AA6BE;
+    cursor:pointer;
+    line-height:1;
+  }
+  .modal-box .newsletter-form{ text-align:left; }
+  .modal-box .newsletter-note{
+    color:#8A97AE;
+    font-size:0.78rem;
+    margin-top:14px;
   }
   .newsletter-form{
     display:flex;
@@ -1111,6 +1171,16 @@
       <h4>Paleta de Guayaba Sin Azúcar</h4>
       <p>Frutal, sin azúcar añadida</p>
     </div>
+    <div class="vote-card" data-flavor="__otro__" id="voteOtroCard">
+      <div class="vote-emoji">✍️</div>
+      <h4>Otro</h4>
+      <p>Escribe tu propia idea</p>
+    </div>
+  </div>
+
+  <div id="voteOtroInputWrap" style="display:none; max-width:420px; margin:0 auto 24px;">
+    <input type="text" id="voteOtroInput" placeholder="¿Qué sabor te gustaría?" maxlength="60"
+      style="width:100%; padding:12px 16px; border-radius:999px; border:2px solid rgba(30,74,150,0.15); font-family:'Nunito Sans',sans-serif; font-size:0.9rem; text-align:center;">
   </div>
 
   <div class="vote-actions">
@@ -1190,7 +1260,7 @@
       <div class="menu-group-rule"></div>
       <div class="item-list">
         <div class="item"><h4>Limón Chamoy</h4><p>Cítrica con chamoy, toque picosito y salino.</p></div>
-        <div class="item"><h4>Mango Chamoy</h4><p>Dulce tropical con chamoy, final vibrante.</p></div>
+        <div class="item"><h4>Mango Chamoy <span class="badge-popular">Más pedido</span></h4><p>Dulce tropical con chamoy, final vibrante.</p></div>
         <div class="item"><h4>Piña Chamoy</h4><p>Tropical y fresca, con picor sutil.</p></div>
         <div class="item"><h4>Sandía Chamoy</h4><p>Refrescante, con un toque picosito.</p></div>
         <div class="item"><h4>Pulparindo</h4><p>Tamarindo con picor marcado y carácter.</p></div>
@@ -1211,7 +1281,7 @@
         <div class="item"><h4>Capuchino</h4><p>Café suave con un toque de chocolate, cremoso y equilibrado.</p></div>
         <div class="item"><h4>Chicle</h4><p>Dulce, nostálgico y divertido, con aroma clásico.</p></div>
         <div class="item"><h4>Chocolate</h4><p>Cacao equilibrado, de textura sedosa.</p></div>
-        <div class="item"><h4>Coco</h4><p>Cremosa, con trozos de coco fresco.</p></div>
+        <div class="item"><h4>Coco <span class="badge-popular">Más pedido</span></h4><p>Cremosa, con trozos de coco fresco.</p></div>
         <div class="item"><h4>Durazno &amp; Crema</h4><p>Frutal y cremosa, de balance elegante.</p></div>
         <div class="item"><h4>Fresa</h4><p>Cremosa, con fresa molida y dulzor suave.</p></div>
         <div class="item"><h4>Fresas &amp; Crema</h4><p>Combinación clásica, cremosa y dulce.</p></div>
@@ -1378,7 +1448,7 @@
       <div class="menu-group-head"><h3>Helados sin azúcar / Keto</h3><span class="tagline">Leche de coco, endulzado con stevia</span></div>
       <div class="menu-group-rule"></div>
       <div class="item-list">
-        <div class="item"><h4>Chocolate</h4><p>Cocoa de Turín, chocolate amargo endulzado con stevia.</p></div>
+        <div class="item"><h4>Chocolate <span class="badge-popular">Más pedido</span></h4><p>Cocoa de Turín, chocolate amargo endulzado con stevia.</p></div>
         <div class="item"><h4>Coco</h4><p>Cremoso, con trozos de coco.</p></div>
         <div class="item"><h4>Mamey</h4><p>Frutal y sedoso, con base de leche de coco.</p></div>
         <div class="item"><h4>Pistache</h4><p>Notas mantequillosas, con final elegante.</p></div>
@@ -1549,7 +1619,7 @@
     <div class="location-card">
       <span class="tag">Pedregal</span>
       <h3>NiceCream Pedregal</h3>
-      <p style="font-size:0.85rem; color:var(--tan); font-weight:700; font-family:'Fredoka',sans-serif; margin:-8px 0 14px;">📍 Dentro del Mercadito Pedregal</p>
+      <p style="font-size:0.85rem; color:var(--tan); font-weight:700; font-family:'Fredoka',sans-serif; margin:-8px 0 14px;">📍 Dentro del Mercadito de la Unidad Pemex</p>
       <div class="location-detail">
         <span class="label">Dirección</span>
         <span class="value">Unidad Habitacional, Emilio Portes Gil, Tlalpan, 14110 Ciudad de México, CDMX</span>
@@ -1621,8 +1691,19 @@
     <span class="social-pill disabled" title="No disponible por el momento">Rappi<span class="soon-tag">No disponible por ahora</span></span>
   </div>
 
-  <div class="newsletter-block">
+  <div class="newsletter-teaser">
     <p>📩 Recibe avisos de sabores nuevos y promociones directo en tu correo.</p>
+    <button type="button" class="newsletter-open-btn" id="newsletterOpenBtn">Quiero recibir novedades</button>
+  </div>
+</section>
+
+<!-- ===== POP-UP DE REGISTRO ===== -->
+<div class="modal-overlay" id="newsletterOverlay">
+  <div class="modal-box">
+    <button class="modal-close" id="newsletterClose" aria-label="Cerrar">✕</button>
+    <div class="icon-circle" style="margin:0 auto 16px;">📩</div>
+    <h3>Recibe novedades de NiceCream</h3>
+    <p class="modal-sub">Sabores nuevos y promociones, directo a tu correo.</p>
     <form class="newsletter-form" id="signupForm">
       <input type="text" id="signupNombre" placeholder="Tu nombre" maxlength="40" required>
       <input type="email" id="signupCorreo" placeholder="tu@correo.com" required>
@@ -1631,7 +1712,7 @@
     </form>
     <p class="newsletter-note" id="signupNote">Tus datos se guardan solo para avisarte de novedades — nada de spam.</p>
   </div>
-</section>
+</div>
 
 <footer>
   <p>© 2026 <strong>NiceCream</strong> · Paletas, helados, malteadas y aguas · El Retoño & Pedregal</p>
@@ -1650,7 +1731,10 @@
   const voteCards = document.querySelectorAll('.vote-card');
   const voteSubmit = document.getElementById('voteSubmit');
   const voteGrid = document.getElementById('voteGrid');
+  const voteOtroInputWrap = document.getElementById('voteOtroInputWrap');
+  const voteOtroInput = document.getElementById('voteOtroInput');
   let selectedFlavor = null;
+  let isOtro = false;
 
   function lockVoting(message){
     voteCards.forEach(c => {
@@ -1658,6 +1742,7 @@
       c.style.pointerEvents = 'none';
       c.style.opacity = '0.5';
     });
+    voteOtroInputWrap.style.display = 'none';
     voteSubmit.disabled = true;
     voteSubmit.textContent = message;
   }
@@ -1670,10 +1755,27 @@
       card.addEventListener('click', () => {
         voteCards.forEach(c => c.classList.remove('selected'));
         card.classList.add('selected');
-        selectedFlavor = card.dataset.flavor;
-        voteSubmit.disabled = false;
-        voteSubmit.textContent = 'Enviar mi voto por ' + selectedFlavor;
+        isOtro = card.dataset.flavor === '__otro__';
+
+        if(isOtro){
+          voteOtroInputWrap.style.display = 'block';
+          voteOtroInput.focus();
+          selectedFlavor = voteOtroInput.value.trim();
+          voteSubmit.disabled = !selectedFlavor;
+          voteSubmit.textContent = selectedFlavor ? 'Enviar mi voto por ' + selectedFlavor : 'Escribe tu sabor arriba';
+        } else {
+          voteOtroInputWrap.style.display = 'none';
+          selectedFlavor = card.dataset.flavor;
+          voteSubmit.disabled = false;
+          voteSubmit.textContent = 'Enviar mi voto por ' + selectedFlavor;
+        }
       });
+    });
+
+    voteOtroInput.addEventListener('input', () => {
+      selectedFlavor = voteOtroInput.value.trim();
+      voteSubmit.disabled = !selectedFlavor;
+      voteSubmit.textContent = selectedFlavor ? 'Enviar mi voto por ' + selectedFlavor : 'Escribe tu sabor arriba';
     });
 
     voteSubmit.addEventListener('click', () => {
@@ -1697,6 +1799,25 @@
   }
 
   // ===== REGISTRO DE CORREO (novedades) =====
+  // ===== POP-UP DE REGISTRO =====
+  const newsletterOverlay = document.getElementById('newsletterOverlay');
+  const newsletterOpenBtn = document.getElementById('newsletterOpenBtn');
+  const newsletterClose = document.getElementById('newsletterClose');
+  newsletterOpenBtn.addEventListener('click', () => newsletterOverlay.classList.add('open'));
+  newsletterClose.addEventListener('click', () => newsletterOverlay.classList.remove('open'));
+  newsletterOverlay.addEventListener('click', (e) => {
+    if(e.target === newsletterOverlay) newsletterOverlay.classList.remove('open');
+  });
+
+  // Aparece solo una vez por sesión, a los 8 segundos, si no está ya registrado
+  if(sessionStorage.getItem('nicecream_registered') !== 'true' &&
+     sessionStorage.getItem('nicecream_popup_shown') !== 'true'){
+    setTimeout(() => {
+      newsletterOverlay.classList.add('open');
+      sessionStorage.setItem('nicecream_popup_shown', 'true');
+    }, 8000);
+  }
+
   const signupForm = document.getElementById('signupForm');
   const signupSubmit = document.getElementById('signupSubmit');
   const signupNote = document.getElementById('signupNote');
@@ -1819,7 +1940,7 @@
       ]
     },
     ubicaciones: {
-      bot: "Tenemos dos sucursales:\n\n• El Retoño (Iztapalapa): todos los días, 12:00 pm – 8:30 pm\n• Pedregal (Tlalpan, dentro del Mercadito Pedregal): miércoles 12–5 pm y sábado 12–4:30 pm",
+      bot: "Tenemos dos sucursales:\n\n• El Retoño (Iztapalapa): todos los días, 12:00 pm – 8:30 pm\n• Pedregal (Tlalpan, dentro del Mercadito de la Unidad Pemex): miércoles 12–5 pm y sábado 12–4:30 pm",
       options: [
         { label: "Ver mapa de las sucursales", action: "scroll", target: "#sucursales" },
         { label: "⬅️ Regresar al inicio", next: "root" }
