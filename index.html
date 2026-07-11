@@ -925,12 +925,12 @@
   }
   .newsletter-form{
     display:flex;
+    flex-direction:column;
     gap:10px;
-    flex-wrap:wrap;
   }
-  .newsletter-form input[type="email"]{
-    flex:1;
-    min-width:180px;
+  .newsletter-form input[type="email"],
+  .newsletter-form input[type="text"]{
+    width:100%;
     padding:12px 16px;
     border-radius:999px;
     border:none;
@@ -949,9 +949,10 @@
     border-radius:999px;
     font-size:0.9rem;
     cursor:pointer;
-    transition:transform .15s ease;
+    transition:transform .15s ease, opacity .15s ease;
   }
   .newsletter-form button:hover{ transform:translateY(-2px); }
+  .newsletter-form button:disabled{ opacity:0.6; cursor:not-allowed; transform:none; }
   .newsletter-note{
     font-size:0.75rem;
     color:rgba(255,255,255,0.55);
@@ -1616,15 +1617,13 @@
 
   <div class="newsletter-block">
     <p>📩 Recibe avisos de sabores nuevos y promociones directo en tu correo.</p>
-    <form class="newsletter-form" action="https://formsubmit.co/nicecream@gmail.com" method="POST">
-      <input type="hidden" name="_subject" value="Nuevo registro a novedades de NiceCream">
-      <input type="hidden" name="_captcha" value="true">
-      <input type="hidden" name="_template" value="table">
-      <input type="hidden" name="_next" value="https://oswaldocasillas.github.io/NiceCream/#novedades">
-      <input type="email" name="Correo" placeholder="tu@correo.com" required>
-      <button type="submit">Quiero recibir novedades</button>
+    <form class="newsletter-form" id="signupForm">
+      <input type="text" id="signupNombre" placeholder="Tu nombre" maxlength="40" required>
+      <input type="email" id="signupCorreo" placeholder="tu@correo.com" required>
+      <input type="text" id="signupSabor" placeholder="¿Tu sabor favorito?" maxlength="40" required>
+      <button type="submit" id="signupSubmit">Quiero recibir novedades</button>
     </form>
-    <p class="newsletter-note">Al enviar, Google/FormSubmit puede pedirte confirmar que no eres un robot.</p>
+    <p class="newsletter-note" id="signupNote">Tus datos se guardan solo para avisarte de novedades — nada de spam.</p>
   </div>
 </section>
 
@@ -1690,6 +1689,49 @@
       });
     });
   }
+
+  // ===== REGISTRO DE CORREO (novedades) =====
+  const signupForm = document.getElementById('signupForm');
+  const signupSubmit = document.getElementById('signupSubmit');
+  const signupNote = document.getElementById('signupNote');
+
+  if(sessionStorage.getItem('nicecream_registered') === 'true'){
+    signupSubmit.disabled = true;
+    signupSubmit.textContent = '¡Ya estás registrado!';
+    signupNote.textContent = 'Gracias, te avisaremos por correo de nuestras novedades 🎉';
+  }
+
+  signupForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    var nombre = document.getElementById('signupNombre').value.trim();
+    var correo = document.getElementById('signupCorreo').value.trim();
+    var sabor = document.getElementById('signupSabor').value.trim();
+    if(!nombre || !correo || !sabor) return;
+
+    signupSubmit.disabled = true;
+    signupSubmit.textContent = 'Enviando...';
+
+    fetch(VOTE_ENDPOINT, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'text/plain' },
+      body: JSON.stringify({
+        tipo: 'registro',
+        nombre: nombre,
+        correo: correo,
+        saborFavorito: sabor,
+        fecha: new Date().toISOString()
+      })
+    }).then(() => {
+      sessionStorage.setItem('nicecream_registered', 'true');
+      signupForm.reset();
+      signupSubmit.textContent = '¡Ya estás registrado!';
+      signupNote.textContent = 'Gracias, te avisaremos por correo de nuestras novedades 🎉';
+    }).catch(() => {
+      signupSubmit.disabled = false;
+      signupSubmit.textContent = 'Hubo un error, intenta de nuevo';
+    });
+  });
 
   const subTabs = document.querySelectorAll('#paletasSubTabs .sub-tab');
   const subPanels = document.querySelectorAll('#panel-paletas .sub-panel');
