@@ -527,6 +527,18 @@
     color:#5A6A88;
     margin-top:12px;
   }
+  .vote-winner-banner{
+    max-width:520px;
+    margin:0 auto 32px;
+    background:#FFF3E4;
+    border:2px solid var(--tan);
+    border-radius:var(--radius-md);
+    padding:16px 22px;
+    text-align:center;
+    font-size:0.92rem;
+    color:var(--navy-text);
+  }
+  .vote-winner-banner strong{ color:var(--blue-deep); }
 
   /* ---------- NOVEDADES ---------- */
   .whatsnew{ background:var(--cream); }
@@ -1033,6 +1045,21 @@
     font-size:0.88rem;
   }
   footer strong{ color:var(--white); }
+  .share-btn{
+    display:inline-flex; align-items:center; gap:6px;
+    background:rgba(255,255,255,0.1);
+    border:1.5px solid rgba(255,255,255,0.25);
+    color:var(--white);
+    font-family:'Fredoka', sans-serif;
+    font-weight:600;
+    font-size:0.82rem;
+    padding:8px 18px;
+    border-radius:999px;
+    margin-top:14px;
+    cursor:pointer;
+    transition:background .15s ease;
+  }
+  .share-btn:hover{ background:rgba(255,255,255,0.2); }
 
   /* ---------- RESPONSIVE ---------- */
   @media (max-width: 1050px){
@@ -1066,6 +1093,65 @@
     .btn:hover{ transform:none; }
   }
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "IceCreamShop",
+      "name": "NiceCream El Retoño",
+      "image": "https://oswaldocasillas.github.io/NiceCream/assets/nicecream-og-image.jpg",
+      "url": "https://oswaldocasillas.github.io/NiceCream/#sucursales",
+      "servesCuisine": "Paletas, helados, malteadas y aguas",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Av Emilio Carranza 443, El Retoño",
+        "addressLocality": "Iztapalapa",
+        "addressRegion": "CDMX",
+        "postalCode": "09440",
+        "addressCountry": "MX"
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+          "opens": "12:00",
+          "closes": "20:30"
+        }
+      ]
+    },
+    {
+      "@type": "IceCreamShop",
+      "name": "NiceCream Pedregal",
+      "image": "https://oswaldocasillas.github.io/NiceCream/assets/nicecream-og-image.jpg",
+      "url": "https://oswaldocasillas.github.io/NiceCream/#sucursales",
+      "servesCuisine": "Paletas, helados, malteadas y aguas",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Unidad Habitacional, Emilio Portes Gil (Mercadito de la Unidad Pemex)",
+        "addressLocality": "Tlalpan",
+        "addressRegion": "CDMX",
+        "postalCode": "14110",
+        "addressCountry": "MX"
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Wednesday",
+          "opens": "12:00",
+          "closes": "17:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Saturday",
+          "opens": "12:00",
+          "closes": "16:30"
+        }
+      ]
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -1147,6 +1233,10 @@
     <span class="eyebrow">Tú decides</span>
     <h2>Vota por el próximo sabor nuevo</h2>
     <p>Elige tu favorito y mándanos tu voto — el que más votos junte, lo sacamos el próximo mes.</p>
+  </div>
+
+  <div class="vote-winner-banner">
+    🏆 El sabor ganador del mes pasado fue <strong><span class="placeholder">[Nombre del sabor ganador]</span></strong> — ya lo puedes encontrar en la sección de Novedades.
   </div>
 
   <div class="vote-grid" id="voteGrid">
@@ -1709,6 +1799,7 @@
     <h3>Recibe novedades de NiceCream</h3>
     <p class="modal-sub">Sabores nuevos y promociones, directo a tu correo.</p>
     <form class="newsletter-form" id="signupForm">
+      <input type="text" id="signupWebsite" name="website" tabindex="-1" autocomplete="off" style="position:absolute; left:-9999px; width:1px; height:1px; opacity:0;" aria-hidden="true">
       <input type="text" id="signupNombre" placeholder="Tu nombre" maxlength="40" required>
       <input type="email" id="signupCorreo" placeholder="tu@correo.com" required>
       <input type="text" id="signupSabor" placeholder="¿Tu sabor favorito?" maxlength="40" required>
@@ -1720,9 +1811,28 @@
 
 <footer>
   <p>© 2026 <strong>NiceCream</strong> · Paletas, helados, malteadas y aguas · El Retoño & Pedregal</p>
+  <button class="share-btn" id="shareBtn" type="button">🔗 Compartir este sitio</button>
 </footer>
 
 <script>
+  const shareBtn = document.getElementById('shareBtn');
+  shareBtn.addEventListener('click', async () => {
+    const shareData = {
+      title: 'NiceCream',
+      text: 'Paletas, helados, malteadas y aguas — El Retoño y Pedregal, CDMX',
+      url: 'https://oswaldocasillas.github.io/NiceCream/'
+    };
+    if(navigator.share){
+      try { await navigator.share(shareData); } catch(err) {}
+    } else {
+      try {
+        await navigator.clipboard.writeText(shareData.url);
+        shareBtn.textContent = '¡Link copiado! 📋';
+        setTimeout(() => { shareBtn.textContent = '🔗 Compartir este sitio'; }, 2500);
+      } catch(err) {}
+    }
+  });
+
   const navToggle = document.getElementById('navToggle');
   const navMenu = document.getElementById('navMenu');
   navToggle.addEventListener('click', () => navMenu.classList.toggle('open'));
@@ -1837,6 +1947,16 @@
     var nombre = document.getElementById('signupNombre').value.trim();
     var correo = document.getElementById('signupCorreo').value.trim();
     var sabor = document.getElementById('signupSabor').value.trim();
+    var honeypot = document.getElementById('signupWebsite').value.trim();
+
+    // Si el campo trampa viene lleno, es un bot: fingimos éxito y no enviamos nada
+    if(honeypot){
+      signupForm.reset();
+      signupSubmit.textContent = '¡Ya estás registrado!';
+      signupNote.textContent = 'Gracias, te avisaremos por correo de nuestras novedades 🎉';
+      return;
+    }
+
     if(!nombre || !correo || !sabor) return;
 
     signupSubmit.disabled = true;
