@@ -1962,6 +1962,14 @@
 
     if(!nombre || !correo || !sabor) return;
 
+    var emailPattern = /^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,24}$/;
+    if(!emailPattern.test(correo)){
+      signupNote.textContent = 'Ese correo no se ve válido — revisa que esté bien escrito (ej. nombre@correo.com).';
+      signupNote.style.color = '#D9534F';
+      return;
+    }
+    signupNote.style.color = '';
+
     signupSubmit.disabled = true;
     signupSubmit.textContent = 'Enviando...';
 
