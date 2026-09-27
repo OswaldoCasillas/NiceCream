@@ -1279,6 +1279,7 @@
 
   <div class="vote-actions">
     <button class="vote-submit" id="voteSubmit" disabled>Elige un sabor para votar</button>
+    <input type="text" id="voteWebsite" name="website" tabindex="-1" autocomplete="off" style="position:absolute; left:-9999px; width:1px; height:1px; opacity:0;" aria-hidden="true">
     <p class="vote-hint">Un voto por sesión — gracias por ayudarnos a decidir 🍦</p>
   </div>
 </section>
@@ -1844,6 +1845,7 @@
   // ===== VOTACIÓN DE SABOR =====
   // Pega aquí la URL de tu Google Apps Script (ver instrucciones que te di aparte)
   const VOTE_ENDPOINT = 'https://script.google.com/macros/s/AKfycbzkNin0IP-2fEaN_Xr_JNf4GQeiYrwD_N31hhZ6DKRI_7lGLN1m1JBN_4G0aU1pbMz3nA/exec';
+  const SITE_TOKEN = 'nc-2026-8f3a1c';
 
   const voteCards = document.querySelectorAll('.vote-card');
   const voteSubmit = document.getElementById('voteSubmit');
@@ -1904,7 +1906,7 @@
         method: 'POST',
         mode: 'no-cors',
         headers: { 'Content-Type': 'text/plain' },
-        body: JSON.stringify({ sabor: selectedFlavor, fecha: new Date().toISOString() })
+        body: JSON.stringify({ sabor: selectedFlavor, fecha: new Date().toISOString(), token: SITE_TOKEN })
       }).then(() => {
         sessionStorage.setItem('nicecream_voted', 'true');
         lockVoting('¡Gracias por tu voto! 🎉');
@@ -1982,7 +1984,8 @@
         nombre: nombre,
         correo: correo,
         saborFavorito: sabor,
-        fecha: new Date().toISOString()
+        fecha: new Date().toISOString(),
+        token: SITE_TOKEN
       })
     }).then(() => {
       sessionStorage.setItem('nicecream_registered', 'true');
