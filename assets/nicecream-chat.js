@@ -70,7 +70,7 @@ const chatLauncher = document.getElementById('chatLauncher');
       ]
     },
     novedades: {
-      bot: "Entre nuestras novedades está la nieve de limón sin azúcar 🍋 Cítrica, ligera y refrescante. Pregunta por disponibilidad en tu sucursal.",
+      bot: "¡En noviembre de 2026 llega el helado de limón a NiceCream! 🍋 Es nuestro sabor nuevo del mes. La nieve de limón sin azúcar sigue en el menú como opción diferente. Pregunta cuándo estará disponible en tu sucursal.",
       options: [
         { label: "Ver todas las novedades", action: "scroll", target: "#novedades" },
         { label: "⬅️ Regresar al inicio", next: "root" }

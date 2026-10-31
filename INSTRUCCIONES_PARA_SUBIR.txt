@@ -1,39 +1,31 @@
-NICECREAM — ACTUALIZACIÓN PARA GITHUB PAGES
-==============================================
-ESTA ES UNA ACTUALIZACIÓN DE TU REPOSITORIO EXISTENTE.
+NICECREAM - ACTUALIZACIÓN NOVIEMBRE 2026
+========================================
+NUEVO: anuncio de helado de limón como sabor de noviembre 2026.
+Se actualizó:
+- El anuncio en la portada.
+- Novedades (con botón para preguntar por WhatsApp).
+- Menú Helados > Clásico: Limón (nuevo en noviembre).
+- Textos de votación para que no parezca que se vota por el sabor de noviembre.
+- Respuesta de novedades del chatbot.
+- Descripciones para búsquedas y compartir el sitio.
 
-Incluye los archivos nuevos de la web, mejoras de seguridad del navegador,
-SEO y formulario/votaciones. No cambia el Apps Script original en producción.
+IMPORTANTE SOBRE LOS SABORES
+- El nuevo HELADO de limón no se ha marcado como "sin azúcar".
+- Se mantienen en el menú la NIEVE de limón y la NIEVE de limón sin azúcar.
+- Se conserva la eliminación de las paletas Trix, Moctezuma y Kahlúa.
 
-IMPORTANTE SOBRE IMÁGENES Y LOGOS
-No se incluyeron los archivos de imagen originales porque no fueron adjuntados
-a esta conversación. En tu repositorio GitHub YA existe una carpeta 'assets/'.
-CONSÉRVALA: no la borres ni la sustituyas por una carpeta vacía.
-Los nuevos archivos CSS y JS se añaden a esa misma carpeta.
+CÓMO PUBLICAR EN GITHUB
+1. Descomprime el ZIP. NO subas el ZIP como un único archivo.
+2. En tu repositorio de GitHub, sube los archivos y la carpeta 'assets'
+   manteniendo los mismos nombres y rutas; confirma con Commit changes.
+3. NO borres las imágenes ni logos que ya están en 'assets' en GitHub.
+   NO van dentro de este ZIP porque no estaban entre los archivos compartidos.
+4. Conserva la configuración CNAME en la raíz del repositorio.
+5. Tras publicar revisa https://nicecream.com.mx/ y los enlaces de novedades.
 
-PARA SUBIRLO A GITHUB
-1) Descomprime este ZIP en tu computadora.
-2) Abre tu repositorio NiceCream en GitHub (rama 'main').
-3) En 'Add file' > 'Upload files', arrastra los archivos y carpetas
-   DESCOMPRIMIDOS, no el ZIP sin extraer.
-4) Deja que GitHub reemplace los archivos con el mismo nombre y crea el commit.
-5) NO elimines ningún logo, favicon ni fotografía que ya tenga 'assets/'.
-6) Verifica https://nicecream.com.mx/ y haz una prueba de la navegación,
-   del chatbot, de los enlaces a WhatsApp y de la votación.
-
-CAMBIOS DE MENÚ
-- Se retiró la paleta Trix (se conserva el topping).
-- No figuraban Moctezuma ni Kahlúa en este archivo.
-- Sí figura la nieve/helado de limón sin azúcar en la sección de helados.
-
-VOTACIONES
-La web sigue usando tu Apps Script publicado. Un modo de solicitud 'no-cors'
-no permite al navegador confirmar que el servidor guardó el voto. Para una
-verificación completa hace falta revisar el archivo 'Code.gs' real.
-No publiques el código de un servidor privado, las credenciales ni hojas con
-datos de clientes en tu repositorio público.
-
-PRECIOS
-No se añadieron precios no confirmados. Los paquetes piden cotización.
-
-Archivo preparado con la versión existente de nicecream_segura.
+SEGURIDAD Y VOTACIÓN
+- Se mantienen los ajustes de seguridad de la versión anterior.
+- La votación sigue usando el Apps Script original. No se ha verificado
+  que ese servidor registre correctamente los votos en producción.
+- Para revisar Apps Script hay que acceder al Code.gs del proyecto.
+- No hay precios nuevos ni promesas sobre fechas exactas de existencia.

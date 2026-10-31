@@ -1088,3 +1088,24 @@
     html{ scroll-behavior:auto; }
     .btn:hover{ transform:none; }
   }
+
+  /* NOVIEMBRE 2026: promoción del nuevo sabor */
+  .hero-month-feature{
+    display:inline-flex;align-items:center;gap:10px;flex-wrap:wrap;
+    margin-top:24px;padding:11px 17px;max-width:100%;
+    border:1px solid rgba(255,255,255,.35);border-radius:16px;
+    background:rgba(255,255,255,.11);color:var(--white);
+    font-size:.92rem;line-height:1.35;transition:background .15s ease;
+  }
+  .hero-month-feature:hover,.hero-month-feature:focus-visible{
+    background:rgba(255,255,255,.2);
+  }
+  .hero-month-feature:focus-visible,.whatsnew-link:focus-visible{
+    outline:3px solid var(--tan);outline-offset:3px;
+  }
+  .whatsnew-feature{border-color:var(--tan);}
+  .whatsnew-card .whatsnew-small{font-size:.84rem;margin-top:12px;line-height:1.55;}
+  .whatsnew-link{
+    display:inline-block;margin-top:17px;color:var(--blue-deep);font-weight:800;
+    text-decoration:underline;text-underline-offset:3px;line-height:1.4;
+  }
