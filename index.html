@@ -3,21 +3,28 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NiceCream — Paletas, Helados, Malteadas y Aguas</title>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-j6ayVehAcWj2Li+ZC1Qcxo9TVOde6S42mtZF7N8ivEQ='; script-src-attr 'none'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; frame-src https://www.google.com; connect-src 'self' https://script.google.com https://script.googleusercontent.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+<meta name="referrer" content="no-referrer">
 
-<meta name="description" content="Paletas, helados, malteadas y aguas artesanales en Iztapalapa y Tlalpan, CDMX. Más de 70 sabores: agua, crema, premium, keto y sin azúcar. Pide por WhatsApp.">
+<meta name="theme-color" content="#1E4A96">
+<title>Helados y paletas artesanales en Iztapalapa y Tlalpan | NiceCream</title>
+<link rel="canonical" href="https://nicecream.com.mx/">
+
+<meta name="description" content="Disfruta paletas y helados artesanales en NiceCream. Visítanos en El Retoño, Iztapalapa, o en Pedregal, Tlalpan, CDMX. Consulta sabores y horarios.">
 
 <!-- Open Graph (WhatsApp, Facebook, etc.) -->
 <meta property="og:type" content="website">
-<meta property="og:title" content="NiceCream — Paletas, Helados, Malteadas y Aguas">
+<meta property="og:locale" content="es_MX">
+<meta property="og:title" content="NiceCream | Helados y paletas artesanales en CDMX">
+<meta property="og:url" content="https://nicecream.com.mx/">
 <meta property="og:description" content="Más de 70 sabores artesanales en El Retoño (Iztapalapa) y Pedregal (Tlalpan), CDMX. Ve el menú, ubicaciones y pide por WhatsApp.">
-<meta property="og:image" content="assets/nicecream-og-image.jpg">
+<meta property="og:image" content="https://nicecream.com.mx/assets/nicecream-og-image.jpg">
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="NiceCream — Paletas, Helados, Malteadas y Aguas">
 <meta name="twitter:description" content="Más de 70 sabores artesanales en El Retoño y Pedregal, CDMX.">
-<meta name="twitter:image" content="assets/nicecream-og-image.jpg">
+<meta name="twitter:image" content="https://nicecream.com.mx/assets/nicecream-og-image.jpg">
 
 <!-- Favicon -->
 <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
@@ -27,1072 +34,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --blue-deep:#1E4A96;
-    --blue-mid:#2B5CB0;
-    --cyan:#8FE0EF;
-    --cream:#FFF9F0;
-    --tan:#EDA85E;
-    --navy-text:#122A54;
-    --white:#ffffff;
-    --radius-lg: 32px;
-    --radius-md: 20px;
-  }
-
-  *{ box-sizing:border-box; margin:0; padding:0; }
-
-  html{ scroll-behavior:smooth; }
-
-  body{
-    font-family:'Nunito Sans', sans-serif;
-    color:var(--navy-text);
-    background:var(--cream);
-    overflow-x:hidden;
-  }
-
-  h1,h2,h3, .display{
-    font-family:'Fredoka', sans-serif;
-  }
-
-  a{ text-decoration:none; color:inherit; }
-  ul{ list-style:none; }
-  img{ max-width:100%; display:block; }
-
-  .placeholder{
-    color: var(--blue-mid);
-    border-bottom: 2px dashed var(--blue-mid);
-    padding: 0 2px;
-  }
-
-  /* ---------- NAV ---------- */
-  nav{
-    position:sticky; top:0; z-index:50;
-    background:var(--blue-deep);
-    padding: 12px 6vw;
-    display:flex; align-items:center; justify-content:space-between;
-  }
-  nav .brand{ display:flex; align-items:center; }
-  nav .brand img{ height:34px; width:auto; }
-  nav ul{ display:flex; gap:16px; }
-  nav a{
-    color:var(--white); font-weight:700; font-size:0.82rem;
-    letter-spacing:0.2px;
-  }
-  nav a:hover{ color:var(--cyan); }
-  .nav-toggle{
-    display:none;
-    background:none; border:none; cursor:pointer;
-    flex-direction:column; gap:5px; padding:6px;
-  }
-  .nav-toggle span{
-    width:26px; height:3px; background:var(--white); border-radius:2px;
-  }
-  .nav-menu{ display:flex; }
-
-  /* ---------- HERO ---------- */
-  .hero{
-    position:relative;
-    background:var(--blue-deep);
-    color:var(--white);
-    padding: 70px 6vw 120px;
-    display:grid;
-    grid-template-columns: 1.1fr 0.9fr;
-    align-items:center;
-    gap:40px;
-    overflow:hidden;
-  }
-  .hero::after{
-    content:"";
-    position:absolute;
-    bottom:-2px; left:0; right:0;
-    height:70px;
-    background:var(--cream);
-    clip-path: path("M0,40 C 180,90 360,0 540,40 C 720,80 900,0 1080,40 C 1260,80 1350,20 1440,40 L1440,100 L0,100 Z");
-  }
-  .hero-copy .eyebrow{
-    display:inline-block;
-    background:var(--cyan);
-    color:var(--blue-deep);
-    font-weight:800;
-    font-size:0.78rem;
-    letter-spacing:1.2px;
-    text-transform:uppercase;
-    padding:6px 14px;
-    border-radius:999px;
-    margin-bottom:18px;
-  }
-  .hero-copy h1{
-    font-size:clamp(2.3rem, 4.5vw, 3.6rem);
-    line-height:1.05;
-    margin-bottom:18px;
-  }
-  .hero-copy p{
-    font-size:1.1rem;
-    max-width:480px;
-    opacity:0.92;
-    margin-bottom:30px;
-  }
-  .cta-row{ display:flex; gap:16px; flex-wrap:wrap; }
-  .btn{
-    display:inline-block;
-    padding:14px 26px;
-    border-radius:999px;
-    font-weight:800;
-    font-family:'Fredoka', sans-serif;
-    font-size:1rem;
-    transition:transform .15s ease;
-  }
-  .btn:hover{ transform:translateY(-2px); }
-  .btn-primary{ background:var(--tan); color:var(--navy-text); }
-  .btn-ghost{ border:2px solid var(--white); color:var(--white); }
-
-  .hero-art{
-    position:relative;
-    display:flex; justify-content:center;
-  }
-  .hero-art .plate{
-    width:min(360px, 90%);
-    aspect-ratio:1/1;
-    background:var(--white);
-    border-radius:50%;
-    display:flex; align-items:center; justify-content:center;
-    box-shadow: 0 30px 60px rgba(0,0,0,0.25);
-  }
-  .hero-art img{ width:78%; }
-
-  /* ---------- SECTION WRAP ---------- */
-  section{ padding: 90px 6vw; }
-  .section-head{ text-align:center; max-width:640px; margin:0 auto 56px; }
-  .section-head .eyebrow{
-    font-family:'Fredoka', sans-serif;
-    color:var(--tan);
-    font-weight:600;
-    letter-spacing:1.5px;
-    text-transform:uppercase;
-    font-size:0.85rem;
-    margin-bottom:10px;
-    display:block;
-  }
-  .section-head h2{
-    font-size:clamp(1.8rem, 3vw, 2.4rem);
-    color:var(--blue-deep);
-    margin-bottom:14px;
-  }
-  .section-head p{ color:#4A5A78; font-size:1.05rem; }
-
-  /* ---------- CHATBOT ---------- */
-  .chat-launcher{
-    position:fixed;
-    bottom:24px; right:24px;
-    width:60px; height:60px;
-    border-radius:50%;
-    background:var(--blue-deep);
-    border:3px solid var(--white);
-    box-shadow:0 12px 28px rgba(0,0,0,0.25);
-    cursor:pointer;
-    display:flex; align-items:center; justify-content:center;
-    font-size:1.6rem;
-    z-index:200;
-    transition:transform .15s ease;
-  }
-  .chat-launcher:hover{ transform:scale(1.06); }
-
-  .whatsapp-launcher{
-    position:fixed;
-    bottom:24px; left:24px;
-    width:60px; height:60px;
-    border-radius:50%;
-    background:#25D366;
-    border:3px solid var(--white);
-    box-shadow:0 12px 28px rgba(0,0,0,0.25);
-    cursor:pointer;
-    display:flex; align-items:center; justify-content:center;
-    z-index:200;
-    transition:transform .15s ease;
-  }
-  .whatsapp-launcher:hover{ transform:scale(1.06); }
-  .whatsapp-launcher svg{ width:30px; height:30px; }
-
-  .chat-window{
-    position:fixed;
-    bottom:96px; right:24px;
-    width:340px;
-    max-width:88vw;
-    height:460px;
-    max-height:70vh;
-    background:var(--white);
-    border-radius:var(--radius-md);
-    box-shadow:0 20px 50px rgba(0,0,0,0.3);
-    display:none;
-    flex-direction:column;
-    overflow:hidden;
-    z-index:200;
-  }
-  .chat-window.open{ display:flex; }
-
-  .chat-head{
-    background:var(--blue-deep);
-    color:var(--white);
-    padding:16px 18px;
-    display:flex; align-items:center; gap:10px;
-  }
-  .chat-head img{ height:26px; width:auto; filter:brightness(0) invert(1); opacity:0.9; }
-  .chat-head .chat-title{
-    font-family:'Fredoka', sans-serif;
-    font-weight:600;
-    font-size:0.95rem;
-  }
-  .chat-head .chat-sub{
-    font-size:0.72rem;
-    opacity:0.75;
-  }
-  .chat-close{
-    margin-left:auto;
-    background:none; border:none; color:var(--white);
-    font-size:1.3rem; cursor:pointer; line-height:1;
-    padding:4px;
-  }
-
-  .chat-body{
-    flex:1 1 auto;
-    min-height:50px;
-    overflow-y:auto;
-    padding:16px;
-    display:flex; flex-direction:column; gap:10px;
-    background:var(--cream);
-  }
-  .chat-msg{
-    max-width:85%;
-    padding:10px 14px;
-    border-radius:14px;
-    font-size:0.88rem;
-    line-height:1.4;
-  }
-  .chat-msg.bot{
-    background:var(--white);
-    color:var(--navy-text);
-    border-bottom-left-radius:4px;
-    align-self:flex-start;
-    box-shadow:0 2px 6px rgba(0,0,0,0.06);
-  }
-  .chat-msg.user{
-    background:var(--blue-deep);
-    color:var(--white);
-    border-bottom-right-radius:4px;
-    align-self:flex-end;
-  }
-
-  .chat-options{
-    flex-shrink:0;
-    max-height:230px;
-    overflow-y:auto;
-    padding:12px 16px 16px;
-    display:flex; flex-direction:column; gap:8px;
-    background:var(--cream);
-    border-top:1px solid rgba(30,74,150,0.08);
-  }
-  .chat-option-btn{
-    text-align:left;
-    background:var(--white);
-    border:1.5px solid rgba(30,74,150,0.15);
-    color:var(--blue-deep);
-    font-family:'Nunito Sans', sans-serif;
-    font-weight:700;
-    font-size:0.85rem;
-    padding:10px 14px;
-    border-radius:10px;
-    cursor:pointer;
-    transition:background .15s ease;
-  }
-  .chat-option-btn:hover{ background:#E8EEFB; }
-
-  @media (max-width:480px){
-    .chat-window{ right:12px; left:12px; width:auto; bottom:88px; }
-    .chat-launcher{ right:16px; bottom:16px; }
-    .whatsapp-launcher{ left:16px; bottom:16px; }
-  }
-
-  /* ---------- NOSOTROS ---------- */
-  .about{ background:var(--white); }
-  .about-grid{
-    display:grid;
-    grid-template-columns: 0.9fr 1.1fr;
-    gap:48px;
-    align-items:center;
-    max-width:1000px;
-    margin:0 auto;
-  }
-  .about-art{
-    display:flex; justify-content:center;
-  }
-  .about-art .plate{
-    width:min(280px, 80%);
-    aspect-ratio:1/1;
-    background:var(--cream);
-    border-radius:50%;
-    display:flex; align-items:center; justify-content:center;
-    box-shadow:0 20px 40px rgba(30,74,150,0.1);
-  }
-  .about-art img{ width:75%; }
-  .about-copy .eyebrow{
-    font-family:'Fredoka', sans-serif;
-    color:var(--tan);
-    font-weight:700;
-    letter-spacing:1.5px;
-    text-transform:uppercase;
-    font-size:0.85rem;
-    margin-bottom:10px;
-    display:block;
-  }
-  .about-copy h2{
-    font-size:clamp(1.7rem, 3vw, 2.2rem);
-    color:var(--blue-deep);
-    margin-bottom:16px;
-  }
-  .about-copy p{
-    color:#4A5A78;
-    font-size:1rem;
-    line-height:1.6;
-    margin-bottom:14px;
-  }
-  .about-tags{
-    display:flex; flex-wrap:wrap; gap:10px;
-    margin-top:20px;
-  }
-  .about-tag{
-    background:var(--cream);
-    color:var(--blue-deep);
-    font-family:'Fredoka', sans-serif;
-    font-weight:600;
-    font-size:0.82rem;
-    padding:7px 16px;
-    border-radius:999px;
-  }
-  @media (max-width:820px){
-    .about-grid{ grid-template-columns:1fr; text-align:center; }
-    .about-tags{ justify-content:center; }
-  }
-
-  /* ---------- FAQ ---------- */
-  .faq{ background:var(--cream); }
-  .faq-list{ max-width:760px; margin:0 auto; }
-  .faq-item{
-    background:var(--white);
-    border-radius:16px;
-    margin-bottom:14px;
-    border:2px solid rgba(30,74,150,0.08);
-    overflow:hidden;
-  }
-  .faq-item summary{
-    list-style:none;
-    cursor:pointer;
-    padding:18px 22px;
-    font-family:'Fredoka', sans-serif;
-    font-weight:600;
-    font-size:1rem;
-    color:var(--blue-deep);
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:12px;
-  }
-  .faq-item summary::-webkit-details-marker{ display:none; }
-  .faq-item summary::after{
-    content:"+";
-    font-size:1.4rem;
-    font-weight:700;
-    color:var(--tan);
-    flex-shrink:0;
-    transition:transform .2s ease;
-  }
-  .faq-item[open] summary::after{ transform:rotate(45deg); }
-  .faq-item p{
-    padding:0 22px 20px;
-    font-size:0.92rem;
-    color:#5A6A88;
-    line-height:1.5;
-  }
-
-  /* ---------- PAQUETES ---------- */
-  .packages{ background:var(--white); }
-  .packages-grid{
-    display:grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap:24px;
-  }
-  .package-card{
-    background:var(--cream);
-    border-radius:var(--radius-lg);
-    padding:30px;
-    border:2px solid rgba(30,74,150,0.08);
-    display:flex; flex-direction:column;
-  }
-  .package-card .icon-circle{
-    width:52px; height:52px;
-    border-radius:50%;
-    background:var(--white);
-    display:flex; align-items:center; justify-content:center;
-    font-size:1.5rem;
-    margin-bottom:16px;
-  }
-  .package-card h3{
-    font-size:1.15rem;
-    color:var(--blue-deep);
-    margin-bottom:10px;
-  }
-  .package-card ul{
-    margin:0 0 20px;
-    display:flex; flex-direction:column; gap:6px;
-  }
-  .package-card li{
-    font-size:0.9rem;
-    color:#5A6A88;
-    padding-left:18px;
-    position:relative;
-  }
-  .package-card li::before{
-    content:"✓";
-    position:absolute; left:0; top:0;
-    color:var(--tan);
-    font-weight:800;
-  }
-  .package-card .pkg-cta{
-    margin-top:auto;
-    text-align:center;
-    background:var(--blue-deep);
-    color:var(--white);
-    font-family:'Fredoka', sans-serif;
-    font-weight:600;
-    padding:11px;
-    border-radius:999px;
-    font-size:0.9rem;
-    transition:background .15s ease;
-  }
-  .package-card .pkg-cta:hover{ background:#163c7a; }
-  .packages-note{
-    text-align:center; margin-top:32px; font-size:0.92rem; color:#5A6A88;
-  }
-
-  /* ---------- VOTACIÓN ---------- */
-  .vote{ background:var(--white); }
-  .vote-grid{
-    display:grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap:18px;
-    max-width:820px;
-    margin:0 auto 32px;
-  }
-  .vote-card{
-    background:var(--cream);
-    border:2.5px solid transparent;
-    border-radius:var(--radius-md);
-    padding:24px 20px;
-    text-align:center;
-    cursor:pointer;
-    transition:border-color .15s ease, transform .15s ease;
-  }
-  .vote-card:hover{ transform:translateY(-2px); }
-  .vote-card.selected{
-    border-color:var(--tan);
-    background:#FFF3E4;
-  }
-  .vote-card .vote-emoji{ font-size:1.8rem; margin-bottom:10px; }
-  .vote-card h4{
-    font-family:'Fredoka', sans-serif;
-    font-size:1rem;
-    color:var(--blue-deep);
-    margin-bottom:4px;
-  }
-  .vote-card p{ font-size:0.82rem; color:#5A6A88; }
-  .vote-actions{ text-align:center; }
-  .vote-submit{
-    display:inline-block;
-    background:var(--blue-deep);
-    color:var(--white);
-    font-family:'Fredoka', sans-serif;
-    font-weight:700;
-    padding:13px 32px;
-    border:none;
-    border-radius:999px;
-    font-size:0.95rem;
-    cursor:pointer;
-    transition:background .15s ease, opacity .15s ease;
-  }
-  .vote-submit:hover{ background:#163c7a; }
-  .vote-submit:disabled{ opacity:0.5; cursor:not-allowed; }
-  .vote-hint{
-    text-align:center;
-    font-size:0.85rem;
-    color:#5A6A88;
-    margin-top:12px;
-  }
-  .vote-winner-banner{
-    max-width:520px;
-    margin:0 auto 32px;
-    background:#FFF3E4;
-    border:2px solid var(--tan);
-    border-radius:var(--radius-md);
-    padding:16px 22px;
-    text-align:center;
-    font-size:0.92rem;
-    color:var(--navy-text);
-  }
-  .vote-winner-banner strong{ color:var(--blue-deep); }
-
-  /* ---------- NOVEDADES ---------- */
-  .whatsnew{ background:var(--cream); }
-  .whatsnew-grid{
-    display:grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap:24px;
-  }
-  .whatsnew-card{
-    background:var(--white);
-    border-radius:var(--radius-lg);
-    padding:30px;
-    position:relative;
-    border:2px solid rgba(30,74,150,0.08);
-    box-shadow:0 16px 32px rgba(30,74,150,0.06);
-  }
-  .whatsnew-card .badge-new{
-    display:inline-block;
-    background:var(--tan);
-    color:var(--navy-text);
-    font-family:'Fredoka', sans-serif;
-    font-weight:800;
-    font-size:0.72rem;
-    letter-spacing:0.8px;
-    text-transform:uppercase;
-    padding:5px 12px;
-    border-radius:999px;
-    margin-bottom:16px;
-  }
-  .whatsnew-card .badge-promo{ background:var(--cyan); }
-  .whatsnew-card .icon-circle{
-    width:56px; height:56px;
-    border-radius:50%;
-    background:var(--cream);
-    display:flex; align-items:center; justify-content:center;
-    font-size:1.6rem;
-    margin-bottom:16px;
-  }
-  .whatsnew-card h3{
-    font-size:1.2rem;
-    color:var(--blue-deep);
-    margin-bottom:8px;
-  }
-  .whatsnew-card p{
-    font-size:0.95rem;
-    color:#5A6A88;
-  }
-  .whatsnew-card .month-tag{
-    display:block;
-    margin-top:14px;
-    font-size:0.8rem;
-    color:var(--tan);
-    font-weight:700;
-    font-family:'Fredoka', sans-serif;
-  }
-  .flavors{ background:var(--white); }
-
-  .flavor-tabs{
-    display:flex; justify-content:center; gap:10px; flex-wrap:wrap; margin-bottom:48px;
-  }
-  .flavor-tab{
-    background:var(--cream);
-    border:2px solid transparent;
-    color:var(--blue-deep);
-    font-family:'Fredoka', sans-serif;
-    font-weight:600;
-    padding:10px 20px;
-    border-radius:999px;
-    font-size:0.92rem;
-    cursor:pointer;
-    transition:background .15s ease, color .15s ease;
-  }
-  .flavor-tab:hover{ background:#E8EEFB; }
-  .flavor-tab.active{
-    background:var(--blue-deep);
-    color:var(--white);
-  }
-
-  .menu-panel{ display:none; }
-  .menu-panel.active{ display:block; }
-
-  .sub-tabs{
-    display:flex; gap:8px; flex-wrap:wrap;
-    margin-bottom:32px;
-    padding-bottom:20px;
-    border-bottom:1px solid rgba(30,74,150,0.1);
-  }
-  .sub-tab{
-    background:none;
-    border:1.5px solid rgba(30,74,150,0.2);
-    color:var(--blue-deep);
-    font-family:'Nunito Sans', sans-serif;
-    font-weight:700;
-    padding:7px 16px;
-    border-radius:999px;
-    font-size:0.85rem;
-    cursor:pointer;
-    transition:background .15s ease, color .15s ease;
-  }
-  .sub-tab:hover{ background:#E8EEFB; }
-  .sub-tab.active{
-    background:var(--tan);
-    border-color:var(--tan);
-    color:var(--navy-text);
-  }
-  .sub-panel{ display:none; }
-  .sub-panel.active{ display:block; }
-
-  .menu-panel-intro{
-    text-align:center;
-    max-width:620px;
-    margin:0 auto 40px;
-    color:#4A5A78;
-    font-size:0.98rem;
-  }
-
-  .menu-group{ margin-bottom:44px; }
-  .menu-group:last-child{ margin-bottom:0; }
-
-  .menu-group-head{
-    display:flex; align-items:baseline; gap:14px;
-    margin-bottom:6px;
-    flex-wrap:wrap;
-  }
-  .menu-group-head h3{
-    font-size:1.3rem;
-    color:var(--blue-deep);
-  }
-  .menu-group-head .tagline{
-    font-size:0.88rem;
-    color:var(--tan);
-    font-weight:700;
-  }
-  .menu-group-desc{
-    color:#5A6A88;
-    font-size:0.92rem;
-    margin-bottom:18px;
-  }
-  .menu-group-rule{
-    height:2px;
-    background:var(--cyan);
-    opacity:0.5;
-    width:56px;
-    margin-bottom:20px;
-    border-radius:2px;
-  }
-
-  .item-list{
-    columns: 2 280px;
-    column-gap: 32px;
-  }
-  .item{
-    break-inside: avoid;
-    margin-bottom:16px;
-    padding-left:16px;
-    position:relative;
-  }
-  .item::before{
-    content:"";
-    position:absolute;
-    left:0; top:7px;
-    width:7px; height:7px;
-    border-radius:50%;
-    background:var(--tan);
-  }
-  .item h4{
-    font-family:'Fredoka', sans-serif;
-    font-size:1rem;
-    font-weight:600;
-    color:var(--navy-text);
-    display:inline;
-  }
-  .item .badge-vegano{
-    font-size:0.7rem;
-    font-weight:800;
-    color:var(--blue-deep);
-    background:var(--cyan);
-    padding:2px 7px;
-    border-radius:6px;
-    margin-left:6px;
-    vertical-align:middle;
-  }
-  .item .badge-popular{
-    font-size:0.7rem;
-    font-weight:800;
-    color:var(--navy-text);
-    background:var(--tan);
-    padding:2px 7px;
-    border-radius:6px;
-    margin-left:6px;
-    vertical-align:middle;
-    white-space:nowrap;
-  }
-  .item p{
-    font-size:0.88rem;
-    color:#5A6A88;
-    margin-top:2px;
-  }
-
-  .step-list{ margin-bottom:8px; }
-  .step{
-    display:flex; gap:16px;
-    padding:16px 0;
-    border-bottom:1px solid rgba(30,74,150,0.1);
-  }
-  .step:last-child{ border-bottom:none; }
-  .step .num{
-    font-family:'Fredoka', sans-serif;
-    font-weight:700;
-    color:var(--white);
-    background:var(--blue-deep);
-    width:30px; height:30px;
-    border-radius:50%;
-    display:flex; align-items:center; justify-content:center;
-    flex-shrink:0;
-    font-size:0.9rem;
-  }
-  .step .step-body h4{
-    font-family:'Fredoka', sans-serif;
-    font-size:1rem;
-    color:var(--blue-deep);
-    margin-bottom:3px;
-  }
-  .step .step-body p{ font-size:0.92rem; color:#5A6A88; }
-
-  .note-box{
-    background:var(--cream);
-    border-left:4px solid var(--tan);
-    padding:14px 18px;
-    border-radius:0 12px 12px 0;
-    font-size:0.85rem;
-    color:#5A6A88;
-    margin-top:8px;
-  }
-  .note-box strong{ color:var(--navy-text); }
-
-  .flavor-note{
-    text-align:center; margin-top:36px; font-size:0.95rem; color:#5A6A88;
-  }
-
-  /* ---------- SUCURSALES ---------- */
-  .locations{ background:var(--cream); }
-  .location-grid{
-    display:grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap:28px;
-  }
-  .location-card{
-    background:var(--white);
-    border-radius:var(--radius-lg);
-    padding:36px 32px;
-    box-shadow:0 20px 40px rgba(30,74,150,0.08);
-    position:relative;
-    overflow:hidden;
-  }
-  .location-card::before{
-    content:"";
-    position:absolute; top:0; left:0; right:0; height:8px;
-    background:linear-gradient(90deg, var(--blue-deep), var(--cyan));
-  }
-  .location-card .tag{
-    display:inline-block;
-    background:var(--blue-deep);
-    color:var(--white);
-    font-family:'Fredoka', sans-serif;
-    font-weight:600;
-    font-size:0.78rem;
-    letter-spacing:0.8px;
-    text-transform:uppercase;
-    padding:5px 14px;
-    border-radius:999px;
-    margin-bottom:18px;
-  }
-  .location-card h3{
-    font-size:1.5rem; color:var(--blue-deep); margin-bottom:18px;
-  }
-  .location-detail{
-    display:flex; gap:12px; margin-bottom:14px; align-items:flex-start;
-  }
-  .location-detail .label{
-    font-family:'Fredoka', sans-serif;
-    font-weight:600; font-size:0.85rem;
-    color:var(--tan);
-    text-transform:uppercase;
-    letter-spacing:0.5px;
-    width:90px; flex-shrink:0;
-    padding-top:2px;
-  }
-  .location-detail .value{ font-size:0.98rem; color:#3A4A68; }
-  .map-btn{
-    margin-top:20px;
-    display:inline-block;
-    font-family:'Fredoka', sans-serif;
-    font-weight:600;
-    color:var(--blue-deep);
-    border-bottom:2px solid var(--blue-deep);
-    padding-bottom:2px;
-    font-size:0.95rem;
-  }
-  .card-actions{
-    display:flex; gap:14px; flex-wrap:wrap;
-    margin-top:20px;
-    align-items:center;
-  }
-  .btn-menu-link{
-    font-family:'Fredoka', sans-serif;
-    font-weight:600;
-    font-size:0.9rem;
-    background:var(--blue-deep);
-    color:var(--white);
-    padding:10px 20px;
-    border-radius:999px;
-    transition:background .15s ease;
-  }
-  .btn-menu-link:hover{ background:#163c7a; }
-  .map-embed{
-    width:100%;
-    height:190px;
-    border:0;
-    border-radius:var(--radius-md);
-    margin-top:20px;
-    filter:saturate(0.9);
-  }
-
-  /* ---------- CONTACTO ---------- */
-  .contact{
-    background:var(--blue-deep);
-    color:var(--white);
-    text-align:center;
-  }
-  .contact .section-head p{ color:rgba(255,255,255,0.8); }
-  .contact .section-head .eyebrow{ color:var(--cyan); }
-  .contact .section-head h2{ color:var(--white); }
-  .social-row{
-    display:flex; justify-content:center; gap:18px; flex-wrap:wrap; margin-top:10px;
-  }
-  .social-pill{
-    background:rgba(255,255,255,0.1);
-    border:2px solid rgba(255,255,255,0.25);
-    padding:14px 28px;
-    border-radius:999px;
-    font-family:'Fredoka', sans-serif;
-    font-weight:600;
-  }
-  .social-pill:hover{ background:rgba(255,255,255,0.2); }
-  .social-pill.disabled{
-    opacity:0.55;
-    cursor:not-allowed;
-    position:relative;
-  }
-  .social-pill.disabled:hover{ background:rgba(255,255,255,0.1); }
-  .social-pill .soon-tag{
-    display:block;
-    font-size:0.68rem;
-    font-weight:700;
-    color:var(--cyan);
-    letter-spacing:0.5px;
-    text-transform:uppercase;
-    margin-top:2px;
-  }
-
-  .review-block{
-    margin-top:36px;
-    padding-top:32px;
-    border-top:1px solid rgba(255,255,255,0.15);
-  }
-  .review-block p{
-    color:rgba(255,255,255,0.75);
-    font-size:0.92rem;
-    margin-bottom:16px;
-  }
-  .review-row{
-    display:flex; justify-content:center; gap:14px; flex-wrap:wrap;
-  }
-  .review-pill{
-    display:inline-flex; align-items:center; gap:8px;
-    background:var(--tan);
-    color:var(--navy-text);
-    font-family:'Fredoka', sans-serif;
-    font-weight:700;
-    padding:12px 24px;
-    border-radius:999px;
-    font-size:0.9rem;
-    transition:transform .15s ease;
-  }
-  .review-pill:hover{ transform:translateY(-2px); }
-
-  .newsletter-teaser{
-    margin-top:36px;
-    padding-top:32px;
-    border-top:1px solid rgba(255,255,255,0.15);
-    text-align:center;
-  }
-  .newsletter-teaser p{
-    color:rgba(255,255,255,0.75);
-    font-size:0.92rem;
-    margin-bottom:16px;
-  }
-  .newsletter-open-btn{
-    background:var(--tan);
-    color:var(--navy-text);
-    border:none;
-    font-family:'Fredoka', sans-serif;
-    font-weight:700;
-    padding:13px 28px;
-    border-radius:999px;
-    font-size:0.92rem;
-    cursor:pointer;
-    transition:transform .15s ease;
-  }
-  .newsletter-open-btn:hover{ transform:translateY(-2px); }
-
-  .modal-overlay{
-    display:none;
-    position:fixed;
-    inset:0;
-    background:rgba(15,44,92,0.55);
-    z-index:300;
-    align-items:center;
-    justify-content:center;
-    padding:20px;
-  }
-  .modal-overlay.open{ display:flex; }
-  .modal-box{
-    background:var(--white);
-    border-radius:var(--radius-lg);
-    padding:36px 32px;
-    max-width:420px;
-    width:100%;
-    position:relative;
-    text-align:center;
-    box-shadow:0 30px 60px rgba(0,0,0,0.3);
-  }
-  .modal-box h3{
-    font-family:'Fredoka', sans-serif;
-    color:var(--blue-deep);
-    font-size:1.25rem;
-    margin-bottom:6px;
-  }
-  .modal-sub{
-    color:#5A6A88;
-    font-size:0.9rem;
-    margin-bottom:20px;
-  }
-  .modal-close{
-    position:absolute;
-    top:14px; right:16px;
-    background:none;
-    border:none;
-    font-size:1.3rem;
-    color:#9AA6BE;
-    cursor:pointer;
-    line-height:1;
-  }
-  .modal-box .newsletter-form{ text-align:left; }
-  .modal-box .newsletter-note{
-    color:#8A97AE;
-    font-size:0.78rem;
-    margin-top:14px;
-  }
-  .newsletter-form{
-    display:flex;
-    flex-direction:column;
-    gap:10px;
-  }
-  .newsletter-form input[type="email"],
-  .newsletter-form input[type="text"]{
-    width:100%;
-    padding:12px 16px;
-    border-radius:999px;
-    border:none;
-    font-family:'Nunito Sans', sans-serif;
-    font-size:0.9rem;
-    background:var(--white);
-    color:var(--navy-text);
-  }
-  .newsletter-form button{
-    background:var(--tan);
-    color:var(--navy-text);
-    border:none;
-    font-family:'Fredoka', sans-serif;
-    font-weight:700;
-    padding:12px 24px;
-    border-radius:999px;
-    font-size:0.9rem;
-    cursor:pointer;
-    transition:transform .15s ease, opacity .15s ease;
-  }
-  .newsletter-form button:hover{ transform:translateY(-2px); }
-  .newsletter-form button:disabled{ opacity:0.6; cursor:not-allowed; transform:none; }
-  .newsletter-note{
-    font-size:0.75rem;
-    color:rgba(255,255,255,0.55);
-    margin-top:10px;
-  }
-
-
-  /* ---------- FOOTER ---------- */
-  footer{
-    background:#0F2C5C;
-    color:rgba(255,255,255,0.65);
-    text-align:center;
-    padding:28px 6vw;
-    font-size:0.88rem;
-  }
-  footer strong{ color:var(--white); }
-  .share-btn{
-    display:inline-flex; align-items:center; gap:6px;
-    background:rgba(255,255,255,0.1);
-    border:1.5px solid rgba(255,255,255,0.25);
-    color:var(--white);
-    font-family:'Fredoka', sans-serif;
-    font-weight:600;
-    font-size:0.82rem;
-    padding:8px 18px;
-    border-radius:999px;
-    margin-top:14px;
-    cursor:pointer;
-    transition:background .15s ease;
-  }
-  .share-btn:hover{ background:rgba(255,255,255,0.2); }
-
-  /* ---------- RESPONSIVE ---------- */
-  @media (max-width: 1050px){
-    .nav-toggle{ display:flex; }
-    .nav-menu{
-      display:none;
-      position:absolute;
-      top:100%; left:0; right:0;
-      background:var(--blue-deep);
-      flex-direction:column;
-      gap:0;
-      padding:8px 6vw 18px;
-      box-shadow:0 12px 24px rgba(0,0,0,0.2);
-    }
-    .nav-menu.open{ display:flex; }
-    .nav-menu li{ width:100%; }
-    .nav-menu a{
-      display:block;
-      padding:14px 0;
-      border-bottom:1px solid rgba(255,255,255,0.12);
-    }
-  }
-
-  @media (max-width: 820px){
-    .hero{ grid-template-columns:1fr; padding-bottom:150px; }
-    .hero-art{ order:-1; }
-  }
-
-  @media (prefers-reduced-motion: reduce){
-    html{ scroll-behavior:auto; }
-    .btn:hover{ transform:none; }
-  }
-</style>
+<link rel="stylesheet" href="assets/nicecream.css">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -1100,8 +42,8 @@
     {
       "@type": "IceCreamShop",
       "name": "NiceCream El Retoño",
-      "image": "https://oswaldocasillas.github.io/NiceCream/assets/nicecream-og-image.jpg",
-      "url": "https://oswaldocasillas.github.io/NiceCream/#sucursales",
+      "image": "https://nicecream.com.mx/assets/nicecream-og-image.jpg",
+      "url": "https://nicecream.com.mx/#sucursales",
       "servesCuisine": "Paletas, helados, malteadas y aguas",
       "address": {
         "@type": "PostalAddress",
@@ -1123,8 +65,8 @@
     {
       "@type": "IceCreamShop",
       "name": "NiceCream Pedregal",
-      "image": "https://oswaldocasillas.github.io/NiceCream/assets/nicecream-og-image.jpg",
-      "url": "https://oswaldocasillas.github.io/NiceCream/#sucursales",
+      "image": "https://nicecream.com.mx/assets/nicecream-og-image.jpg",
+      "url": "https://nicecream.com.mx/#sucursales",
       "servesCuisine": "Paletas, helados, malteadas y aguas",
       "address": {
         "@type": "PostalAddress",
@@ -1157,7 +99,7 @@
 
 <nav>
   <a href="#" class="brand"><img src="assets/nicecream-logo-nav.png" alt="NiceCream"></a>
-  <button class="nav-toggle" id="navToggle" aria-label="Abrir menú">
+  <button class="nav-toggle" id="navToggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="navMenu">
     <span></span><span></span><span></span>
   </button>
   <ul class="nav-menu" id="navMenu">
@@ -1175,11 +117,12 @@
 <header class="hero">
   <div class="hero-copy">
     <span class="eyebrow">El Retoño · Pedregal</span>
-    <h1>Paletas, helados, malteadas y aguas para toda la familia.</h1>
-    <p>Sabores que rotan seguido y una regla simple: si no nos encantaría comerlo nosotros, no sale de la heladería.</p>
+    <h1>Paletas y helados artesanales en Iztapalapa y Tlalpan.</h1>
+    <p>En NiceCream tenemos paletas de fruta, helados cremosos, malteadas, aguas frescas y opciones sin azúcar añadida. Descubre tu próximo antojo en El Retoño o Pedregal, CDMX.</p>
     <div class="cta-row">
-      <a href="#sabores" class="btn btn-primary">Ver sabores</a>
-      <a href="#sucursales" class="btn btn-ghost">Encuéntranos</a>
+      <a href="#sabores" class="btn btn-primary">Explorar el menú</a>
+      <a href="#sucursales" class="btn btn-ghost">Ver sucursales</a>
+      <a href="https://wa.me/525661448010?text=Hola%2C%20quiero%20consultar%20los%20sabores%20disponibles%20de%20NiceCream" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">Preguntar por WhatsApp</a>
     </div>
   </div>
   <div class="hero-art">
@@ -1215,7 +158,7 @@
   <div class="section-head">
     <span class="eyebrow">Recién salido</span>
     <h2>Novedades y promociones</h2>
-    <p>Lo nuevo del mes, sabores de temporada y promos especiales.</p>
+    <p>Descubre nuestras novedades y pregunta por los sabores disponibles en cada sucursal.</p>
   </div>
   <div class="whatsnew-grid">
     <div class="whatsnew-card">
@@ -1223,7 +166,7 @@
       <div class="icon-circle">🍋</div>
       <h3>Nieve de limón, sin azúcar</h3>
       <p>Se suma a nuestra línea sin azúcar añadida: cítrica, ligera y muy refrescante, ideal para los días calurosos.</p>
-      <span class="month-tag">Agosto 2026</span>
+      <span class="month-tag">Consulta disponibilidad en sucursal</span>
     </div>
   </div>
 </section>
@@ -1232,55 +175,56 @@
   <div class="section-head">
     <span class="eyebrow">Tú decides</span>
     <h2>Vota por el próximo sabor nuevo</h2>
-    <p>Elige tu favorito y mándanos tu voto — el que más votos junte, lo sacamos el próximo mes.</p>
+    <p>Elige tu favorito y mándanos tu voto. Tus ideas nos ayudan a elegir nuestros próximos sabores.</p>
   </div>
 
   <div class="vote-winner-banner">
-    🏆 El sabor ganador del mes pasado fue <strong>Paleta de ciruela</strong> — ya la puedes encontrar en la sección de Novedades.
+    🏆 Nuestra comunidad eligió la <strong>paleta de ciruela</strong>. Búscala en el menú y pregunta por su disponibilidad.
   </div>
 
   <div class="vote-grid" id="voteGrid">
-    <div class="vote-card" data-flavor="Helado de Fresa Keto">
+    <button type="button" class="vote-card" data-flavor="Helado de Fresa Keto">
       <div class="vote-emoji">🍓</div>
       <h4>Helado de Fresa Keto</h4>
       <p>Para la línea sin azúcar</p>
-    </div>
-    <div class="vote-card" data-flavor="Paleta de Tuna">
+    </button>
+    <button type="button" class="vote-card" data-flavor="Paleta de Tuna">
       <div class="vote-emoji">🌵</div>
       <h4>Paleta de Tuna</h4>
       <p>Fresca y muy mexicana</p>
-    </div>
-    <div class="vote-card" data-flavor="Paleta de Chai">
+    </button>
+    <button type="button" class="vote-card" data-flavor="Paleta de Chai">
       <div class="vote-emoji">🍂</div>
       <h4>Paleta de Chai</h4>
       <p>Especiada y aromática</p>
-    </div>
-    <div class="vote-card" data-flavor="Helado de Nutella">
+    </button>
+    <button type="button" class="vote-card" data-flavor="Helado de Nutella">
       <div class="vote-emoji">🍫</div>
       <h4>Helado de Nutella</h4>
       <p>Cremoso e indulgente</p>
-    </div>
-    <div class="vote-card" data-flavor="Paleta de Guayaba Sin Azúcar">
+    </button>
+    <button type="button" class="vote-card" data-flavor="Paleta de Guayaba Sin Azúcar">
       <div class="vote-emoji">🍈</div>
       <h4>Paleta de Guayaba Sin Azúcar</h4>
       <p>Frutal, sin azúcar añadida</p>
-    </div>
-    <div class="vote-card" data-flavor="__otro__" id="voteOtroCard">
+    </button>
+    <button type="button" class="vote-card" data-flavor="__otro__" id="voteOtroCard">
       <div class="vote-emoji">✍️</div>
       <h4>Otro</h4>
       <p>Escribe tu propia idea</p>
-    </div>
+    </button>
   </div>
 
   <div id="voteOtroInputWrap" style="display:none; max-width:420px; margin:0 auto 24px;">
-    <input type="text" id="voteOtroInput" placeholder="¿Qué sabor te gustaría?" maxlength="60"
+    <input type="text" id="voteOtroInput" placeholder="¿Qué sabor te gustaría?" minlength="3" maxlength="60"
       style="width:100%; padding:12px 16px; border-radius:999px; border:2px solid rgba(30,74,150,0.15); font-family:'Nunito Sans',sans-serif; font-size:0.9rem; text-align:center;">
   </div>
 
   <div class="vote-actions">
     <button class="vote-submit" id="voteSubmit" disabled>Elige un sabor para votar</button>
     <input type="text" id="voteWebsite" name="website" tabindex="-1" autocomplete="off" style="position:absolute; left:-9999px; width:1px; height:1px; opacity:0;" aria-hidden="true">
-    <p class="vote-hint">Un voto por sesión — gracias por ayudarnos a decidir 🍦</p>
+    <p class="vote-hint">Una solicitud por navegador cada mes. La recepción del servidor se verifica por separado.</p>
+    <p class="vote-hint" id="voteStatus" role="status" aria-live="polite"></p>
   </div>
 </section>
 
@@ -1288,18 +232,18 @@
   <div class="section-head">
     <span class="eyebrow">El fuerte de la casa</span>
     <h2>Nuestro menú</h2>
-    <p>Ingredientes naturales, elaboración artesanal. Sabores sujetos a temporada y disponibilidad.</p>
+    <p>Ingredientes naturales y elaboración artesanal. La disponibilidad y los precios pueden variar; <a href="https://wa.me/525661448010?text=Hola%2C%20quiero%20consultar%20precios%20y%20sabores%20de%20NiceCream" target="_blank" rel="noopener noreferrer" style="color:var(--blue-deep); text-decoration:underline; font-weight:800;">consúltanos por WhatsApp</a>.</p>
   </div>
 
   <div class="flavor-tabs" id="menuTabs">
-    <span class="flavor-tab active" data-tab="paletas">Paletas</span>
-    <span class="flavor-tab" data-tab="helados">Helados</span>
-    <span class="flavor-tab" data-tab="keto">Keto / Sin azúcar</span>
-    <span class="flavor-tab" data-tab="bebidas">Bebidas</span>
-    <span class="flavor-tab" data-tab="malteadas">Malteadas</span>
-    <span class="flavor-tab" data-tab="dorilocos">Dorilocos</span>
-    <span class="flavor-tab" data-tab="postres">Postres &amp; Toppings</span>
-    <span class="flavor-tab" data-tab="mascotas">Mascotas</span>
+    <button type="button" class="flavor-tab active" data-tab="paletas" aria-pressed="true">Paletas</button>
+    <button type="button" class="flavor-tab" data-tab="helados" aria-pressed="false">Helados</button>
+    <button type="button" class="flavor-tab" data-tab="keto" aria-pressed="false">Keto / Sin azúcar</button>
+    <button type="button" class="flavor-tab" data-tab="bebidas" aria-pressed="false">Bebidas</button>
+    <button type="button" class="flavor-tab" data-tab="malteadas" aria-pressed="false">Malteadas</button>
+    <button type="button" class="flavor-tab" data-tab="dorilocos" aria-pressed="false">Dorilocos</button>
+    <button type="button" class="flavor-tab" data-tab="postres" aria-pressed="false">Postres &amp; Toppings</button>
+    <button type="button" class="flavor-tab" data-tab="mascotas" aria-pressed="false">Mascotas</button>
   </div>
 
   <!-- ================= PALETAS ================= -->
@@ -1307,12 +251,12 @@
     <p class="menu-panel-intro">Paletas personalizables: puedes añadir nuestra cobertura especial de chocolate y toppings con costo adicional. Algunos productos pueden contener lácteos o nueces.</p>
 
     <div class="sub-tabs" id="paletasSubTabs">
-      <span class="sub-tab active" data-subtab="agua">Agua</span>
-      <span class="sub-tab" data-subtab="premium-agua">Agua premium</span>
-      <span class="sub-tab" data-subtab="chamoy">Chamoy y picositas</span>
-      <span class="sub-tab" data-subtab="crema">Crema</span>
-      <span class="sub-tab" data-subtab="especialidades">Especialidades premium</span>
-      <span class="sub-tab" data-subtab="infusion">Con infusión</span>
+      <button type="button" class="sub-tab active" data-subtab="agua" aria-pressed="true">Agua</button>
+      <button type="button" class="sub-tab" data-subtab="premium-agua" aria-pressed="false">Agua premium</button>
+      <button type="button" class="sub-tab" data-subtab="chamoy" aria-pressed="false">Chamoy y picositas</button>
+      <button type="button" class="sub-tab" data-subtab="crema" aria-pressed="false">Crema</button>
+      <button type="button" class="sub-tab" data-subtab="especialidades" aria-pressed="false">Especialidades premium</button>
+      <button type="button" class="sub-tab" data-subtab="infusion" aria-pressed="false">Con infusión</button>
     </div>
 
     <div class="sub-panel active" id="subpanel-agua">
@@ -1388,8 +332,7 @@
         <div class="item"><h4>Pay de Limón</h4><p>Cítrica y cremosa, con sabor a postre.</p></div>
         <div class="item"><h4>Salted Caramel</h4><p>Caramelo fino, con sal tenue.</p></div>
         <div class="item"><h4>Taro</h4><p>Cremoso y suave, con un perfil delicado y ligeramente dulce.</p></div>
-        <div class="item"><h4>Trix</h4><p>Notas de cereal, dulce y divertida.</p></div>
-        <div class="item"><h4>Vainilla</h4><p>Clásica y limpia, con cremosidad fina.</p></div>
+                <div class="item"><h4>Vainilla</h4><p>Clásica y limpia, con cremosidad fina.</p></div>
       </div>
     </div>
     </div>
@@ -1418,7 +361,7 @@
 
     <div class="sub-panel" id="subpanel-infusion">
     <div class="menu-group">
-      <div class="menu-group-head"><h3>Sabores con infusión</h3><span class="tagline">El alcohol se evapora en el proceso</span></div>
+      <div class="menu-group-head"><h3>Sabores con infusión</h3><span class="tagline">Consulta ingredientes y contenido de alcohol</span></div>
       <div class="menu-group-rule"></div>
       <div class="item-list">
         <div class="item"><h4>Baileys</h4><p>Cremosa, con notas de cacao y café.</p></div>
@@ -1440,9 +383,9 @@
     </div>
 
     <div class="sub-tabs" id="heladosSubTabs">
-      <span class="sub-tab active" data-subtab-h="nieve">Nieve</span>
-      <span class="sub-tab" data-subtab-h="clasico">Clásico</span>
-      <span class="sub-tab" data-subtab-h="gourmet">Gourmet</span>
+      <button type="button" class="sub-tab active" data-subtab-h="nieve" aria-pressed="true">Nieve</button>
+      <button type="button" class="sub-tab" data-subtab-h="clasico" aria-pressed="false">Clásico</button>
+      <button type="button" class="sub-tab" data-subtab-h="gourmet" aria-pressed="false">Gourmet</button>
     </div>
 
     <div class="sub-panel active" id="subpanel-h-nieve">
@@ -1651,41 +594,41 @@
   <div class="section-head">
     <span class="eyebrow">Fiestas y eventos</span>
     <h2>Paquetes</h2>
-    <p>Contenido de ejemplo — lo ajustamos con lo que realmente incluye cada paquete en cuanto me pases los detalles.</p>
+    <p>¿Organizas un cumpleaños, una reunión o un evento de trabajo? Cuéntanos cuántas personas asistirán y te ayudamos a preparar una cotización según tus gustos y disponibilidad.</p>
   </div>
   <div class="packages-grid">
     <div class="package-card">
       <div class="icon-circle">🎈</div>
-      <h3><span class="placeholder">[Paquete Fiesta chica]</span></h3>
+      <h3>Paletas para compartir</h3>
       <ul>
-        <li><span class="placeholder">[Número de piezas o litros]</span></li>
-        <li><span class="placeholder">[Tipo de producto: paletas / helado / ambos]</span></li>
-        <li><span class="placeholder">[Entrega o recolección en sucursal]</span></li>
+        <li>Una opción para convivios, reuniones y cumpleaños.</li>
+        <li>Elige entre los sabores de paletas disponibles.</li>
+        <li>Dinos cuántas piezas necesitas y consulta opciones de recolección.</li>
       </ul>
-      <a href="https://wa.me/525661448010?text=Hola%2C%20quiero%20cotizar%20el%20paquete%20de%20fiesta%20chica" target="_blank" rel="noopener" class="pkg-cta">Cotizar por WhatsApp</a>
+      <a href="https://wa.me/525661448010?text=Hola%2C%20quiero%20cotizar%20paletas%20para%20compartir" target="_blank" rel="noopener noreferrer" class="pkg-cta">Cotizar por WhatsApp</a>
     </div>
     <div class="package-card">
       <div class="icon-circle">🎉</div>
-      <h3><span class="placeholder">[Paquete Fiesta grande]</span></h3>
+      <h3>Helados y paletas para tu fiesta</h3>
       <ul>
-        <li><span class="placeholder">[Número de piezas o litros]</span></li>
-        <li><span class="placeholder">[Sabores incluidos o a elegir]</span></li>
-        <li><span class="placeholder">[Extras: toppings, dorilocos, etc.]</span></li>
+        <li>Cotiza paletas, helados o una combinación para tus invitados.</li>
+        <li>Consulta qué sabores y presentaciones están disponibles.</li>
+        <li>Pregunta por extras como coberturas de chocolate y toppings.</li>
       </ul>
-      <a href="https://wa.me/525661448010?text=Hola%2C%20quiero%20cotizar%20el%20paquete%20de%20fiesta%20grande" target="_blank" rel="noopener" class="pkg-cta">Cotizar por WhatsApp</a>
+      <a href="https://wa.me/525661448010?text=Hola%2C%20quiero%20cotizar%20helados%20y%20paletas%20para%20mi%20fiesta" target="_blank" rel="noopener noreferrer" class="pkg-cta">Cotizar por WhatsApp</a>
     </div>
     <div class="package-card">
       <div class="icon-circle">🏢</div>
-      <h3><span class="placeholder">[Paquete Corporativo / eventos]</span></h3>
+      <h3>Eventos y reuniones de empresa</h3>
       <ul>
-        <li><span class="placeholder">[Mínimo de personas]</span></li>
-        <li><span class="placeholder">[Opciones de facturación]</span></li>
-        <li><span class="placeholder">[Tiempo de anticipación requerido]</span></li>
+        <li>Solicita una cotización según el número de asistentes.</li>
+        <li>Consulta presentaciones, condiciones y opciones de facturación.</li>
+        <li>Indícanos la fecha para confirmar disponibilidad y anticipación.</li>
       </ul>
-      <a href="https://wa.me/525661448010?text=Hola%2C%20quiero%20cotizar%20un%20paquete%20corporativo" target="_blank" rel="noopener" class="pkg-cta">Cotizar por WhatsApp</a>
+      <a href="https://wa.me/525661448010?text=Hola%2C%20quiero%20cotizar%20para%20un%20evento%20de%20empresa" target="_blank" rel="noopener noreferrer" class="pkg-cta">Cotizar por WhatsApp</a>
     </div>
   </div>
-  <p class="packages-note">¿Tienes algo distinto en mente? <a href="https://wa.me/525661448010?text=Hola%2C%20quiero%20preguntar%20y%20cotizar%20un%20paquete" target="_blank" rel="noopener" style="color:var(--blue-deep); font-weight:700; text-decoration:underline;">Pregunta y cotiza por WhatsApp</a>.</p>
+  <p class="packages-note">¿Tienes algo distinto en mente? <a href="https://wa.me/525661448010?text=Hola%2C%20quiero%20preguntar%20y%20cotizar%20un%20paquete" target="_blank" rel="noopener noreferrer" style="color:var(--blue-deep); font-weight:700; text-decoration:underline;">Pregunta y cotiza por WhatsApp</a>.</p>
 </section>
 
 <section class="locations" id="sucursales">
@@ -1708,10 +651,10 @@
         <span class="value">Jueves a martes, 12:00 pm – 8:30 pm<br>Miércoles: cerrado</span>
       </div>
       <div class="card-actions">
-        <a href="https://www.google.com/maps/search/?api=1&query=Av+Emilio+Carranza+443%2C+El+Reto%C3%B1o%2C+Iztapalapa%2C+09440+Ciudad+de+M%C3%A9xico%2C+CDMX" target="_blank" rel="noopener" class="map-btn">Cómo llegar →</a>
+        <a href="https://www.google.com/maps/search/?api=1&query=Av+Emilio+Carranza+443%2C+El+Reto%C3%B1o%2C+Iztapalapa%2C+09440+Ciudad+de+M%C3%A9xico%2C+CDMX" target="_blank" rel="noopener noreferrer" class="map-btn">Cómo llegar →</a>
         <a href="#sabores" class="btn-menu-link">Ver menú</a>
       </div>
-      <iframe class="map-embed" loading="lazy" src="https://www.google.com/maps?q=Av+Emilio+Carranza+443,+El+Reto%C3%B1o,+Iztapalapa,+09440+Ciudad+de+M%C3%A9xico,+CDMX&output=embed"></iframe>
+      <iframe class="map-embed" title="Mapa de la sucursal NiceCream El Retoño" loading="lazy" src="https://www.google.com/maps?q=Av+Emilio+Carranza+443,+El+Reto%C3%B1o,+Iztapalapa,+09440+Ciudad+de+M%C3%A9xico,+CDMX&output=embed"></iframe>
     </div>
 
     <div class="location-card">
@@ -1727,10 +670,10 @@
         <span class="value">Miér 12–5 pm · Sáb 12–4:30 pm<br>Resto de la semana: cerrado</span>
       </div>
       <div class="card-actions">
-        <a href="https://www.google.com/maps/search/?api=1&query=Unidad+Habitacional%2C+Emilio+Portes+Gil%2C+Tlalpan%2C+14110+Ciudad+de+M%C3%A9xico%2C+CDMX" target="_blank" rel="noopener" class="map-btn">Cómo llegar →</a>
+        <a href="https://www.google.com/maps/search/?api=1&query=Unidad+Habitacional%2C+Emilio+Portes+Gil%2C+Tlalpan%2C+14110+Ciudad+de+M%C3%A9xico%2C+CDMX" target="_blank" rel="noopener noreferrer" class="map-btn">Cómo llegar →</a>
         <a href="#sabores" class="btn-menu-link">Ver menú</a>
       </div>
-      <iframe class="map-embed" loading="lazy" src="https://www.google.com/maps?q=Unidad+Habitacional,+Emilio+Portes+Gil,+Tlalpan,+14110+Ciudad+de+M%C3%A9xico,+CDMX&output=embed"></iframe>
+      <iframe class="map-embed" title="Mapa de la sucursal NiceCream Pedregal" loading="lazy" src="https://www.google.com/maps?q=Unidad+Habitacional,+Emilio+Portes+Gil,+Tlalpan,+14110+Ciudad+de+M%C3%A9xico,+CDMX&output=embed"></iframe>
     </div>
   </div>
 </section>
@@ -1755,7 +698,7 @@
     </details>
     <details class="faq-item">
       <summary>¿Necesito pedir con anticipación para pedidos grandes o eventos?</summary>
-      <p>Para paquetes de fiestas y eventos, te recomendamos escribirnos por WhatsApp con anticipación para asegurar disponibilidad. <span class="placeholder">[Confirma con cuántos días de anticipación mínimo]</span></p>
+      <p>Te recomendamos escribirnos por WhatsApp lo antes posible. Compártenos la fecha, la sucursal y la cantidad aproximada que necesitas; te confirmaremos disponibilidad y tiempo de preparación antes de cerrar tu pedido.</p>
     </details>
     <details class="faq-item">
       <summary>¿Hay estacionamiento en las sucursales?</summary>
@@ -1772,21 +715,20 @@
   <div class="section-head">
     <span class="eyebrow">Hablemos</span>
     <h2>Pide, pregunta o solo salúdanos</h2>
-    <p>Escríbenos directo por WhatsApp o síguenos en redes.</p>
+    <p>¿Se te antojó algo o quieres cotizar un evento? Escríbenos por WhatsApp, explora el menú o descubre cómo llegar.</p>
   </div>
   <div class="review-block" style="border-top:none; margin-top:0; padding-top:0;">
     <p>¿Nos visitaste? Nos ayuda muchísimo que dejes tu reseña en Google ⭐</p>
     <div class="review-row">
-      <a href="https://g.page/r/Cc4HJ5olNIpbEBM/review" target="_blank" rel="noopener" class="review-pill">⭐ Reseña El Retoño</a>
-      <a href="https://g.page/r/CdyZqwwRU9PkEBM/review" target="_blank" rel="noopener" class="review-pill">⭐ Reseña Pedregal</a>
+      <a href="https://g.page/r/Cc4HJ5olNIpbEBM/review" target="_blank" rel="noopener noreferrer" class="review-pill">⭐ Reseña El Retoño</a>
+      <a href="https://g.page/r/CdyZqwwRU9PkEBM/review" target="_blank" rel="noopener noreferrer" class="review-pill">⭐ Reseña Pedregal</a>
     </div>
   </div>
 
   <div class="social-row" style="margin-top:32px;">
-    <a href="https://wa.me/525661448010?text=Hola%2C%20quiero%20hacer%20un%20pedido" target="_blank" rel="noopener" class="social-pill">WhatsApp</a>
-    <a href="#" class="social-pill">Instagram <span class="placeholder">[@usuario]</span></a>
-    <a href="#" class="social-pill">Facebook <span class="placeholder">[página]</span></a>
-    <span class="social-pill disabled" title="No disponible por el momento">Rappi<span class="soon-tag">No disponible por ahora</span></span>
+    <a href="https://wa.me/525661448010?text=Hola%2C%20quiero%20hacer%20un%20pedido" target="_blank" rel="noopener noreferrer" class="social-pill">WhatsApp</a>
+    <a href="#sabores" class="social-pill">🍓 Ver menú</a>
+    <a href="#sucursales" class="social-pill">📍 Cómo llegar</a>
   </div>
 
   <div class="newsletter-teaser">
@@ -1804,12 +746,16 @@
     <p class="modal-sub">Sabores nuevos y promociones, directo a tu correo.</p>
     <form class="newsletter-form" id="signupForm">
       <input type="text" id="signupWebsite" name="website" tabindex="-1" autocomplete="off" style="position:absolute; left:-9999px; width:1px; height:1px; opacity:0;" aria-hidden="true">
-      <input type="text" id="signupNombre" placeholder="Tu nombre" maxlength="40" required>
-      <input type="email" id="signupCorreo" placeholder="tu@correo.com" required>
-      <input type="text" id="signupSabor" placeholder="¿Tu sabor favorito?" maxlength="40" required>
+      <input type="text" id="signupNombre" name="nombre" autocomplete="name" aria-label="Tu nombre" placeholder="Tu nombre" maxlength="40" required>
+      <input type="email" id="signupCorreo" name="correo" autocomplete="email" aria-label="Tu correo electrónico" placeholder="tu@correo.com" maxlength="254" required>
+      <input type="text" id="signupSabor" name="sabor" aria-label="Tu sabor favorito" placeholder="¿Tu sabor favorito?" maxlength="40" required>
+      <label class="newsletter-consent">
+        <input type="checkbox" id="signupConsent" name="consentimiento" required>
+        <span>Quiero recibir novedades y promociones de NiceCream por correo. Entiendo que puedo solicitar dejar de recibirlas escribiendo a nuestro WhatsApp.</span>
+      </label>
       <button type="submit" id="signupSubmit">Quiero recibir novedades</button>
     </form>
-    <p class="newsletter-note" id="signupNote">Tus datos se guardan solo para avisarte de novedades — nada de spam.</p>
+    <p class="newsletter-note" id="signupNote">Enviaremos tu nombre, correo y sabor favorito a nuestro servicio de registro. No compartas información sensible.</p>
   </div>
 </div>
 
@@ -1818,221 +764,9 @@
   <button class="share-btn" id="shareBtn" type="button">🔗 Compartir este sitio</button>
 </footer>
 
-<script>
-  const shareBtn = document.getElementById('shareBtn');
-  shareBtn.addEventListener('click', async () => {
-    const shareData = {
-      title: 'NiceCream',
-      text: 'Paletas, helados, malteadas y aguas — El Retoño y Pedregal, CDMX',
-      url: 'https://oswaldocasillas.github.io/NiceCream/'
-    };
-    if(navigator.share){
-      try { await navigator.share(shareData); } catch(err) {}
-    } else {
-      try {
-        await navigator.clipboard.writeText(shareData.url);
-        shareBtn.textContent = '¡Link copiado! 📋';
-        setTimeout(() => { shareBtn.textContent = '🔗 Compartir este sitio'; }, 2500);
-      } catch(err) {}
-    }
-  });
-
-  const navToggle = document.getElementById('navToggle');
-  const navMenu = document.getElementById('navMenu');
-  navToggle.addEventListener('click', () => navMenu.classList.toggle('open'));
-  navMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navMenu.classList.remove('open')));
-
-  // ===== VOTACIÓN DE SABOR =====
-  // Pega aquí la URL de tu Google Apps Script (ver instrucciones que te di aparte)
-  const VOTE_ENDPOINT = 'https://script.google.com/macros/s/AKfycbzkNin0IP-2fEaN_Xr_JNf4GQeiYrwD_N31hhZ6DKRI_7lGLN1m1JBN_4G0aU1pbMz3nA/exec';
-  const SITE_TOKEN = 'nc-2026-8f3a1c';
-
-  const voteCards = document.querySelectorAll('.vote-card');
-  const voteSubmit = document.getElementById('voteSubmit');
-  const voteGrid = document.getElementById('voteGrid');
-  const voteOtroInputWrap = document.getElementById('voteOtroInputWrap');
-  const voteOtroInput = document.getElementById('voteOtroInput');
-  let selectedFlavor = null;
-  let isOtro = false;
-
-  function lockVoting(message){
-    voteCards.forEach(c => {
-      c.classList.remove('selected');
-      c.style.pointerEvents = 'none';
-      c.style.opacity = '0.5';
-    });
-    voteOtroInputWrap.style.display = 'none';
-    voteSubmit.disabled = true;
-    voteSubmit.textContent = message;
-  }
-
-  // Si ya votó en esta sesión (pestaña/navegador abiertos), bloquea de entrada
-  if(sessionStorage.getItem('nicecream_voted') === 'true'){
-    lockVoting('¡Ya votaste! Gracias 🎉');
-  } else {
-    voteCards.forEach(card => {
-      card.addEventListener('click', () => {
-        voteCards.forEach(c => c.classList.remove('selected'));
-        card.classList.add('selected');
-        isOtro = card.dataset.flavor === '__otro__';
-
-        if(isOtro){
-          voteOtroInputWrap.style.display = 'block';
-          voteOtroInput.focus();
-          selectedFlavor = voteOtroInput.value.trim();
-          voteSubmit.disabled = !selectedFlavor;
-          voteSubmit.textContent = selectedFlavor ? 'Enviar mi voto por ' + selectedFlavor : 'Escribe tu sabor arriba';
-        } else {
-          voteOtroInputWrap.style.display = 'none';
-          selectedFlavor = card.dataset.flavor;
-          voteSubmit.disabled = false;
-          voteSubmit.textContent = 'Enviar mi voto por ' + selectedFlavor;
-        }
-      });
-    });
-
-    voteOtroInput.addEventListener('input', () => {
-      selectedFlavor = voteOtroInput.value.trim();
-      voteSubmit.disabled = !selectedFlavor;
-      voteSubmit.textContent = selectedFlavor ? 'Enviar mi voto por ' + selectedFlavor : 'Escribe tu sabor arriba';
-    });
-
-    voteSubmit.addEventListener('click', () => {
-      if(!selectedFlavor) return;
-      voteSubmit.disabled = true;
-      voteSubmit.textContent = 'Enviando tu voto...';
-
-      fetch(VOTE_ENDPOINT, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'text/plain' },
-        body: JSON.stringify({ sabor: selectedFlavor, fecha: new Date().toISOString(), token: SITE_TOKEN })
-      }).then(() => {
-        sessionStorage.setItem('nicecream_voted', 'true');
-        lockVoting('¡Gracias por tu voto! 🎉');
-      }).catch(() => {
-        voteSubmit.disabled = false;
-        voteSubmit.textContent = 'Hubo un error, intenta de nuevo';
-      });
-    });
-  }
-
-  // ===== REGISTRO DE CORREO (novedades) =====
-  // ===== POP-UP DE REGISTRO =====
-  const newsletterOverlay = document.getElementById('newsletterOverlay');
-  const newsletterOpenBtn = document.getElementById('newsletterOpenBtn');
-  const newsletterClose = document.getElementById('newsletterClose');
-  newsletterOpenBtn.addEventListener('click', () => newsletterOverlay.classList.add('open'));
-  newsletterClose.addEventListener('click', () => newsletterOverlay.classList.remove('open'));
-  newsletterOverlay.addEventListener('click', (e) => {
-    if(e.target === newsletterOverlay) newsletterOverlay.classList.remove('open');
-  });
-
-  // Aparece solo una vez por sesión, a los 8 segundos, si no está ya registrado
-  if(sessionStorage.getItem('nicecream_registered') !== 'true' &&
-     sessionStorage.getItem('nicecream_popup_shown') !== 'true'){
-    setTimeout(() => {
-      newsletterOverlay.classList.add('open');
-      sessionStorage.setItem('nicecream_popup_shown', 'true');
-    }, 8000);
-  }
-
-  const signupForm = document.getElementById('signupForm');
-  const signupSubmit = document.getElementById('signupSubmit');
-  const signupNote = document.getElementById('signupNote');
-
-  if(sessionStorage.getItem('nicecream_registered') === 'true'){
-    signupSubmit.disabled = true;
-    signupSubmit.textContent = '¡Ya estás registrado!';
-    signupNote.textContent = 'Gracias, te avisaremos por correo de nuestras novedades 🎉';
-  }
-
-  signupForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    var nombre = document.getElementById('signupNombre').value.trim();
-    var correo = document.getElementById('signupCorreo').value.trim();
-    var sabor = document.getElementById('signupSabor').value.trim();
-    var honeypot = document.getElementById('signupWebsite').value.trim();
-
-    // Si el campo trampa viene lleno, es un bot: fingimos éxito y no enviamos nada
-    if(honeypot){
-      signupForm.reset();
-      signupSubmit.textContent = '¡Ya estás registrado!';
-      signupNote.textContent = 'Gracias, te avisaremos por correo de nuestras novedades 🎉';
-      return;
-    }
-
-    if(!nombre || !correo || !sabor) return;
-
-    var emailPattern = /^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,24}$/;
-    if(!emailPattern.test(correo)){
-      signupNote.textContent = 'Ese correo no se ve válido — revisa que esté bien escrito (ej. nombre@correo.com).';
-      signupNote.style.color = '#D9534F';
-      return;
-    }
-    signupNote.style.color = '';
-
-    signupSubmit.disabled = true;
-    signupSubmit.textContent = 'Enviando...';
-
-    fetch(VOTE_ENDPOINT, {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: { 'Content-Type': 'text/plain' },
-      body: JSON.stringify({
-        tipo: 'registro',
-        nombre: nombre,
-        correo: correo,
-        saborFavorito: sabor,
-        fecha: new Date().toISOString(),
-        token: SITE_TOKEN
-      })
-    }).then(() => {
-      sessionStorage.setItem('nicecream_registered', 'true');
-      signupForm.reset();
-      signupSubmit.textContent = '¡Ya estás registrado!';
-      signupNote.textContent = 'Gracias, te avisaremos por correo de nuestras novedades 🎉';
-    }).catch(() => {
-      signupSubmit.disabled = false;
-      signupSubmit.textContent = 'Hubo un error, intenta de nuevo';
-    });
-  });
-
-  const subTabs = document.querySelectorAll('#paletasSubTabs .sub-tab');
-  const subPanels = document.querySelectorAll('#panel-paletas .sub-panel');
-  subTabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      subTabs.forEach(t => t.classList.remove('active'));
-      subPanels.forEach(p => p.classList.remove('active'));
-      tab.classList.add('active');
-      document.getElementById('subpanel-' + tab.dataset.subtab).classList.add('active');
-    });
-  });
-
-  const subTabsH = document.querySelectorAll('#heladosSubTabs .sub-tab');
-  const subPanelsH = document.querySelectorAll('#panel-helados .sub-panel');
-  subTabsH.forEach(tab => {
-    tab.addEventListener('click', () => {
-      subTabsH.forEach(t => t.classList.remove('active'));
-      subPanelsH.forEach(p => p.classList.remove('active'));
-      tab.classList.add('active');
-      document.getElementById('subpanel-h-' + tab.dataset.subtabH).classList.add('active');
-    });
-  });
-
-  const tabs = document.querySelectorAll('#menuTabs .flavor-tab');
-  const panels = document.querySelectorAll('.menu-panel');
-  tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      tabs.forEach(t => t.classList.remove('active'));
-      panels.forEach(p => p.classList.remove('active'));
-      tab.classList.add('active');
-      document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
-    });
-  });
-</script>
+<script src="assets/nicecream-core.js" defer></script>
 <!-- ===== WHATSAPP FLOTANTE ===== -->
-<a class="whatsapp-launcher" href="https://wa.me/525661448010?text=Hola%2C%20quiero%20hacer%20un%20pedido" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
+<a class="whatsapp-launcher" href="https://wa.me/525661448010?text=Hola%2C%20quiero%20hacer%20un%20pedido" target="_blank" rel="noopener noreferrer" aria-label="Escríbenos por WhatsApp">
   <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.36 5.07L2 22l5.09-1.33A9.94 9.94 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2Z" fill="white"/>
     <path d="M8.5 8.3c.2-.45.4-.46.6-.47.16 0 .34 0 .5 0 .16 0 .38-.06.6.45.22.53.75 1.8.82 1.93.07.13.11.28.02.46-.09.18-.14.28-.27.43-.13.15-.28.34-.4.46-.13.13-.27.27-.12.53.15.27.68 1.1 1.46 1.78 1 .88 1.84 1.15 2.11 1.28.27.13.43.11.59-.07.16-.18.68-.78.86-1.05.18-.27.36-.22.6-.13.25.09 1.57.73 1.84.87.27.13.45.2.51.32.07.13.07.71-.16 1.4-.24.68-1.38 1.31-1.9 1.4-.51.09-1.03.13-2.35-.5-1.98-.94-3.27-2.9-3.37-3.04-.1-.13-.82-1.08-.82-2.06 0-.98.51-1.46.7-1.66Z" fill="#25D366"/>
@@ -2055,135 +789,7 @@
   <div class="chat-options" id="chatOptions"></div>
 </div>
 
-<script>
-  const chatLauncher = document.getElementById('chatLauncher');
-  const chatWindow = document.getElementById('chatWindow');
-  const chatClose = document.getElementById('chatClose');
-  const chatBody = document.getElementById('chatBody');
-  const chatOptions = document.getElementById('chatOptions');
-
-  const chatData = {
-    root: {
-      bot: "¡Hola! Soy el asistente de NiceCream 🍦 ¿En qué te ayudo?",
-      options: [
-        { label: "📍 Horarios y ubicaciones", next: "ubicaciones" },
-        { label: "🍧 Ver el menú", next: "menu" },
-        { label: "🥗 ¿Tienen opciones sin azúcar o veganas?", next: "dietas" },
-        { label: "🎉 Pedidos para eventos", next: "eventos" },
-        { label: "💳 ¿Aceptan tarjeta?", next: "pago" },
-        { label: "🗳️ Vota por el próximo sabor", next: "votar" },
-        { label: "⭐ Quiero dejar una reseña", next: "resena" },
-        { label: "🆕 ¿Qué hay de nuevo?", next: "novedades" },
-        { label: "✉️ Hablar con alguien", next: "contacto" }
-      ]
-    },
-    ubicaciones: {
-      bot: "Tenemos dos sucursales:\n\n• El Retoño (Iztapalapa): jueves a martes, 12:00 pm – 8:30 pm (cerrado los miércoles)\n• Pedregal (Tlalpan, dentro del Mercadito de la Unidad Pemex): miércoles 12–5 pm y sábado 12–4:30 pm",
-      options: [
-        { label: "Ver mapa de las sucursales", action: "scroll", target: "#sucursales" },
-        { label: "⬅️ Regresar al inicio", next: "root" }
-      ]
-    },
-    menu: {
-      bot: "Tenemos paletas de agua, de crema, premium, con infusión, sin azúcar/keto, helados, malteadas, dorilocos, bebidas y más. Te llevo al menú completo.",
-      options: [
-        { label: "Ir al menú", action: "scroll", target: "#sabores" },
-        { label: "⬅️ Regresar al inicio", next: "root" }
-      ]
-    },
-    dietas: {
-      bot: "¡Sí! Tenemos línea sin azúcar añadida (incluye keto) y varias opciones veganas marcadas en el menú. También hay una opción especial para mascotas 🐾",
-      options: [
-        { label: "Ver sección Keto / Sin azúcar", action: "scroll", target: "#sabores" },
-        { label: "⬅️ Regresar al inicio", next: "root" }
-      ]
-    },
-    eventos: {
-      bot: "Manejamos paquetes para fiestas y eventos especiales. Puedes ver las opciones aquí mismo o escribirnos directo por WhatsApp con la fecha, número de personas y sucursal.",
-      options: [
-        { label: "Ver paquetes", action: "scroll", target: "#paquetes" },
-        { label: "Escribir por WhatsApp", action: "link", target: "https://wa.me/525661448010?text=Hola%2C%20quiero%20cotizar%20un%20evento" },
-        { label: "⬅️ Regresar al inicio", next: "root" }
-      ]
-    },
-    pago: {
-      bot: "Sí, aceptamos pago con tarjeta y también tarjetas de vales, en ambas sucursales.",
-      options: [
-        { label: "⬅️ Regresar al inicio", next: "root" }
-      ]
-    },
-    votar: {
-      bot: "¡Nos encanta que opines! Elige tu sabor favorito entre los candidatos de este mes y ayúdanos a decidir cuál sale.",
-      options: [
-        { label: "Ir a votar", action: "scroll", target: "#votacion" },
-        { label: "⬅️ Regresar al inicio", next: "root" }
-      ]
-    },
-    resena: {
-      bot: "¡Gracias de antemano! Nos ayuda muchísimo. ¿En qué sucursal nos visitaste?",
-      options: [
-        { label: "El Retoño", action: "link", target: "https://g.page/r/Cc4HJ5olNIpbEBM/review" },
-        { label: "Pedregal", action: "link", target: "https://g.page/r/CdyZqwwRU9PkEBM/review" },
-        { label: "⬅️ Regresar al inicio", next: "root" }
-      ]
-    },
-    novedades: {
-      bot: "Este mes se sumó la Nieve de limón sin azúcar 🍋 Cítrica, ligera y sin azúcar añadida — ya está disponible en ambas sucursales.",
-      options: [
-        { label: "Ver todas las novedades", action: "scroll", target: "#novedades" },
-        { label: "⬅️ Regresar al inicio", next: "root" }
-      ]
-    },
-    contacto: {
-      bot: "Con gusto. La forma más rápida es por WhatsApp — ahí mismo te podemos ayudar con tu pedido o duda.",
-      options: [
-        { label: "Escribir por WhatsApp", action: "link", target: "https://wa.me/525661448010?text=Hola%2C%20tengo%20una%20pregunta" },
-        { label: "⬅️ Regresar al inicio", next: "root" }
-      ]
-    }
-  };
-
-  function renderChatStep(stepKey){
-    const step = chatData[stepKey];
-    const botMsg = document.createElement('div');
-    botMsg.className = 'chat-msg bot';
-    botMsg.textContent = step.bot;
-    chatBody.appendChild(botMsg);
-    chatBody.scrollTop = chatBody.scrollHeight;
-
-    chatOptions.innerHTML = '';
-    step.options.forEach(opt => {
-      const btn = document.createElement('button');
-      btn.className = 'chat-option-btn';
-      btn.textContent = opt.label;
-      btn.addEventListener('click', () => {
-        const userMsg = document.createElement('div');
-        userMsg.className = 'chat-msg user';
-        userMsg.textContent = opt.label;
-        chatBody.appendChild(userMsg);
-        chatBody.scrollTop = chatBody.scrollHeight;
-
-        if(opt.action === 'scroll'){
-          chatWindow.classList.remove('open');
-          document.querySelector(opt.target).scrollIntoView({ behavior:'smooth' });
-        } else if(opt.action === 'link'){
-          window.open(opt.target, '_blank', 'noopener');
-        } else {
-          renderChatStep(opt.next);
-        }
-      });
-      chatOptions.appendChild(btn);
-    });
-  }
-
-  chatLauncher.addEventListener('click', () => {
-    chatWindow.classList.toggle('open');
-    if(chatWindow.classList.contains('open') && chatBody.children.length === 0){
-      renderChatStep('root');
-    }
-  });
-  chatClose.addEventListener('click', () => chatWindow.classList.remove('open'));
-</script>
+<script src="assets/nicecream-chat.js" defer></script>
 
 </body>
 </html>
