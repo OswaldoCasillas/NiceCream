@@ -281,3 +281,13 @@ const shareBtn = document.getElementById('shareBtn');
       document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
     });
   });
+
+  // Los accesos de portada y de la sección especial abren la pestaña correcta.
+  document.querySelectorAll('[data-open-menu]').forEach(link => {
+    link.addEventListener('click', () => {
+      const requestedTab = link.getAttribute('data-open-menu');
+      const button = Array.from(document.querySelectorAll('#menuTabs .flavor-tab'))
+        .find(item => item.getAttribute('data-tab') === requestedTab);
+      if(button) button.click();
+    });
+  });

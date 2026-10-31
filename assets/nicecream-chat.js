@@ -34,9 +34,9 @@ const chatLauncher = document.getElementById('chatLauncher');
       ]
     },
     dietas: {
-      bot: "¡Sí! Tenemos línea sin azúcar añadida (incluye keto) y varias opciones veganas marcadas en el menú. También hay una opción especial para mascotas 🐾",
+      bot: "¡Y de los buenos! 🍦 En nuestro menú hay 27 opciones listadas en la sección keto y sin azúcar añadida: paletas frutales, Ferrero Keto, ChocoFresa Keto, piñón, pistache y helado de limón sin azúcar añadida. Los sabores pueden variar por sucursal.",
       options: [
-        { label: "Ver sección Keto / Sin azúcar", action: "scroll", target: "#sabores" },
+        { label: "Explorar Keto / Sin azúcar", action: "menu", tab: "keto", target: "#sabores" },
         { label: "⬅️ Regresar al inicio", next: "root" }
       ]
     },
@@ -105,9 +105,14 @@ const chatLauncher = document.getElementById('chatLauncher');
         chatBody.appendChild(userMsg);
         chatBody.scrollTop = chatBody.scrollHeight;
 
-        if(opt.action === 'scroll'){
+        if(opt.action === 'scroll' || opt.action === 'menu'){
+          if(opt.action === 'menu'){
+            const tab = document.querySelector('#menuTabs [data-tab="' + opt.tab + '"]');
+            if(tab) tab.click();
+          }
           chatWindow.classList.remove('open');
-          document.querySelector(opt.target).scrollIntoView({ behavior:'smooth' });
+          const target = document.querySelector(opt.target);
+          if(target) target.scrollIntoView({ behavior:'smooth' });
         } else if(opt.action === 'link'){
           window.open(opt.target, '_blank', 'noopener');
         } else {

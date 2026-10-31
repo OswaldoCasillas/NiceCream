@@ -1,39 +1,56 @@
-NICECREAM - CORRECCIÓN DE NOVIEMBRE 2026
-===========================================
-SABOR DESTACADO: HELADO DE LIMÓN SIN AZÚCAR AÑADIDA.
+NICECREAM — PORTADA CON PERSONALIDAD + ESPECIAL KETO / SIN AZÚCAR
+NOVIEMBRE 2026
+==============================================================
 
-ACLARACIÓN IMPORTANTE
-- NO es un helado de limón diferente del que ya aparecía en el menú.
-- Es la misma opción "Limón sin azúcar" que ya aparecía en Helados > Nieve
-  y también está mencionada en Keto / Sin azúcar.
-- En noviembre se presenta como SABOR DESTACADO para darle difusión.
-- Se eliminó el "Limón" (con azúcar sin especificar) que se añadió por error
-  a Helados > Clásico en la versión anterior.
-- Se mantiene en el menú la nieve de limón convencional como otro producto.
-- No se anunció descuento ni regalo: "destacado" no implica precio promocional.
+QUÉ CAMBIÓ
+- Nuevo título visible: "Sabores que sorprenden. Antojos para todos."
+- La portada destaca variedad, sabores especiales y línea keto y sin azúcar.
+- Nueva sección visual "Sin azúcar añadida. Sin quedarte con lo de siempre."
+- El recuento sale del menú: 10 paletas sin azúcar añadida, 12 paletas keto
+  y 5 helados en la sección especial (27 referencias publicadas).
+- Enlaces desde la portada y la sección especial abren directamente la
+  pestaña "Keto / Sin azúcar" del menú.
+- En el chatbot, esa opción también abre la pestaña correcta.
+- Se ajustaron los textos de "Nosotros", menú, preguntas frecuentes y
+  metadatos para Google/redes sociales.
+- Se conservó el anuncio correcto de noviembre: EL MISMO helado de limón
+  sin azúcar añadida que ya estaba en el menú. No se inventó un segundo.
+- Se conservan los precios sin publicar hasta que confirmes tu lista.
+- No se anuncian descuentos ni regalos no aprobados.
 
-ACTUALIZACIONES
-- Portada: nombre exacto del sabor destacado.
-- Novedades: anuncio correcto, sin inventar una nueva receta.
-- Menú: distintivo NOVIEMBRE en el sabor ya publicado.
-- Votación: texto coherente con este anuncio.
-- Chatbot: explica que es el mismo producto del menú.
-- WhatsApp y metadatos para Google/redes: corregidos.
+IMPORTANTE SOBRE "SIN AZÚCAR"
+- No equivale a "cero azúcar", ni implica ser apto para todas las dietas.
+- Los productos pueden contener azúcares naturales, edulcorantes y
+  alérgenos. Se recomienda confirmar ingredientes en tienda.
+- El conteo 27 se refiere a productos LISTADOS en la sección especial,
+  no a la disponibilidad simultánea de cada sabor. Actualízalo si
+  modificas esa sección del menú.
 
-PUBLICACIÓN EN GITHUB
-1. Descomprime el ZIP en tu equipo.
-2. Sube los archivos descomprimidos, respetando la estructura de carpetas:
-   index.html, 404.html, CNAME, robots.txt, sitemap.xml, assets/ (CSS y JS).
-3. NO borres las imágenes y logos ya publicados en assets/:
-   este ZIP incluye el CSS y JavaScript, pero NO las imágenes originales.
-4. Conserva CNAME en la raíz y confirma con Commit changes.
-5. Revisa https://nicecream.com.mx/ y actualiza la caché del navegador si
-   todavía ves la versión anterior (Ctrl+Shift+R o ventana privada).
-6. Verifica el botón WhatsApp, sección Novedades y menú de Helados y Keto.
+PUBLICAR EN GITHUB
+1. Descarga y descomprime el ZIP.
+2. En el repositorio NiceCream, reemplaza los archivos de la RAÍZ:
+      index.html, 404.html, CNAME, robots.txt, sitemap.xml
+3. En la carpeta assets/, reemplaza estos archivos:
+      nicecream.css, nicecream-chat.js, nicecream-core.js
+4. NO borres tus imágenes y logotipos actuales en assets/.
+   No fueron adjuntados al proyecto: este ZIP no los incluye.
+5. Confirma "Commit changes" y verifica https://nicecream.com.mx/ .
+6. Si no ves los cambios, recarga sin caché (Ctrl+Shift+R).
+7. Comprueba especialmente:
+   - botón "Explora keto y sin azúcar" de la portada
+   - botón "Ver sabores keto y sin azúcar" de la sección especial
+   - chatbot > opciones sin azúcar
+   - novedad de limón sin azúcar añadida de noviembre
+   - enlaces a WhatsApp y sucursales
 
-SEGURIDAD Y VOTACIÓN
-- Se conservan los ajustes de seguridad y la conexión de votaciones existentes.
-- No se comprobó la escritura de votos del Apps Script original en producción.
-- No se cambian sus códigos ni se envían votos de prueba.
-- No se agregan precios ni promociones de descuento.
+SEGURIDAD, FORMULARIOS Y VOTACIÓN
+- Se conserva la conexión de votación actual a Apps Script.
+- No se ha podido confirmar desde el navegador que los votos se guarden
+  en el servidor. No se enviaron votos reales como prueba.
+- Esta versión no integra cupones QR ni verificación por SMS.
+- No publiques claves de Apps Script ni contraseñas en archivos HTML/JS.
+- Tu cuenta personal de Google no se anuncia en el sitio, pero verifica
+  los permisos de la implementación de Apps Script.
 
+LOS ARCHIVOS FINALES DEBEN ESTAR DIRECTAMENTE EN EL REPOSITORIO,
+NO EN UNA CARPETA ADICIONAL DENTRO DEL MISMO.
