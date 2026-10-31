@@ -1,31 +1,39 @@
-NICECREAM - ACTUALIZACIÓN NOVIEMBRE 2026
-========================================
-NUEVO: anuncio de helado de limón como sabor de noviembre 2026.
-Se actualizó:
-- El anuncio en la portada.
-- Novedades (con botón para preguntar por WhatsApp).
-- Menú Helados > Clásico: Limón (nuevo en noviembre).
-- Textos de votación para que no parezca que se vota por el sabor de noviembre.
-- Respuesta de novedades del chatbot.
-- Descripciones para búsquedas y compartir el sitio.
+NICECREAM - CORRECCIÓN DE NOVIEMBRE 2026
+===========================================
+SABOR DESTACADO: HELADO DE LIMÓN SIN AZÚCAR AÑADIDA.
 
-IMPORTANTE SOBRE LOS SABORES
-- El nuevo HELADO de limón no se ha marcado como "sin azúcar".
-- Se mantienen en el menú la NIEVE de limón y la NIEVE de limón sin azúcar.
-- Se conserva la eliminación de las paletas Trix, Moctezuma y Kahlúa.
+ACLARACIÓN IMPORTANTE
+- NO es un helado de limón diferente del que ya aparecía en el menú.
+- Es la misma opción "Limón sin azúcar" que ya aparecía en Helados > Nieve
+  y también está mencionada en Keto / Sin azúcar.
+- En noviembre se presenta como SABOR DESTACADO para darle difusión.
+- Se eliminó el "Limón" (con azúcar sin especificar) que se añadió por error
+  a Helados > Clásico en la versión anterior.
+- Se mantiene en el menú la nieve de limón convencional como otro producto.
+- No se anunció descuento ni regalo: "destacado" no implica precio promocional.
 
-CÓMO PUBLICAR EN GITHUB
-1. Descomprime el ZIP. NO subas el ZIP como un único archivo.
-2. En tu repositorio de GitHub, sube los archivos y la carpeta 'assets'
-   manteniendo los mismos nombres y rutas; confirma con Commit changes.
-3. NO borres las imágenes ni logos que ya están en 'assets' en GitHub.
-   NO van dentro de este ZIP porque no estaban entre los archivos compartidos.
-4. Conserva la configuración CNAME en la raíz del repositorio.
-5. Tras publicar revisa https://nicecream.com.mx/ y los enlaces de novedades.
+ACTUALIZACIONES
+- Portada: nombre exacto del sabor destacado.
+- Novedades: anuncio correcto, sin inventar una nueva receta.
+- Menú: distintivo NOVIEMBRE en el sabor ya publicado.
+- Votación: texto coherente con este anuncio.
+- Chatbot: explica que es el mismo producto del menú.
+- WhatsApp y metadatos para Google/redes: corregidos.
+
+PUBLICACIÓN EN GITHUB
+1. Descomprime el ZIP en tu equipo.
+2. Sube los archivos descomprimidos, respetando la estructura de carpetas:
+   index.html, 404.html, CNAME, robots.txt, sitemap.xml, assets/ (CSS y JS).
+3. NO borres las imágenes y logos ya publicados en assets/:
+   este ZIP incluye el CSS y JavaScript, pero NO las imágenes originales.
+4. Conserva CNAME en la raíz y confirma con Commit changes.
+5. Revisa https://nicecream.com.mx/ y actualiza la caché del navegador si
+   todavía ves la versión anterior (Ctrl+Shift+R o ventana privada).
+6. Verifica el botón WhatsApp, sección Novedades y menú de Helados y Keto.
 
 SEGURIDAD Y VOTACIÓN
-- Se mantienen los ajustes de seguridad de la versión anterior.
-- La votación sigue usando el Apps Script original. No se ha verificado
-  que ese servidor registre correctamente los votos en producción.
-- Para revisar Apps Script hay que acceder al Code.gs del proyecto.
-- No hay precios nuevos ni promesas sobre fechas exactas de existencia.
+- Se conservan los ajustes de seguridad y la conexión de votaciones existentes.
+- No se comprobó la escritura de votos del Apps Script original en producción.
+- No se cambian sus códigos ni se envían votos de prueba.
+- No se agregan precios ni promociones de descuento.
+
